@@ -34,7 +34,8 @@ localparam C_WHEEL    = 24'h2F2F2F; // dark wheel color
 localparam C_BLDG     = 24'h555555;
 localparam C_BLDG_OUT = 24'h222222;
 localparam C_WIN      = 24'hFFFFCC; // slightly warm window
-localparam C_SF_MARK  = 24'hFFFFFF;
+localparam C_START_MARK  = 24'h66CCFF;
+localparam C_FINISH_MARK = 24'hFFFFFF;
 localparam C_SKY_TOP    = 24'h9BD6F8; // lighter top sky
 localparam C_SKY_MID    = 24'h7ECFF0;
 localparam C_SKY_BOTTOM = 24'h5FBEE8; // near horizon
@@ -317,7 +318,8 @@ function [0:0] car_window;
         if (src_x >= 0 && src_x < 14 && src_y >= 0 && src_y < 8) begin
             row_bits = row_bus[src_y * 14 +: 14];
             if (row_bits[13 - src_x]) begin
-                if ((src_y >= 1 && src_y <= 3) && (src_x >= 4 && src_x <= 9))
+                // Use src_x bands for vertical layering so the window stays on top.
+                if ((src_x >= 3 && src_x <= 6) && (src_y >= 1 && src_y <= 6))
                     car_window = 1'b1;
             end
         end
@@ -346,9 +348,10 @@ function [23:0] car_color;
         if (src_x >= 0 && src_x < 14 && src_y >= 0 && src_y < 8) begin
             row_bits = row_bus[src_y * 14 +: 14];
             if (row_bits[13 - src_x]) begin
-                if (src_y >= 6)
+                // Bottom of the car is dark (wheels/undercarriage).
+                if (src_x >= 11)
                     car_color = C_WHEEL;
-                else if (src_x <= 1 || src_x >= 12 || (src_y >= 2 && src_y <= 4 && (src_x >= 4 && src_x <= 9)))
+                else if (src_y <= 1 || src_y >= 6 || (src_x >= 4 && src_x <= 9 && src_y >= 2 && src_y <= 4))
                     car_color = C_TRIM;
                 else
                     car_color = C_CAR;
@@ -420,7 +423,8 @@ endfunction
 wire        w_car   = car_pixel(px, py, car_x, car_y, heading_deg, car_row_bus);
 wire        w_car_win = car_window(px, py, car_x, car_y, heading_deg, car_row_bus);
 wire        w_cone  = is_cone_pixel(px, py);
-wire        w_sf    = (px == `SF_X2) && (py >= `SF_Y1) && (py <= `SF_Y2);
+wire        w_start  = (py == `START_LINE_Y)  && (px >= `SF_X1) && (px <= `SF_X2);
+wire        w_finish = (py == `FINISH_LINE_Y) && (px >= `SF_X1) && (px <= `SF_X2);
 wire        w_track = is_on_track(px, py);
 wire [23:0] w_bldg  = bldg_color(px, py);
 
@@ -449,8 +453,10 @@ always @(posedge pclk) begin
             rgb <= car_color(px, py, car_x, car_y, heading_deg, car_row_bus);
         else if (w_cone)
             rgb <= C_CONE;
-        else if (w_sf)
-            rgb <= C_SF_MARK;
+        else if (w_finish)
+            rgb <= C_FINISH_MARK;
+        else if (w_start)
+            rgb <= C_START_MARK;
         else if (w_bldg != 24'h000000 && !w_track)
             rgb <= w_bldg;
         else if (w_track)

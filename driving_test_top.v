@@ -142,8 +142,8 @@ collision_detector u_col (
 //  Game FSM
 // ─────────────────────────────────────────────────────────────────────────
 wire [1:0]  game_state;
-wire [15:0] elapsed_sec;
-wire [7:0]  elapsed_ms;
+wire [15:0] remaining_sec;
+wire [7:0]  remaining_ms;
 
 fsm_game u_fsm (
     .clk50       (CLOCK_50),    .rst_n      (rst_n),
@@ -152,7 +152,7 @@ fsm_game u_fsm (
     .car_x       (car_x),       .car_y      (car_y),
     .car_angle   (car_angle),
     .game_state  (game_state),  .game_active(game_active),
-    .elapsed_sec (elapsed_sec), .elapsed_ms (elapsed_ms)
+    .remaining_sec (remaining_sec), .remaining_ms (remaining_ms)
 );
 
 // ─────────────────────────────────────────────────────────────────────────
@@ -189,7 +189,7 @@ lcd_controller u_lcd (
 // ─────────────────────────────────────────────────────────────────────────
 seg7_display u_seg7 (
     .clk50       (CLOCK_50),    .rst_n      (rst_n),
-    .elapsed_sec (elapsed_sec), .elapsed_ms (elapsed_ms),
+    .remaining_sec (remaining_sec), .remaining_ms (remaining_ms),
     .speed_kph   (speed_kph),
     .HEX0(HEX0), .HEX1(HEX1), .HEX2(HEX2),
     .HEX3(HEX3), .HEX4(HEX4), .HEX5(HEX5)

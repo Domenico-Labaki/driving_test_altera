@@ -119,6 +119,11 @@
 `define SF_Y1 320
 `define SF_Y2 380
 
+// Start/finish markings inside the bay.
+// Car starts inside the bay and exits northward across FINISH_LINE_Y.
+`define START_LINE_Y  `SF_Y2
+`define FINISH_LINE_Y `SF_Y1
+
 // ──────────────────────────────────────────────────────────
 //  CONE POSITIONS (10 cones, driving test configuration)
 // ──────────────────────────────────────────────────────────

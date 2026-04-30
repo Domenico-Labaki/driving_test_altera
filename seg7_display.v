@@ -1,7 +1,7 @@
 // seg7_display.v — Seven-segment display driver.
 //
 // Displays:
-//   HEX5:HEX4 — elapsed time  MM:SS  (or SS.cc during drive)
+//   HEX5:HEX4 — remaining time SS (countdown)
 //   HEX3:HEX2 — speed in kph  (0–99)
 //   HEX1:HEX0 — unused / all off
 //
@@ -11,8 +11,8 @@
 module seg7_display (
     input  wire        clk50,
     input  wire        rst_n,
-    input  wire [15:0] elapsed_sec,  // seconds counter from FSM
-    input  wire [7:0]  elapsed_ms,   // centiseconds (0–99)
+    input  wire [15:0] remaining_sec, // seconds countdown from FSM
+    input  wire [7:0]  remaining_ms,  // centiseconds (unused for now)
     input  wire [7:0]  speed_kph,    // 0–99
     // DE2 seven-segment outputs (active-low)
     output reg  [6:0]  HEX0,
@@ -44,10 +44,9 @@ function automatic [6:0] seg7;
 endfunction
 
 // ── BCD decomposition ─────────────────────────────────────────────────────
-wire [3:0] sec_ones  = elapsed_sec[3:0] % 10;
-wire [3:0] sec_tens  = (elapsed_sec % 60) / 10;
-wire [3:0] min_ones  = (elapsed_sec / 60) % 10;
-wire [3:0] min_tens  = (elapsed_sec / 600) % 10;
+wire [6:0] disp_sec  = (remaining_sec > 16'd99) ? 7'd99 : remaining_sec[6:0];
+wire [3:0] sec_ones  = disp_sec % 10;
+wire [3:0] sec_tens  = disp_sec / 10;
 
 wire [3:0] spd_ones  = speed_kph % 10;
 wire [3:0] spd_tens  = speed_kph / 10;
@@ -68,8 +67,6 @@ always @(posedge clk50) begin
         HEX3 <= seg7(spd_tens);      // speed tens
         HEX4 <= seg7(sec_ones);      // seconds ones
         HEX5 <= seg7(sec_tens);      // seconds tens
-        // Note: HEX5 also shows minutes when elapsed_sec >= 60
-        // For a simple display, we show total seconds mod 100.
     end
 end
 

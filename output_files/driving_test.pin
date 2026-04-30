@@ -204,7 +204,7 @@ GND*                         : AE5       :        :                   :         
 GND*                         : AE6       :        :                   :         : 8         :                
 GND*                         : AE7       :        :                   :         : 8         :                
 GND*                         : AE8       :        :                   :         : 8         :                
-GND*                         : AE9       :        :                   :         : 8         :                
+GPIO_0_0                     : AE9       : output : 3.3-V LVTTL       :         : 8         : N              
 GND*                         : AE10      :        :                   :         : 8         :                
 HEX0[4]                      : AE11      : output : 3.3-V LVTTL       :         : 8         : Y              
 LEDR[16]                     : AE12      : output : 3.3-V LVTTL       :         : 8         : Y              
@@ -229,7 +229,7 @@ GND*                         : AF5       :        :                   :         
 GND*                         : AF6       :        :                   :         : 8         :                
 GND*                         : AF7       :        :                   :         : 8         :                
 GND*                         : AF8       :        :                   :         : 8         :                
-GPIO_0_0                     : AF9       : output : 3.3-V LVTTL       :         : 8         : N              
+GND*                         : AF9       :        :                   :         : 8         :                
 HEX0[0]                      : AF10      : output : 3.3-V LVTTL       :         : 8         : Y              
 VCCIO8                       : AF11      : power  :                   : 3.3V    : 8         :                
 GND                          : AF12      : gnd    :                   :         :           :                

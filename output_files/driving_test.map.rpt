@@ -1,5 +1,5 @@
 Analysis & Synthesis report for driving_test
-Thu Apr 30 18:34:54 2026
+Thu Apr 30 18:49:52 2026
 Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
 
 
@@ -20,63 +20,58 @@ Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edit
  12. General Register Statistics
  13. Multiplexer Restructuring Statistics (Restructuring Performed)
  14. Parameter Settings for Inferred Entity Instance: track_renderer:u_render|lpm_divide:Mod0
- 15. Parameter Settings for Inferred Entity Instance: seg7_display:u_seg7|lpm_divide:Mod2
+ 15. Parameter Settings for Inferred Entity Instance: seg7_display:u_seg7|lpm_divide:Mod1
  16. Parameter Settings for Inferred Entity Instance: seg7_display:u_seg7|lpm_divide:Div1
  17. Parameter Settings for Inferred Entity Instance: seg7_display:u_seg7|lpm_divide:Mod0
- 18. Parameter Settings for Inferred Entity Instance: seg7_display:u_seg7|lpm_divide:Mod1
- 19. Parameter Settings for Inferred Entity Instance: seg7_display:u_seg7|lpm_divide:Div0
- 20. Parameter Settings for Inferred Entity Instance: track_renderer:u_render|lpm_mult:Mult8
- 21. Parameter Settings for Inferred Entity Instance: track_renderer:u_render|lpm_mult:Mult11
- 22. Parameter Settings for Inferred Entity Instance: track_renderer:u_render|lpm_mult:Mult10
- 23. Parameter Settings for Inferred Entity Instance: track_renderer:u_render|lpm_mult:Mult13
- 24. Parameter Settings for Inferred Entity Instance: track_renderer:u_render|lpm_mult:Mult12
- 25. Parameter Settings for Inferred Entity Instance: track_renderer:u_render|lpm_mult:Mult9
- 26. Parameter Settings for Inferred Entity Instance: car_controller:u_car|lpm_mult:Mult2
- 27. Parameter Settings for Inferred Entity Instance: track_renderer:u_render|lpm_mult:Mult16
- 28. Parameter Settings for Inferred Entity Instance: track_renderer:u_render|lpm_mult:Mult17
- 29. Parameter Settings for Inferred Entity Instance: track_renderer:u_render|lpm_mult:Mult14
- 30. Parameter Settings for Inferred Entity Instance: track_renderer:u_render|lpm_mult:Mult15
- 31. Parameter Settings for Inferred Entity Instance: track_renderer:u_render|lpm_mult:Mult0
- 32. Parameter Settings for Inferred Entity Instance: track_renderer:u_render|lpm_mult:Mult2
- 33. Parameter Settings for Inferred Entity Instance: track_renderer:u_render|lpm_mult:Mult3
- 34. Parameter Settings for Inferred Entity Instance: track_renderer:u_render|lpm_mult:Mult7
- 35. Parameter Settings for Inferred Entity Instance: track_renderer:u_render|lpm_mult:Mult4
- 36. Parameter Settings for Inferred Entity Instance: collision_detector:u_col|lpm_mult:Mult1
- 37. Parameter Settings for Inferred Entity Instance: collision_detector:u_col|lpm_mult:Mult0
- 38. Parameter Settings for Inferred Entity Instance: collision_detector:u_col|lpm_mult:Mult3
- 39. Parameter Settings for Inferred Entity Instance: collision_detector:u_col|lpm_mult:Mult2
- 40. Parameter Settings for Inferred Entity Instance: collision_detector:u_col|lpm_mult:Mult5
- 41. Parameter Settings for Inferred Entity Instance: collision_detector:u_col|lpm_mult:Mult4
- 42. Parameter Settings for Inferred Entity Instance: collision_detector:u_col|lpm_mult:Mult7
- 43. Parameter Settings for Inferred Entity Instance: collision_detector:u_col|lpm_mult:Mult6
- 44. Parameter Settings for Inferred Entity Instance: collision_detector:u_col|lpm_mult:Mult9
- 45. Parameter Settings for Inferred Entity Instance: collision_detector:u_col|lpm_mult:Mult8
- 46. Parameter Settings for Inferred Entity Instance: collision_detector:u_col|lpm_mult:Mult10
- 47. Parameter Settings for Inferred Entity Instance: collision_detector:u_col|lpm_mult:Mult11
- 48. Parameter Settings for Inferred Entity Instance: collision_detector:u_col|lpm_mult:Mult13
- 49. Parameter Settings for Inferred Entity Instance: collision_detector:u_col|lpm_mult:Mult12
- 50. Parameter Settings for Inferred Entity Instance: collision_detector:u_col|lpm_mult:Mult14
- 51. Parameter Settings for Inferred Entity Instance: collision_detector:u_col|lpm_mult:Mult16
- 52. Parameter Settings for Inferred Entity Instance: collision_detector:u_col|lpm_mult:Mult15
- 53. Parameter Settings for Inferred Entity Instance: corner_probe:u_c0|lpm_mult:Mult0
- 54. Parameter Settings for Inferred Entity Instance: corner_probe:u_c0|lpm_mult:Mult3
- 55. Parameter Settings for Inferred Entity Instance: corner_probe:u_c0|lpm_mult:Mult2
- 56. Parameter Settings for Inferred Entity Instance: corner_probe:u_c0|lpm_mult:Mult5
- 57. Parameter Settings for Inferred Entity Instance: corner_probe:u_c0|lpm_mult:Mult4
- 58. Parameter Settings for Inferred Entity Instance: corner_probe:u_c0|lpm_mult:Mult1
- 59. Parameter Settings for Inferred Entity Instance: corner_probe:u_c1|lpm_mult:Mult0
- 60. Parameter Settings for Inferred Entity Instance: corner_probe:u_c1|lpm_mult:Mult3
- 61. Parameter Settings for Inferred Entity Instance: corner_probe:u_c1|lpm_mult:Mult4
- 62. Parameter Settings for Inferred Entity Instance: corner_probe:u_c2|lpm_mult:Mult2
- 63. Parameter Settings for Inferred Entity Instance: corner_probe:u_c2|lpm_mult:Mult5
- 64. Parameter Settings for Inferred Entity Instance: corner_probe:u_c2|lpm_mult:Mult1
- 65. Parameter Settings for Inferred Entity Instance: car_controller:u_car|lpm_mult:Mult1
- 66. Parameter Settings for Inferred Entity Instance: car_controller:u_car|lpm_mult:Mult0
- 67. lpm_mult Parameter Settings by Entity Instance
- 68. Port Connectivity Checks: "input_handler:u_input"
- 69. Elapsed Time Per Partition
- 70. Analysis & Synthesis Messages
- 71. Analysis & Synthesis Suppressed Messages
+ 18. Parameter Settings for Inferred Entity Instance: seg7_display:u_seg7|lpm_divide:Div0
+ 19. Parameter Settings for Inferred Entity Instance: track_renderer:u_render|lpm_mult:Mult8
+ 20. Parameter Settings for Inferred Entity Instance: track_renderer:u_render|lpm_mult:Mult11
+ 21. Parameter Settings for Inferred Entity Instance: track_renderer:u_render|lpm_mult:Mult10
+ 22. Parameter Settings for Inferred Entity Instance: track_renderer:u_render|lpm_mult:Mult13
+ 23. Parameter Settings for Inferred Entity Instance: track_renderer:u_render|lpm_mult:Mult12
+ 24. Parameter Settings for Inferred Entity Instance: track_renderer:u_render|lpm_mult:Mult9
+ 25. Parameter Settings for Inferred Entity Instance: car_controller:u_car|lpm_mult:Mult2
+ 26. Parameter Settings for Inferred Entity Instance: track_renderer:u_render|lpm_mult:Mult16
+ 27. Parameter Settings for Inferred Entity Instance: track_renderer:u_render|lpm_mult:Mult17
+ 28. Parameter Settings for Inferred Entity Instance: track_renderer:u_render|lpm_mult:Mult14
+ 29. Parameter Settings for Inferred Entity Instance: track_renderer:u_render|lpm_mult:Mult15
+ 30. Parameter Settings for Inferred Entity Instance: track_renderer:u_render|lpm_mult:Mult1
+ 31. Parameter Settings for Inferred Entity Instance: collision_detector:u_col|lpm_mult:Mult1
+ 32. Parameter Settings for Inferred Entity Instance: collision_detector:u_col|lpm_mult:Mult0
+ 33. Parameter Settings for Inferred Entity Instance: collision_detector:u_col|lpm_mult:Mult3
+ 34. Parameter Settings for Inferred Entity Instance: collision_detector:u_col|lpm_mult:Mult2
+ 35. Parameter Settings for Inferred Entity Instance: collision_detector:u_col|lpm_mult:Mult5
+ 36. Parameter Settings for Inferred Entity Instance: collision_detector:u_col|lpm_mult:Mult4
+ 37. Parameter Settings for Inferred Entity Instance: collision_detector:u_col|lpm_mult:Mult7
+ 38. Parameter Settings for Inferred Entity Instance: collision_detector:u_col|lpm_mult:Mult6
+ 39. Parameter Settings for Inferred Entity Instance: collision_detector:u_col|lpm_mult:Mult9
+ 40. Parameter Settings for Inferred Entity Instance: collision_detector:u_col|lpm_mult:Mult8
+ 41. Parameter Settings for Inferred Entity Instance: collision_detector:u_col|lpm_mult:Mult10
+ 42. Parameter Settings for Inferred Entity Instance: collision_detector:u_col|lpm_mult:Mult11
+ 43. Parameter Settings for Inferred Entity Instance: collision_detector:u_col|lpm_mult:Mult13
+ 44. Parameter Settings for Inferred Entity Instance: collision_detector:u_col|lpm_mult:Mult12
+ 45. Parameter Settings for Inferred Entity Instance: collision_detector:u_col|lpm_mult:Mult14
+ 46. Parameter Settings for Inferred Entity Instance: collision_detector:u_col|lpm_mult:Mult16
+ 47. Parameter Settings for Inferred Entity Instance: collision_detector:u_col|lpm_mult:Mult15
+ 48. Parameter Settings for Inferred Entity Instance: corner_probe:u_c0|lpm_mult:Mult0
+ 49. Parameter Settings for Inferred Entity Instance: corner_probe:u_c0|lpm_mult:Mult3
+ 50. Parameter Settings for Inferred Entity Instance: corner_probe:u_c0|lpm_mult:Mult2
+ 51. Parameter Settings for Inferred Entity Instance: corner_probe:u_c0|lpm_mult:Mult5
+ 52. Parameter Settings for Inferred Entity Instance: corner_probe:u_c0|lpm_mult:Mult4
+ 53. Parameter Settings for Inferred Entity Instance: corner_probe:u_c0|lpm_mult:Mult1
+ 54. Parameter Settings for Inferred Entity Instance: corner_probe:u_c1|lpm_mult:Mult0
+ 55. Parameter Settings for Inferred Entity Instance: corner_probe:u_c1|lpm_mult:Mult3
+ 56. Parameter Settings for Inferred Entity Instance: corner_probe:u_c1|lpm_mult:Mult4
+ 57. Parameter Settings for Inferred Entity Instance: corner_probe:u_c2|lpm_mult:Mult2
+ 58. Parameter Settings for Inferred Entity Instance: corner_probe:u_c2|lpm_mult:Mult5
+ 59. Parameter Settings for Inferred Entity Instance: corner_probe:u_c2|lpm_mult:Mult1
+ 60. Parameter Settings for Inferred Entity Instance: car_controller:u_car|lpm_mult:Mult1
+ 61. Parameter Settings for Inferred Entity Instance: car_controller:u_car|lpm_mult:Mult0
+ 62. lpm_mult Parameter Settings by Entity Instance
+ 63. Port Connectivity Checks: "input_handler:u_input"
+ 64. Elapsed Time Per Partition
+ 65. Analysis & Synthesis Messages
+ 66. Analysis & Synthesis Suppressed Messages
 
 
 
@@ -102,19 +97,19 @@ applicable agreement for further details.
 +--------------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                         ;
 +------------------------------------+-------------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Thu Apr 30 18:34:54 2026           ;
+; Analysis & Synthesis Status        ; Successful - Thu Apr 30 18:49:52 2026           ;
 ; Quartus II 64-Bit Version          ; 13.0.1 Build 232 06/12/2013 SP 1 SJ Web Edition ;
 ; Revision Name                      ; driving_test                                    ;
 ; Top-level Entity Name              ; driving_test_top                                ;
 ; Family                             ; Cyclone II                                      ;
-; Total logic elements               ; 6,158                                           ;
-;     Total combinational functions  ; 6,132                                           ;
+; Total logic elements               ; 5,839                                           ;
+;     Total combinational functions  ; 5,813                                           ;
 ;     Dedicated logic registers      ; 451                                             ;
 ; Total registers                    ; 451                                             ;
 ; Total pins                         ; 118                                             ;
 ; Total virtual pins                 ; 0                                               ;
 ; Total memory bits                  ; 0                                               ;
-; Embedded Multiplier 9-bit elements ; 56                                              ;
+; Embedded Multiplier 9-bit elements ; 48                                              ;
 ; Total PLLs                         ; 0                                               ;
 +------------------------------------+-------------------------------------------------+
 
@@ -246,15 +241,10 @@ Parallel compilation was disabled, but you have multiple processors available. E
 ; db/sign_div_unsign_bkh.tdf       ; yes             ; Auto-Generated Megafunction  ; C:/Users/user/Documents/Computer Engineering/2025-2026/Spring 25-26/GEL372 - Digital Circuits Lab/Final Project new/db/sign_div_unsign_bkh.tdf ;         ;
 ; db/alt_u_div_ove.tdf             ; yes             ; Auto-Generated Megafunction  ; C:/Users/user/Documents/Computer Engineering/2025-2026/Spring 25-26/GEL372 - Digital Circuits Lab/Final Project new/db/alt_u_div_ove.tdf       ;         ;
 ; db/lpm_divide_1dm.tdf            ; yes             ; Auto-Generated Megafunction  ; C:/Users/user/Documents/Computer Engineering/2025-2026/Spring 25-26/GEL372 - Digital Circuits Lab/Final Project new/db/lpm_divide_1dm.tdf      ;         ;
-; db/lpm_divide_05m.tdf            ; yes             ; Auto-Generated Megafunction  ; C:/Users/user/Documents/Computer Engineering/2025-2026/Spring 25-26/GEL372 - Digital Circuits Lab/Final Project new/db/lpm_divide_05m.tdf      ;         ;
-; db/sign_div_unsign_7kh.tdf       ; yes             ; Auto-Generated Megafunction  ; C:/Users/user/Documents/Computer Engineering/2025-2026/Spring 25-26/GEL372 - Digital Circuits Lab/Final Project new/db/sign_div_unsign_7kh.tdf ;         ;
-; db/alt_u_div_gve.tdf             ; yes             ; Auto-Generated Megafunction  ; C:/Users/user/Documents/Computer Engineering/2025-2026/Spring 25-26/GEL372 - Digital Circuits Lab/Final Project new/db/alt_u_div_gve.tdf       ;         ;
-; db/lpm_divide_l6m.tdf            ; yes             ; Auto-Generated Megafunction  ; C:/Users/user/Documents/Computer Engineering/2025-2026/Spring 25-26/GEL372 - Digital Circuits Lab/Final Project new/db/lpm_divide_l6m.tdf      ;         ;
-; db/sign_div_unsign_slh.tdf       ; yes             ; Auto-Generated Megafunction  ; C:/Users/user/Documents/Computer Engineering/2025-2026/Spring 25-26/GEL372 - Digital Circuits Lab/Final Project new/db/sign_div_unsign_slh.tdf ;         ;
-; db/alt_u_div_q2f.tdf             ; yes             ; Auto-Generated Megafunction  ; C:/Users/user/Documents/Computer Engineering/2025-2026/Spring 25-26/GEL372 - Digital Circuits Lab/Final Project new/db/alt_u_div_q2f.tdf       ;         ;
-; db/lpm_divide_vcm.tdf            ; yes             ; Auto-Generated Megafunction  ; C:/Users/user/Documents/Computer Engineering/2025-2026/Spring 25-26/GEL372 - Digital Circuits Lab/Final Project new/db/lpm_divide_vcm.tdf      ;         ;
-; db/sign_div_unsign_9kh.tdf       ; yes             ; Auto-Generated Megafunction  ; C:/Users/user/Documents/Computer Engineering/2025-2026/Spring 25-26/GEL372 - Digital Circuits Lab/Final Project new/db/sign_div_unsign_9kh.tdf ;         ;
-; db/alt_u_div_kve.tdf             ; yes             ; Auto-Generated Megafunction  ; C:/Users/user/Documents/Computer Engineering/2025-2026/Spring 25-26/GEL372 - Digital Circuits Lab/Final Project new/db/alt_u_div_kve.tdf       ;         ;
+; db/lpm_divide_35m.tdf            ; yes             ; Auto-Generated Megafunction  ; C:/Users/user/Documents/Computer Engineering/2025-2026/Spring 25-26/GEL372 - Digital Circuits Lab/Final Project new/db/lpm_divide_35m.tdf      ;         ;
+; db/sign_div_unsign_akh.tdf       ; yes             ; Auto-Generated Megafunction  ; C:/Users/user/Documents/Computer Engineering/2025-2026/Spring 25-26/GEL372 - Digital Circuits Lab/Final Project new/db/sign_div_unsign_akh.tdf ;         ;
+; db/alt_u_div_mve.tdf             ; yes             ; Auto-Generated Megafunction  ; C:/Users/user/Documents/Computer Engineering/2025-2026/Spring 25-26/GEL372 - Digital Circuits Lab/Final Project new/db/alt_u_div_mve.tdf       ;         ;
+; db/lpm_divide_0dm.tdf            ; yes             ; Auto-Generated Megafunction  ; C:/Users/user/Documents/Computer Engineering/2025-2026/Spring 25-26/GEL372 - Digital Circuits Lab/Final Project new/db/lpm_divide_0dm.tdf      ;         ;
 ; lpm_mult.tdf                     ; yes             ; Megafunction                 ; c:/altera/13.0sp1/quartus/libraries/megafunctions/lpm_mult.tdf                                                                                 ;         ;
 ; lpm_add_sub.inc                  ; yes             ; Megafunction                 ; c:/altera/13.0sp1/quartus/libraries/megafunctions/lpm_add_sub.inc                                                                              ;         ;
 ; multcore.inc                     ; yes             ; Megafunction                 ; c:/altera/13.0sp1/quartus/libraries/megafunctions/multcore.inc                                                                                 ;         ;
@@ -295,27 +285,27 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +---------------------------------------------+----------+
 ; Resource                                    ; Usage    ;
 +---------------------------------------------+----------+
-; Estimated Total logic elements              ; 6,158    ;
+; Estimated Total logic elements              ; 5,839    ;
 ;                                             ;          ;
-; Total combinational functions               ; 6132     ;
+; Total combinational functions               ; 5813     ;
 ; Logic element usage by number of LUT inputs ;          ;
-;     -- 4 input functions                    ; 2027     ;
-;     -- 3 input functions                    ; 2042     ;
-;     -- <=2 input functions                  ; 2063     ;
+;     -- 4 input functions                    ; 1958     ;
+;     -- 3 input functions                    ; 1923     ;
+;     -- <=2 input functions                  ; 1932     ;
 ;                                             ;          ;
 ; Logic elements by mode                      ;          ;
-;     -- normal mode                          ; 3452     ;
-;     -- arithmetic mode                      ; 2680     ;
+;     -- normal mode                          ; 3304     ;
+;     -- arithmetic mode                      ; 2509     ;
 ;                                             ;          ;
 ; Total registers                             ; 451      ;
 ;     -- Dedicated logic registers            ; 451      ;
 ;     -- I/O registers                        ; 0        ;
 ;                                             ;          ;
 ; I/O pins                                    ; 118      ;
-; Embedded Multiplier 9-bit elements          ; 56       ;
+; Embedded Multiplier 9-bit elements          ; 48       ;
 ; Maximum fan-out node                        ; CLOCK_50 ;
 ; Maximum fan-out                             ; 386      ;
-; Total fan-out                               ; 20012    ;
+; Total fan-out                               ; 19055    ;
 ; Average fan-out                             ; 2.96     ;
 +---------------------------------------------+----------+
 
@@ -325,16 +315,16 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +---------------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------+
 ; Compilation Hierarchy Node                        ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                                                                                               ; Library Name ;
 +---------------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------+
-; |driving_test_top                                 ; 6132 (40)         ; 451 (2)      ; 0           ; 56           ; 0       ; 28        ; 118  ; 0            ; |driving_test_top                                                                                                                                                 ; work         ;
+; |driving_test_top                                 ; 5813 (40)         ; 451 (2)      ; 0           ; 48           ; 0       ; 24        ; 118  ; 0            ; |driving_test_top                                                                                                                                                 ; work         ;
 ;    |audio_controller:u_audio|                     ; 84 (84)           ; 46 (46)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |driving_test_top|audio_controller:u_audio                                                                                                                        ; work         ;
-;    |car_controller:u_car|                         ; 350 (346)         ; 91 (91)      ; 0           ; 4            ; 0       ; 2         ; 0    ; 0            ; |driving_test_top|car_controller:u_car                                                                                                                            ; work         ;
+;    |car_controller:u_car|                         ; 347 (343)         ; 91 (91)      ; 0           ; 4            ; 0       ; 2         ; 0    ; 0            ; |driving_test_top|car_controller:u_car                                                                                                                            ; work         ;
 ;       |lpm_mult:Mult0|                            ; 0 (0)             ; 0 (0)        ; 0           ; 2            ; 0       ; 1         ; 0    ; 0            ; |driving_test_top|car_controller:u_car|lpm_mult:Mult0                                                                                                             ; work         ;
 ;          |mult_g1t:auto_generated|                ; 0 (0)             ; 0 (0)        ; 0           ; 2            ; 0       ; 1         ; 0    ; 0            ; |driving_test_top|car_controller:u_car|lpm_mult:Mult0|mult_g1t:auto_generated                                                                                     ; work         ;
 ;       |lpm_mult:Mult1|                            ; 0 (0)             ; 0 (0)        ; 0           ; 2            ; 0       ; 1         ; 0    ; 0            ; |driving_test_top|car_controller:u_car|lpm_mult:Mult1                                                                                                             ; work         ;
 ;          |mult_g1t:auto_generated|                ; 0 (0)             ; 0 (0)        ; 0           ; 2            ; 0       ; 1         ; 0    ; 0            ; |driving_test_top|car_controller:u_car|lpm_mult:Mult1|mult_g1t:auto_generated                                                                                     ; work         ;
 ;       |lpm_mult:Mult2|                            ; 4 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |driving_test_top|car_controller:u_car|lpm_mult:Mult2                                                                                                             ; work         ;
 ;          |multcore:mult_core|                     ; 4 (4)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |driving_test_top|car_controller:u_car|lpm_mult:Mult2|multcore:mult_core                                                                                          ; work         ;
-;    |collision_detector:u_col|                     ; 861 (861)         ; 1 (1)        ; 0           ; 34           ; 0       ; 17        ; 0    ; 0            ; |driving_test_top|collision_detector:u_col                                                                                                                        ; work         ;
+;    |collision_detector:u_col|                     ; 862 (862)         ; 1 (1)        ; 0           ; 34           ; 0       ; 17        ; 0    ; 0            ; |driving_test_top|collision_detector:u_col                                                                                                                        ; work         ;
 ;       |lpm_mult:Mult0|                            ; 0 (0)             ; 0 (0)        ; 0           ; 2            ; 0       ; 1         ; 0    ; 0            ; |driving_test_top|collision_detector:u_col|lpm_mult:Mult0                                                                                                         ; work         ;
 ;          |mult_a8t:auto_generated|                ; 0 (0)             ; 0 (0)        ; 0           ; 2            ; 0       ; 1         ; 0    ; 0            ; |driving_test_top|collision_detector:u_col|lpm_mult:Mult0|mult_a8t:auto_generated                                                                                 ; work         ;
 ;       |lpm_mult:Mult10|                           ; 0 (0)             ; 0 (0)        ; 0           ; 2            ; 0       ; 1         ; 0    ; 0            ; |driving_test_top|collision_detector:u_col|lpm_mult:Mult10                                                                                                        ; work         ;
@@ -369,7 +359,7 @@ Parallel compilation was disabled, but you have multiple processors available. E
 ;          |mult_a8t:auto_generated|                ; 0 (0)             ; 0 (0)        ; 0           ; 2            ; 0       ; 1         ; 0    ; 0            ; |driving_test_top|collision_detector:u_col|lpm_mult:Mult8|mult_a8t:auto_generated                                                                                 ; work         ;
 ;       |lpm_mult:Mult9|                            ; 0 (0)             ; 0 (0)        ; 0           ; 2            ; 0       ; 1         ; 0    ; 0            ; |driving_test_top|collision_detector:u_col|lpm_mult:Mult9                                                                                                         ; work         ;
 ;          |mult_a8t:auto_generated|                ; 0 (0)             ; 0 (0)        ; 0           ; 2            ; 0       ; 1         ; 0    ; 0            ; |driving_test_top|collision_detector:u_col|lpm_mult:Mult9|mult_a8t:auto_generated                                                                                 ; work         ;
-;    |corner_probe:u_c0|                            ; 510 (285)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |driving_test_top|corner_probe:u_c0                                                                                                                               ; work         ;
+;    |corner_probe:u_c0|                            ; 512 (287)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |driving_test_top|corner_probe:u_c0                                                                                                                               ; work         ;
 ;       |lpm_mult:Mult0|                            ; 18 (0)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |driving_test_top|corner_probe:u_c0|lpm_mult:Mult0                                                                                                                ; work         ;
 ;          |multcore:mult_core|                     ; 18 (12)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |driving_test_top|corner_probe:u_c0|lpm_mult:Mult0|multcore:mult_core                                                                                             ; work         ;
 ;             |mpar_add:padder|                     ; 6 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |driving_test_top|corner_probe:u_c0|lpm_mult:Mult0|multcore:mult_core|mpar_add:padder                                                                             ; work         ;
@@ -443,9 +433,9 @@ Parallel compilation was disabled, but you have multiple processors available. E
 ;                |mpar_add:sub_par_add|             ; 10 (0)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |driving_test_top|corner_probe:u_c1|lpm_mult:Mult4|multcore:mult_core|mpar_add:padder|mpar_add:sub_par_add                                                        ; work         ;
 ;                   |lpm_add_sub:adder[0]|          ; 10 (0)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |driving_test_top|corner_probe:u_c1|lpm_mult:Mult4|multcore:mult_core|mpar_add:padder|mpar_add:sub_par_add|lpm_add_sub:adder[0]                                   ; work         ;
 ;                      |add_sub_tfh:auto_generated| ; 10 (10)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |driving_test_top|corner_probe:u_c1|lpm_mult:Mult4|multcore:mult_core|mpar_add:padder|mpar_add:sub_par_add|lpm_add_sub:adder[0]|add_sub_tfh:auto_generated        ; work         ;
-;    |corner_probe:u_c2|                            ; 313 (192)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |driving_test_top|corner_probe:u_c2                                                                                                                               ; work         ;
-;       |lpm_mult:Mult1|                            ; 24 (0)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |driving_test_top|corner_probe:u_c2|lpm_mult:Mult1                                                                                                                ; work         ;
-;          |multcore:mult_core|                     ; 24 (16)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |driving_test_top|corner_probe:u_c2|lpm_mult:Mult1|multcore:mult_core                                                                                             ; work         ;
+;    |corner_probe:u_c2|                            ; 312 (192)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |driving_test_top|corner_probe:u_c2                                                                                                                               ; work         ;
+;       |lpm_mult:Mult1|                            ; 23 (0)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |driving_test_top|corner_probe:u_c2|lpm_mult:Mult1                                                                                                                ; work         ;
+;          |multcore:mult_core|                     ; 23 (15)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |driving_test_top|corner_probe:u_c2|lpm_mult:Mult1|multcore:mult_core                                                                                             ; work         ;
 ;             |mpar_add:padder|                     ; 8 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |driving_test_top|corner_probe:u_c2|lpm_mult:Mult1|multcore:mult_core|mpar_add:padder                                                                             ; work         ;
 ;                |lpm_add_sub:adder[0]|             ; 6 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |driving_test_top|corner_probe:u_c2|lpm_mult:Mult1|multcore:mult_core|mpar_add:padder|lpm_add_sub:adder[0]                                                        ; work         ;
 ;                   |add_sub_1ch:auto_generated|    ; 6 (6)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |driving_test_top|corner_probe:u_c2|lpm_mult:Mult1|multcore:mult_core|mpar_add:padder|lpm_add_sub:adder[0]|add_sub_1ch:auto_generated                             ; work         ;
@@ -469,38 +459,32 @@ Parallel compilation was disabled, but you have multiple processors available. E
 ;                   |lpm_add_sub:adder[0]|          ; 12 (0)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |driving_test_top|corner_probe:u_c2|lpm_mult:Mult5|multcore:mult_core|mpar_add:padder|mpar_add:sub_par_add|lpm_add_sub:adder[0]                                   ; work         ;
 ;                      |add_sub_vfh:auto_generated| ; 12 (12)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |driving_test_top|corner_probe:u_c2|lpm_mult:Mult5|multcore:mult_core|mpar_add:padder|mpar_add:sub_par_add|lpm_add_sub:adder[0]|add_sub_vfh:auto_generated        ; work         ;
 ;    |corner_probe:u_c3|                            ; 86 (86)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |driving_test_top|corner_probe:u_c3                                                                                                                               ; work         ;
-;    |fsm_game:u_fsm|                               ; 47 (47)           ; 26 (26)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |driving_test_top|fsm_game:u_fsm                                                                                                                                  ; work         ;
+;    |fsm_game:u_fsm|                               ; 51 (51)           ; 26 (26)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |driving_test_top|fsm_game:u_fsm                                                                                                                                  ; work         ;
 ;    |input_handler:u_input|                        ; 122 (122)         ; 90 (90)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |driving_test_top|input_handler:u_input                                                                                                                           ; work         ;
-;    |lcd_controller:u_lcd|                         ; 159 (159)         ; 50 (50)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |driving_test_top|lcd_controller:u_lcd                                                                                                                            ; work         ;
+;    |lcd_controller:u_lcd|                         ; 158 (158)         ; 50 (50)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |driving_test_top|lcd_controller:u_lcd                                                                                                                            ; work         ;
 ;    |led_indicator:u_leds|                         ; 35 (35)           ; 51 (51)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |driving_test_top|led_indicator:u_leds                                                                                                                            ; work         ;
-;    |seg7_display:u_seg7|                          ; 341 (28)          ; 28 (28)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |driving_test_top|seg7_display:u_seg7                                                                                                                             ; work         ;
-;       |lpm_divide:Div0|                           ; 30 (0)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |driving_test_top|seg7_display:u_seg7|lpm_divide:Div0                                                                                                             ; work         ;
-;          |lpm_divide_vcm:auto_generated|          ; 30 (0)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |driving_test_top|seg7_display:u_seg7|lpm_divide:Div0|lpm_divide_vcm:auto_generated                                                                               ; work         ;
-;             |sign_div_unsign_9kh:divider|         ; 30 (0)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |driving_test_top|seg7_display:u_seg7|lpm_divide:Div0|lpm_divide_vcm:auto_generated|sign_div_unsign_9kh:divider                                                   ; work         ;
-;                |alt_u_div_kve:divider|            ; 30 (30)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |driving_test_top|seg7_display:u_seg7|lpm_divide:Div0|lpm_divide_vcm:auto_generated|sign_div_unsign_9kh:divider|alt_u_div_kve:divider                             ; work         ;
+;    |seg7_display:u_seg7|                          ; 232 (30)          ; 28 (28)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |driving_test_top|seg7_display:u_seg7                                                                                                                             ; work         ;
+;       |lpm_divide:Div0|                           ; 46 (0)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |driving_test_top|seg7_display:u_seg7|lpm_divide:Div0                                                                                                             ; work         ;
+;          |lpm_divide_0dm:auto_generated|          ; 46 (0)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |driving_test_top|seg7_display:u_seg7|lpm_divide:Div0|lpm_divide_0dm:auto_generated                                                                               ; work         ;
+;             |sign_div_unsign_akh:divider|         ; 46 (0)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |driving_test_top|seg7_display:u_seg7|lpm_divide:Div0|lpm_divide_0dm:auto_generated|sign_div_unsign_akh:divider                                                   ; work         ;
+;                |alt_u_div_mve:divider|            ; 46 (46)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |driving_test_top|seg7_display:u_seg7|lpm_divide:Div0|lpm_divide_0dm:auto_generated|sign_div_unsign_akh:divider|alt_u_div_mve:divider                             ; work         ;
 ;       |lpm_divide:Div1|                           ; 51 (0)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |driving_test_top|seg7_display:u_seg7|lpm_divide:Div1                                                                                                             ; work         ;
 ;          |lpm_divide_1dm:auto_generated|          ; 51 (0)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |driving_test_top|seg7_display:u_seg7|lpm_divide:Div1|lpm_divide_1dm:auto_generated                                                                               ; work         ;
 ;             |sign_div_unsign_bkh:divider|         ; 51 (0)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |driving_test_top|seg7_display:u_seg7|lpm_divide:Div1|lpm_divide_1dm:auto_generated|sign_div_unsign_bkh:divider                                                   ; work         ;
 ;                |alt_u_div_ove:divider|            ; 51 (51)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |driving_test_top|seg7_display:u_seg7|lpm_divide:Div1|lpm_divide_1dm:auto_generated|sign_div_unsign_bkh:divider|alt_u_div_ove:divider                             ; work         ;
-;       |lpm_divide:Mod0|                           ; 7 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |driving_test_top|seg7_display:u_seg7|lpm_divide:Mod0                                                                                                             ; work         ;
-;          |lpm_divide_05m:auto_generated|          ; 7 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |driving_test_top|seg7_display:u_seg7|lpm_divide:Mod0|lpm_divide_05m:auto_generated                                                                               ; work         ;
-;             |sign_div_unsign_7kh:divider|         ; 7 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |driving_test_top|seg7_display:u_seg7|lpm_divide:Mod0|lpm_divide_05m:auto_generated|sign_div_unsign_7kh:divider                                                   ; work         ;
-;                |alt_u_div_gve:divider|            ; 7 (7)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |driving_test_top|seg7_display:u_seg7|lpm_divide:Mod0|lpm_divide_05m:auto_generated|sign_div_unsign_7kh:divider|alt_u_div_gve:divider                             ; work         ;
-;       |lpm_divide:Mod1|                           ; 171 (0)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |driving_test_top|seg7_display:u_seg7|lpm_divide:Mod1                                                                                                             ; work         ;
-;          |lpm_divide_l6m:auto_generated|          ; 171 (0)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |driving_test_top|seg7_display:u_seg7|lpm_divide:Mod1|lpm_divide_l6m:auto_generated                                                                               ; work         ;
-;             |sign_div_unsign_slh:divider|         ; 171 (0)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |driving_test_top|seg7_display:u_seg7|lpm_divide:Mod1|lpm_divide_l6m:auto_generated|sign_div_unsign_slh:divider                                                   ; work         ;
-;                |alt_u_div_q2f:divider|            ; 171 (171)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |driving_test_top|seg7_display:u_seg7|lpm_divide:Mod1|lpm_divide_l6m:auto_generated|sign_div_unsign_slh:divider|alt_u_div_q2f:divider                             ; work         ;
-;       |lpm_divide:Mod2|                           ; 54 (0)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |driving_test_top|seg7_display:u_seg7|lpm_divide:Mod2                                                                                                             ; work         ;
-;          |lpm_divide_45m:auto_generated|          ; 54 (0)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |driving_test_top|seg7_display:u_seg7|lpm_divide:Mod2|lpm_divide_45m:auto_generated                                                                               ; work         ;
-;             |sign_div_unsign_bkh:divider|         ; 54 (0)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |driving_test_top|seg7_display:u_seg7|lpm_divide:Mod2|lpm_divide_45m:auto_generated|sign_div_unsign_bkh:divider                                                   ; work         ;
-;                |alt_u_div_ove:divider|            ; 54 (54)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |driving_test_top|seg7_display:u_seg7|lpm_divide:Mod2|lpm_divide_45m:auto_generated|sign_div_unsign_bkh:divider|alt_u_div_ove:divider                             ; work         ;
-;    |track_renderer:u_render|                      ; 2846 (2547)       ; 24 (24)      ; 0           ; 18           ; 0       ; 9         ; 0    ; 0            ; |driving_test_top|track_renderer:u_render                                                                                                                         ; work         ;
+;       |lpm_divide:Mod0|                           ; 51 (0)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |driving_test_top|seg7_display:u_seg7|lpm_divide:Mod0                                                                                                             ; work         ;
+;          |lpm_divide_35m:auto_generated|          ; 51 (0)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |driving_test_top|seg7_display:u_seg7|lpm_divide:Mod0|lpm_divide_35m:auto_generated                                                                               ; work         ;
+;             |sign_div_unsign_akh:divider|         ; 51 (0)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |driving_test_top|seg7_display:u_seg7|lpm_divide:Mod0|lpm_divide_35m:auto_generated|sign_div_unsign_akh:divider                                                   ; work         ;
+;                |alt_u_div_mve:divider|            ; 51 (51)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |driving_test_top|seg7_display:u_seg7|lpm_divide:Mod0|lpm_divide_35m:auto_generated|sign_div_unsign_akh:divider|alt_u_div_mve:divider                             ; work         ;
+;       |lpm_divide:Mod1|                           ; 54 (0)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |driving_test_top|seg7_display:u_seg7|lpm_divide:Mod1                                                                                                             ; work         ;
+;          |lpm_divide_45m:auto_generated|          ; 54 (0)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |driving_test_top|seg7_display:u_seg7|lpm_divide:Mod1|lpm_divide_45m:auto_generated                                                                               ; work         ;
+;             |sign_div_unsign_bkh:divider|         ; 54 (0)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |driving_test_top|seg7_display:u_seg7|lpm_divide:Mod1|lpm_divide_45m:auto_generated|sign_div_unsign_bkh:divider                                                   ; work         ;
+;                |alt_u_div_ove:divider|            ; 54 (54)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |driving_test_top|seg7_display:u_seg7|lpm_divide:Mod1|lpm_divide_45m:auto_generated|sign_div_unsign_bkh:divider|alt_u_div_ove:divider                             ; work         ;
+;    |track_renderer:u_render|                      ; 2634 (2335)       ; 24 (24)      ; 0           ; 10           ; 0       ; 5         ; 0    ; 0            ; |driving_test_top|track_renderer:u_render                                                                                                                         ; work         ;
 ;       |lpm_divide:Mod0|                           ; 73 (0)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |driving_test_top|track_renderer:u_render|lpm_divide:Mod0                                                                                                         ; work         ;
 ;          |lpm_divide_c6m:auto_generated|          ; 73 (0)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |driving_test_top|track_renderer:u_render|lpm_divide:Mod0|lpm_divide_c6m:auto_generated                                                                           ; work         ;
 ;             |sign_div_unsign_jlh:divider|         ; 73 (0)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |driving_test_top|track_renderer:u_render|lpm_divide:Mod0|lpm_divide_c6m:auto_generated|sign_div_unsign_jlh:divider                                               ; work         ;
 ;                |alt_u_div_82f:divider|            ; 73 (73)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |driving_test_top|track_renderer:u_render|lpm_divide:Mod0|lpm_divide_c6m:auto_generated|sign_div_unsign_jlh:divider|alt_u_div_82f:divider                         ; work         ;
-;       |lpm_mult:Mult0|                            ; 0 (0)             ; 0 (0)        ; 0           ; 2            ; 0       ; 1         ; 0    ; 0            ; |driving_test_top|track_renderer:u_render|lpm_mult:Mult0                                                                                                          ; work         ;
-;          |mult_71t:auto_generated|                ; 0 (0)             ; 0 (0)        ; 0           ; 2            ; 0       ; 1         ; 0    ; 0            ; |driving_test_top|track_renderer:u_render|lpm_mult:Mult0|mult_71t:auto_generated                                                                                  ; work         ;
 ;       |lpm_mult:Mult10|                           ; 46 (0)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |driving_test_top|track_renderer:u_render|lpm_mult:Mult10                                                                                                         ; work         ;
 ;          |multcore:mult_core|                     ; 46 (23)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |driving_test_top|track_renderer:u_render|lpm_mult:Mult10|multcore:mult_core                                                                                      ; work         ;
 ;             |mpar_add:padder|                     ; 23 (0)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |driving_test_top|track_renderer:u_render|lpm_mult:Mult10|multcore:mult_core|mpar_add:padder                                                                      ; work         ;
@@ -541,14 +525,8 @@ Parallel compilation was disabled, but you have multiple processors available. E
 ;          |mult_91t:auto_generated|                ; 0 (0)             ; 0 (0)        ; 0           ; 2            ; 0       ; 1         ; 0    ; 0            ; |driving_test_top|track_renderer:u_render|lpm_mult:Mult16|mult_91t:auto_generated                                                                                 ; work         ;
 ;       |lpm_mult:Mult17|                           ; 0 (0)             ; 0 (0)        ; 0           ; 2            ; 0       ; 1         ; 0    ; 0            ; |driving_test_top|track_renderer:u_render|lpm_mult:Mult17                                                                                                         ; work         ;
 ;          |mult_71t:auto_generated|                ; 0 (0)             ; 0 (0)        ; 0           ; 2            ; 0       ; 1         ; 0    ; 0            ; |driving_test_top|track_renderer:u_render|lpm_mult:Mult17|mult_71t:auto_generated                                                                                 ; work         ;
-;       |lpm_mult:Mult2|                            ; 0 (0)             ; 0 (0)        ; 0           ; 2            ; 0       ; 1         ; 0    ; 0            ; |driving_test_top|track_renderer:u_render|lpm_mult:Mult2                                                                                                          ; work         ;
-;          |mult_91t:auto_generated|                ; 0 (0)             ; 0 (0)        ; 0           ; 2            ; 0       ; 1         ; 0    ; 0            ; |driving_test_top|track_renderer:u_render|lpm_mult:Mult2|mult_91t:auto_generated                                                                                  ; work         ;
-;       |lpm_mult:Mult3|                            ; 0 (0)             ; 0 (0)        ; 0           ; 2            ; 0       ; 1         ; 0    ; 0            ; |driving_test_top|track_renderer:u_render|lpm_mult:Mult3                                                                                                          ; work         ;
-;          |mult_71t:auto_generated|                ; 0 (0)             ; 0 (0)        ; 0           ; 2            ; 0       ; 1         ; 0    ; 0            ; |driving_test_top|track_renderer:u_render|lpm_mult:Mult3|mult_71t:auto_generated                                                                                  ; work         ;
-;       |lpm_mult:Mult4|                            ; 0 (0)             ; 0 (0)        ; 0           ; 2            ; 0       ; 1         ; 0    ; 0            ; |driving_test_top|track_renderer:u_render|lpm_mult:Mult4                                                                                                          ; work         ;
-;          |mult_71t:auto_generated|                ; 0 (0)             ; 0 (0)        ; 0           ; 2            ; 0       ; 1         ; 0    ; 0            ; |driving_test_top|track_renderer:u_render|lpm_mult:Mult4|mult_71t:auto_generated                                                                                  ; work         ;
-;       |lpm_mult:Mult7|                            ; 0 (0)             ; 0 (0)        ; 0           ; 2            ; 0       ; 1         ; 0    ; 0            ; |driving_test_top|track_renderer:u_render|lpm_mult:Mult7                                                                                                          ; work         ;
-;          |mult_71t:auto_generated|                ; 0 (0)             ; 0 (0)        ; 0           ; 2            ; 0       ; 1         ; 0    ; 0            ; |driving_test_top|track_renderer:u_render|lpm_mult:Mult7|mult_71t:auto_generated                                                                                  ; work         ;
+;       |lpm_mult:Mult1|                            ; 0 (0)             ; 0 (0)        ; 0           ; 2            ; 0       ; 1         ; 0    ; 0            ; |driving_test_top|track_renderer:u_render|lpm_mult:Mult1                                                                                                          ; work         ;
+;          |mult_71t:auto_generated|                ; 0 (0)             ; 0 (0)        ; 0           ; 2            ; 0       ; 1         ; 0    ; 0            ; |driving_test_top|track_renderer:u_render|lpm_mult:Mult1|mult_71t:auto_generated                                                                                  ; work         ;
 ;       |lpm_mult:Mult8|                            ; 18 (0)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |driving_test_top|track_renderer:u_render|lpm_mult:Mult8                                                                                                          ; work         ;
 ;          |multcore:mult_core|                     ; 18 (12)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |driving_test_top|track_renderer:u_render|lpm_mult:Mult8|multcore:mult_core                                                                                       ; work         ;
 ;             |mpar_add:padder|                     ; 6 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |driving_test_top|track_renderer:u_render|lpm_mult:Mult8|multcore:mult_core|mpar_add:padder                                                                       ; work         ;
@@ -576,10 +554,10 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; Statistic                             ; Number Used ;
 +---------------------------------------+-------------+
 ; Simple Multipliers (9-bit)            ; 0           ;
-; Simple Multipliers (18-bit)           ; 28          ;
+; Simple Multipliers (18-bit)           ; 24          ;
 ; Embedded Multiplier Blocks            ; --          ;
-; Embedded Multiplier 9-bit elements    ; 56          ;
-; Signed Embedded Multipliers           ; 11          ;
+; Embedded Multiplier 9-bit elements    ; 48          ;
+; Signed Embedded Multipliers           ; 7           ;
 ; Unsigned Embedded Multipliers         ; 17          ;
 ; Mixed Sign Embedded Multipliers       ; 0           ;
 ; Variable Sign Embedded Multipliers    ; 0           ;
@@ -612,37 +590,37 @@ Encoding Type:  One-Hot
 +----------------------------------------------------+---------------------+------------------------+
 ; Latch Name                                         ; Latch Enable Signal ; Free of Timing Hazards ;
 +----------------------------------------------------+---------------------+------------------------+
-; track_renderer:u_render|trig_q8[90][0]_5377        ; GND                 ; yes                    ;
+; track_renderer:u_render|trig_q8[90][0]_5411        ; GND                 ; yes                    ;
 ; Number of user-specified and inferred latches = 1  ;                     ;                        ;
 +----------------------------------------------------+---------------------+------------------------+
 Note: All latches listed above may not be present at the end of synthesis due to various synthesis optimizations.
 
 
-+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Registers Removed During Synthesis                                                                                                                                               ;
-+-------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------+
-; Register name                                                                                                                 ; Reason for Removal                               ;
-+-------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------+
-; seg7_display:u_seg7|HEX0[0]                                                                                                   ; Stuck at VCC due to stuck port data_in           ;
-; seg7_display:u_seg7|HEX1[0..6]                                                                                                ; Stuck at VCC due to stuck port data_in           ;
-; seg7_display:u_seg7|HEX0[1..6]                                                                                                ; Stuck at VCC due to stuck port data_in           ;
-; car_controller:u_car|car_row_bus[2,4,8,10,16,18,20,22,24,26,28,39..46,48,50,52,54,58,60,62,64,72,75,77,79,81,87..94]          ; Merged with car_controller:u_car|car_row_bus[73] ;
-; car_controller:u_car|car_row_bus[0,12,14,56,69,70,83..86,95..100]                                                             ; Merged with car_controller:u_car|car_row_bus[71] ;
-; car_controller:u_car|car_row_bus[3,5..7,9,11,15,17,19,21,23,25,29..36,47,49,51,53,55,57,59,61,63,65..67,74,76,78,80,102..107] ; Merged with car_controller:u_car|car_row_bus[68] ;
-; car_controller:u_car|car_row_bus[37]                                                                                          ; Merged with car_controller:u_car|car_row_bus[38] ;
-; car_controller:u_car|car_row_bus[1,13,82,101,108..111]                                                                        ; Merged with car_controller:u_car|car_row_bus[27] ;
-; car_controller:u_car|car_row_bus[38,68]                                                                                       ; Merged with car_controller:u_car|car_row_bus[73] ;
-; car_controller:u_car|car_row_bus[27]                                                                                          ; Merged with car_controller:u_car|car_row_bus[71] ;
-; car_controller:u_car|car_row_bus[71]                                                                                          ; Stuck at GND due to stuck port data_in           ;
-; car_controller:u_car|car_row_bus[73]                                                                                          ; Stuck at VCC due to stuck port data_in           ;
-; vga_controller:u_vga|py[9]                                                                                                    ; Stuck at GND due to stuck port data_in           ;
-; lcd_controller:u_lcd|state~12                                                                                                 ; Lost fanout                                      ;
-; lcd_controller:u_lcd|state~13                                                                                                 ; Lost fanout                                      ;
-; lcd_controller:u_lcd|state~14                                                                                                 ; Lost fanout                                      ;
-; lcd_controller:u_lcd|state~15                                                                                                 ; Lost fanout                                      ;
-; car_controller:u_car|speed_kph[2]                                                                                             ; Stuck at GND due to stuck port data_in           ;
-; Total Number of Removed Registers = 132                                                                                       ;                                                  ;
-+-------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                                                                                                                               ;
++-----------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------+
+; Register name                                                                                                                                 ; Reason for Removal                               ;
++-----------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------+
+; seg7_display:u_seg7|HEX1[0..6]                                                                                                                ; Stuck at VCC due to stuck port data_in           ;
+; seg7_display:u_seg7|HEX0[0..6]                                                                                                                ; Stuck at VCC due to stuck port data_in           ;
+; car_controller:u_car|car_row_bus[3,5,7,9,11,15,17,19,21,23,25,29,31,33,35,43,45,47,49,51,53,55,57,59,61,63,65,67,74,76,78,80,88,102,104,106]  ; Merged with car_controller:u_car|car_row_bus[73] ;
+; car_controller:u_car|car_row_bus[37..40,42,44,87,89,93,94]                                                                                    ; Merged with car_controller:u_car|car_row_bus[72] ;
+; car_controller:u_car|car_row_bus[0,12,14,56,83,85,101,109,111]                                                                                ; Merged with car_controller:u_car|car_row_bus[71] ;
+; car_controller:u_car|car_row_bus[69,95..100]                                                                                                  ; Merged with car_controller:u_car|car_row_bus[70] ;
+; car_controller:u_car|car_row_bus[2,4,6,8,10,16,18,20,22,24,26,28,30,32,34,36,41,46,48,50,52,54,58,60,62,64,66,75,77,79,81,90..92,103,105,107] ; Merged with car_controller:u_car|car_row_bus[68] ;
+; car_controller:u_car|car_row_bus[1,13,82,84,86,108,110]                                                                                       ; Merged with car_controller:u_car|car_row_bus[27] ;
+; car_controller:u_car|car_row_bus[68,72]                                                                                                       ; Merged with car_controller:u_car|car_row_bus[73] ;
+; car_controller:u_car|car_row_bus[27,70]                                                                                                       ; Merged with car_controller:u_car|car_row_bus[71] ;
+; car_controller:u_car|car_row_bus[71]                                                                                                          ; Stuck at GND due to stuck port data_in           ;
+; car_controller:u_car|car_row_bus[73]                                                                                                          ; Stuck at VCC due to stuck port data_in           ;
+; vga_controller:u_vga|py[9]                                                                                                                    ; Stuck at GND due to stuck port data_in           ;
+; lcd_controller:u_lcd|state~12                                                                                                                 ; Lost fanout                                      ;
+; lcd_controller:u_lcd|state~13                                                                                                                 ; Lost fanout                                      ;
+; lcd_controller:u_lcd|state~14                                                                                                                 ; Lost fanout                                      ;
+; lcd_controller:u_lcd|state~15                                                                                                                 ; Lost fanout                                      ;
+; car_controller:u_car|speed_kph[2]                                                                                                             ; Stuck at GND due to stuck port data_in           ;
+; Total Number of Removed Registers = 132                                                                                                       ;                                                  ;
++-----------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------+
 
 
 +------------------------------------------------------+
@@ -651,8 +629,8 @@ Note: All latches listed above may not be present at the end of synthesis due to
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
 ; Total registers                              ; 451   ;
-; Number of registers using Synchronous Clear  ; 237   ;
-; Number of registers using Synchronous Load   ; 69    ;
+; Number of registers using Synchronous Clear  ; 221   ;
+; Number of registers using Synchronous Load   ; 85    ;
 ; Number of registers using Asynchronous Clear ; 0     ;
 ; Number of registers using Asynchronous Load  ; 0     ;
 ; Number of registers using Clock Enable       ; 196   ;
@@ -660,58 +638,63 @@ Note: All latches listed above may not be present at the end of synthesis due to
 +----------------------------------------------+-------+
 
 
-+------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                         ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------------------------+
-; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                               ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------------------------+
-; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |driving_test_top|lcd_controller:u_lcd|prev_state[0]     ;
-; 3:1                ; 10 bits   ; 20 LEs        ; 10 LEs               ; 10 LEs                 ; Yes        ; |driving_test_top|vga_controller:u_vga|hcnt[5]           ;
-; 3:1                ; 9 bits    ; 18 LEs        ; 9 LEs                ; 9 LEs                  ; Yes        ; |driving_test_top|vga_controller:u_vga|px[1]             ;
-; 3:1                ; 9 bits    ; 18 LEs        ; 9 LEs                ; 9 LEs                  ; Yes        ; |driving_test_top|vga_controller:u_vga|py[6]             ;
-; 3:1                ; 24 bits   ; 48 LEs        ; 24 LEs               ; 24 LEs                 ; Yes        ; |driving_test_top|led_indicator:u_leds|flash_cnt[3]      ;
-; 4:1                ; 10 bits   ; 20 LEs        ; 10 LEs               ; 10 LEs                 ; Yes        ; |driving_test_top|vga_controller:u_vga|vcnt[8]           ;
-; 4:1                ; 47 bits   ; 94 LEs        ; 47 LEs               ; 47 LEs                 ; Yes        ; |driving_test_top|car_controller:u_car|pos_x_q8[0]       ;
-; 4:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |driving_test_top|fsm_game:u_fsm|elapsed_sec[11]         ;
-; 4:1                ; 6 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; Yes        ; |driving_test_top|fsm_game:u_fsm|tick_cnt[3]             ;
-; 4:1                ; 20 bits   ; 40 LEs        ; 20 LEs               ; 20 LEs                 ; Yes        ; |driving_test_top|input_handler:u_input|key_cnt[1][1]    ;
-; 4:1                ; 20 bits   ; 40 LEs        ; 20 LEs               ; 20 LEs                 ; Yes        ; |driving_test_top|input_handler:u_input|key_cnt[0][9]    ;
-; 4:1                ; 20 bits   ; 40 LEs        ; 20 LEs               ; 20 LEs                 ; Yes        ; |driving_test_top|input_handler:u_input|sw0_cnt[7]       ;
-; 4:1                ; 20 bits   ; 40 LEs        ; 20 LEs               ; 20 LEs                 ; Yes        ; |driving_test_top|input_handler:u_input|sw1_cnt[1]       ;
-; 6:1                ; 7 bits    ; 28 LEs        ; 28 LEs               ; 0 LEs                  ; Yes        ; |driving_test_top|track_renderer:u_render|rgb[9]         ;
-; 6:1                ; 4 bits    ; 16 LEs        ; 16 LEs               ; 0 LEs                  ; Yes        ; |driving_test_top|track_renderer:u_render|rgb[14]        ;
-; 6:1                ; 8 bits    ; 32 LEs        ; 24 LEs               ; 8 LEs                  ; Yes        ; |driving_test_top|car_controller:u_car|speed_kph[4]      ;
-; 7:1                ; 3 bits    ; 12 LEs        ; 9 LEs                ; 3 LEs                  ; Yes        ; |driving_test_top|lcd_controller:u_lcd|cur_byte[0]       ;
-; 7:1                ; 5 bits    ; 20 LEs        ; 20 LEs               ; 0 LEs                  ; Yes        ; |driving_test_top|track_renderer:u_render|rgb[8]         ;
-; 8:1                ; 2 bits    ; 10 LEs        ; 2 LEs                ; 8 LEs                  ; Yes        ; |driving_test_top|audio_controller:u_audio|beep_num[1]   ;
-; 7:1                ; 3 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; Yes        ; |driving_test_top|car_controller:u_car|heading_deg[0]    ;
-; 8:1                ; 6 bits    ; 30 LEs        ; 18 LEs               ; 12 LEs                 ; Yes        ; |driving_test_top|car_controller:u_car|heading_deg[7]    ;
-; 9:1                ; 17 bits   ; 102 LEs       ; 17 LEs               ; 85 LEs                 ; Yes        ; |driving_test_top|audio_controller:u_audio|tone_cnt[9]   ;
-; 9:1                ; 24 bits   ; 144 LEs       ; 24 LEs               ; 120 LEs                ; Yes        ; |driving_test_top|audio_controller:u_audio|jingle_cnt[2] ;
-; 8:1                ; 4 bits    ; 20 LEs        ; 4 LEs                ; 16 LEs                 ; Yes        ; |driving_test_top|lcd_controller:u_lcd|char_idx[1]       ;
-; 9:1                ; 2 bits    ; 12 LEs        ; 12 LEs               ; 0 LEs                  ; Yes        ; |driving_test_top|track_renderer:u_render|rgb[1]         ;
-; 15:1               ; 24 bits   ; 240 LEs       ; 24 LEs               ; 216 LEs                ; Yes        ; |driving_test_top|lcd_controller:u_lcd|wait_cnt[13]      ;
-; 4:1                ; 9 bits    ; 18 LEs        ; 9 LEs                ; 9 LEs                  ; Yes        ; |driving_test_top|car_controller:u_car|car_y[1]          ;
-; 9:1                ; 3 bits    ; 18 LEs        ; 9 LEs                ; 9 LEs                  ; Yes        ; |driving_test_top|car_controller:u_car|speed_q8[1]       ;
-; 10:1               ; 13 bits   ; 78 LEs        ; 39 LEs               ; 39 LEs                 ; Yes        ; |driving_test_top|car_controller:u_car|speed_q8[5]       ;
-; 3:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |driving_test_top|track_renderer:u_render|by             ;
-; 3:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |driving_test_top|track_renderer:u_render|bh             ;
-; 3:1                ; 3 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; No         ; |driving_test_top|track_renderer:u_render|w_bldg[21]     ;
-; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; No         ; |driving_test_top|track_renderer:u_render|car_color      ;
-; 3:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |driving_test_top|track_renderer:u_render|rgb            ;
-; 3:1                ; 3 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; No         ; |driving_test_top|track_renderer:u_render|rgb            ;
-; 4:1                ; 6 bits    ; 12 LEs        ; 12 LEs               ; 0 LEs                  ; No         ; |driving_test_top|track_renderer:u_render|trig_q8[90][0] ;
-; 4:1                ; 38 bits   ; 76 LEs        ; 76 LEs               ; 0 LEs                  ; No         ; |driving_test_top|track_renderer:u_render|sin_deg_q8     ;
-; 4:1                ; 3 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; No         ; |driving_test_top|track_renderer:u_render|rgb            ;
-; 4:1                ; 3 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; No         ; |driving_test_top|track_renderer:u_render|car_color      ;
-; 5:1                ; 13 bits   ; 39 LEs        ; 39 LEs               ; 0 LEs                  ; No         ; |driving_test_top|track_renderer:u_render|by             ;
-; 6:1                ; 3 bits    ; 12 LEs        ; 12 LEs               ; 0 LEs                  ; No         ; |driving_test_top|track_renderer:u_render|bx             ;
-; 94:1               ; 45 bits   ; 2790 LEs      ; 2700 LEs             ; 90 LEs                 ; No         ; |driving_test_top|track_renderer:u_render|cos_deg_q8     ;
-; 184:1              ; 9 bits    ; 1098 LEs      ; 1062 LEs             ; 36 LEs                 ; No         ; |driving_test_top|car_controller:u_car|cos_deg_q8        ;
-; 184:1              ; 18 bits   ; 2196 LEs      ; 2124 LEs             ; 72 LEs                 ; No         ; |driving_test_top|track_renderer:u_render|sin_deg_q8     ;
-; 17:1               ; 4 bits    ; 44 LEs        ; 20 LEs               ; 24 LEs                 ; No         ; |driving_test_top|lcd_controller:u_lcd|state             ;
-; 17:1               ; 2 bits    ; 22 LEs        ; 6 LEs                ; 16 LEs                 ; No         ; |driving_test_top|lcd_controller:u_lcd|state             ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------------------------+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                          ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------------------+
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |driving_test_top|lcd_controller:u_lcd|prev_state[1]      ;
+; 3:1                ; 10 bits   ; 20 LEs        ; 10 LEs               ; 10 LEs                 ; Yes        ; |driving_test_top|vga_controller:u_vga|hcnt[3]            ;
+; 3:1                ; 9 bits    ; 18 LEs        ; 9 LEs                ; 9 LEs                  ; Yes        ; |driving_test_top|vga_controller:u_vga|px[3]              ;
+; 3:1                ; 9 bits    ; 18 LEs        ; 9 LEs                ; 9 LEs                  ; Yes        ; |driving_test_top|vga_controller:u_vga|py[6]              ;
+; 3:1                ; 24 bits   ; 48 LEs        ; 24 LEs               ; 24 LEs                 ; Yes        ; |driving_test_top|led_indicator:u_leds|flash_cnt[18]      ;
+; 4:1                ; 10 bits   ; 20 LEs        ; 10 LEs               ; 10 LEs                 ; Yes        ; |driving_test_top|vga_controller:u_vga|vcnt[5]            ;
+; 4:1                ; 47 bits   ; 94 LEs        ; 47 LEs               ; 47 LEs                 ; Yes        ; |driving_test_top|car_controller:u_car|pos_y_q8[4]        ;
+; 4:1                ; 20 bits   ; 40 LEs        ; 20 LEs               ; 20 LEs                 ; Yes        ; |driving_test_top|input_handler:u_input|key_cnt[1][10]    ;
+; 4:1                ; 20 bits   ; 40 LEs        ; 20 LEs               ; 20 LEs                 ; Yes        ; |driving_test_top|input_handler:u_input|key_cnt[0][19]    ;
+; 4:1                ; 20 bits   ; 40 LEs        ; 20 LEs               ; 20 LEs                 ; Yes        ; |driving_test_top|input_handler:u_input|sw0_cnt[3]        ;
+; 4:1                ; 20 bits   ; 40 LEs        ; 20 LEs               ; 20 LEs                 ; Yes        ; |driving_test_top|input_handler:u_input|sw1_cnt[6]        ;
+; 5:1                ; 6 bits    ; 18 LEs        ; 6 LEs                ; 12 LEs                 ; Yes        ; |driving_test_top|fsm_game:u_fsm|tick_cnt[2]              ;
+; 6:1                ; 5 bits    ; 20 LEs        ; 20 LEs               ; 0 LEs                  ; Yes        ; |driving_test_top|track_renderer:u_render|rgb[10]         ;
+; 6:1                ; 2 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; Yes        ; |driving_test_top|track_renderer:u_render|rgb[4]          ;
+; 6:1                ; 8 bits    ; 32 LEs        ; 24 LEs               ; 8 LEs                  ; Yes        ; |driving_test_top|car_controller:u_car|speed_kph[5]       ;
+; 6:1                ; 16 bits   ; 64 LEs        ; 16 LEs               ; 48 LEs                 ; Yes        ; |driving_test_top|fsm_game:u_fsm|remaining_sec[15]        ;
+; 7:1                ; 3 bits    ; 12 LEs        ; 9 LEs                ; 3 LEs                  ; Yes        ; |driving_test_top|lcd_controller:u_lcd|cur_byte[0]        ;
+; 7:1                ; 2 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; Yes        ; |driving_test_top|track_renderer:u_render|rgb[6]          ;
+; 7:1                ; 4 bits    ; 16 LEs        ; 16 LEs               ; 0 LEs                  ; Yes        ; |driving_test_top|track_renderer:u_render|rgb[8]          ;
+; 8:1                ; 2 bits    ; 10 LEs        ; 2 LEs                ; 8 LEs                  ; Yes        ; |driving_test_top|audio_controller:u_audio|beep_num[1]    ;
+; 7:1                ; 3 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; Yes        ; |driving_test_top|car_controller:u_car|heading_deg[2]     ;
+; 8:1                ; 6 bits    ; 30 LEs        ; 18 LEs               ; 12 LEs                 ; Yes        ; |driving_test_top|car_controller:u_car|heading_deg[4]     ;
+; 9:1                ; 17 bits   ; 102 LEs       ; 17 LEs               ; 85 LEs                 ; Yes        ; |driving_test_top|audio_controller:u_audio|tone_cnt[0]    ;
+; 9:1                ; 24 bits   ; 144 LEs       ; 24 LEs               ; 120 LEs                ; Yes        ; |driving_test_top|audio_controller:u_audio|jingle_cnt[10] ;
+; 9:1                ; 3 bits    ; 18 LEs        ; 18 LEs               ; 0 LEs                  ; Yes        ; |driving_test_top|track_renderer:u_render|rgb[12]         ;
+; 8:1                ; 4 bits    ; 20 LEs        ; 4 LEs                ; 16 LEs                 ; Yes        ; |driving_test_top|lcd_controller:u_lcd|char_idx[1]        ;
+; 10:1               ; 2 bits    ; 12 LEs        ; 12 LEs               ; 0 LEs                  ; Yes        ; |driving_test_top|track_renderer:u_render|rgb[1]          ;
+; 15:1               ; 24 bits   ; 240 LEs       ; 24 LEs               ; 216 LEs                ; Yes        ; |driving_test_top|lcd_controller:u_lcd|wait_cnt[1]        ;
+; 4:1                ; 9 bits    ; 18 LEs        ; 9 LEs                ; 9 LEs                  ; Yes        ; |driving_test_top|car_controller:u_car|car_x[4]           ;
+; 9:1                ; 3 bits    ; 18 LEs        ; 9 LEs                ; 9 LEs                  ; Yes        ; |driving_test_top|car_controller:u_car|speed_q8[2]        ;
+; 10:1               ; 13 bits   ; 78 LEs        ; 39 LEs               ; 39 LEs                 ; Yes        ; |driving_test_top|car_controller:u_car|speed_q8[13]       ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |driving_test_top|track_renderer:u_render|by              ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |driving_test_top|track_renderer:u_render|bx              ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; No         ; |driving_test_top|track_renderer:u_render|w_bldg[21]      ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |driving_test_top|track_renderer:u_render|Mux51           ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |driving_test_top|track_renderer:u_render|Mux51           ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |driving_test_top|track_renderer:u_render|Mux51           ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; No         ; |driving_test_top|track_renderer:u_render|car_color       ;
+; 4:1                ; 6 bits    ; 12 LEs        ; 12 LEs               ; 0 LEs                  ; No         ; |driving_test_top|track_renderer:u_render|trig_q8[90][0]  ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |driving_test_top|track_renderer:u_render|Mux51           ;
+; 4:1                ; 45 bits   ; 90 LEs        ; 90 LEs               ; 0 LEs                  ; No         ; |driving_test_top|car_controller:u_car|cos_deg_q8         ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |driving_test_top|track_renderer:u_render|rgb             ;
+; 4:1                ; 3 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; No         ; |driving_test_top|track_renderer:u_render|car_color       ;
+; 5:1                ; 13 bits   ; 39 LEs        ; 39 LEs               ; 0 LEs                  ; No         ; |driving_test_top|track_renderer:u_render|bw              ;
+; 5:1                ; 2 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; No         ; |driving_test_top|track_renderer:u_render|rgb             ;
+; 6:1                ; 3 bits    ; 12 LEs        ; 12 LEs               ; 0 LEs                  ; No         ; |driving_test_top|track_renderer:u_render|bh              ;
+; 94:1               ; 27 bits   ; 1674 LEs      ; 1620 LEs             ; 54 LEs                 ; No         ; |driving_test_top|track_renderer:u_render|cos_deg_q8      ;
+; 184:1              ; 9 bits    ; 1098 LEs      ; 1062 LEs             ; 36 LEs                 ; No         ; |driving_test_top|car_controller:u_car|cos_deg_q8         ;
+; 184:1              ; 18 bits   ; 2196 LEs      ; 2124 LEs             ; 72 LEs                 ; No         ; |driving_test_top|car_controller:u_car|sin_deg_q8         ;
+; 17:1               ; 4 bits    ; 44 LEs        ; 20 LEs               ; 24 LEs                 ; No         ; |driving_test_top|lcd_controller:u_lcd|state              ;
+; 17:1               ; 2 bits    ; 22 LEs        ; 6 LEs                ; 16 LEs                 ; No         ; |driving_test_top|lcd_controller:u_lcd|state              ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------------------+
 
 
 +------------------------------------------------------------------------------------------+
@@ -738,7 +721,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 
 
 +--------------------------------------------------------------------------------------+
-; Parameter Settings for Inferred Entity Instance: seg7_display:u_seg7|lpm_divide:Mod2 ;
+; Parameter Settings for Inferred Entity Instance: seg7_display:u_seg7|lpm_divide:Mod1 ;
 +------------------------+----------------+--------------------------------------------+
 ; Parameter Name         ; Value          ; Type                                       ;
 +------------------------+----------------+--------------------------------------------+
@@ -788,37 +771,14 @@ Note: In order to hide this table in the UI and the text report file, please set
 +------------------------+----------------+--------------------------------------------+
 ; Parameter Name         ; Value          ; Type                                       ;
 +------------------------+----------------+--------------------------------------------+
-; LPM_WIDTHN             ; 4              ; Untyped                                    ;
+; LPM_WIDTHN             ; 7              ; Untyped                                    ;
 ; LPM_WIDTHD             ; 4              ; Untyped                                    ;
 ; LPM_NREPRESENTATION    ; UNSIGNED       ; Untyped                                    ;
 ; LPM_DREPRESENTATION    ; UNSIGNED       ; Untyped                                    ;
 ; LPM_PIPELINE           ; 0              ; Untyped                                    ;
 ; LPM_REMAINDERPOSITIVE  ; TRUE           ; Untyped                                    ;
 ; MAXIMIZE_SPEED         ; 5              ; Untyped                                    ;
-; CBXI_PARAMETER         ; lpm_divide_05m ; Untyped                                    ;
-; CARRY_CHAIN            ; MANUAL         ; Untyped                                    ;
-; OPTIMIZE_FOR_SPEED     ; 5              ; Untyped                                    ;
-; AUTO_CARRY_CHAINS      ; ON             ; AUTO_CARRY                                 ;
-; IGNORE_CARRY_BUFFERS   ; OFF            ; IGNORE_CARRY                               ;
-; AUTO_CASCADE_CHAINS    ; ON             ; AUTO_CASCADE                               ;
-; IGNORE_CASCADE_BUFFERS ; OFF            ; IGNORE_CASCADE                             ;
-+------------------------+----------------+--------------------------------------------+
-Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
-
-
-+--------------------------------------------------------------------------------------+
-; Parameter Settings for Inferred Entity Instance: seg7_display:u_seg7|lpm_divide:Mod1 ;
-+------------------------+----------------+--------------------------------------------+
-; Parameter Name         ; Value          ; Type                                       ;
-+------------------------+----------------+--------------------------------------------+
-; LPM_WIDTHN             ; 16             ; Untyped                                    ;
-; LPM_WIDTHD             ; 6              ; Untyped                                    ;
-; LPM_NREPRESENTATION    ; UNSIGNED       ; Untyped                                    ;
-; LPM_DREPRESENTATION    ; UNSIGNED       ; Untyped                                    ;
-; LPM_PIPELINE           ; 0              ; Untyped                                    ;
-; LPM_REMAINDERPOSITIVE  ; TRUE           ; Untyped                                    ;
-; MAXIMIZE_SPEED         ; 5              ; Untyped                                    ;
-; CBXI_PARAMETER         ; lpm_divide_l6m ; Untyped                                    ;
+; CBXI_PARAMETER         ; lpm_divide_35m ; Untyped                                    ;
 ; CARRY_CHAIN            ; MANUAL         ; Untyped                                    ;
 ; OPTIMIZE_FOR_SPEED     ; 5              ; Untyped                                    ;
 ; AUTO_CARRY_CHAINS      ; ON             ; AUTO_CARRY                                 ;
@@ -834,14 +794,14 @@ Note: In order to hide this table in the UI and the text report file, please set
 +------------------------+----------------+--------------------------------------------+
 ; Parameter Name         ; Value          ; Type                                       ;
 +------------------------+----------------+--------------------------------------------+
-; LPM_WIDTHN             ; 6              ; Untyped                                    ;
+; LPM_WIDTHN             ; 7              ; Untyped                                    ;
 ; LPM_WIDTHD             ; 4              ; Untyped                                    ;
 ; LPM_NREPRESENTATION    ; UNSIGNED       ; Untyped                                    ;
 ; LPM_DREPRESENTATION    ; UNSIGNED       ; Untyped                                    ;
 ; LPM_PIPELINE           ; 0              ; Untyped                                    ;
 ; LPM_REMAINDERPOSITIVE  ; TRUE           ; Untyped                                    ;
 ; MAXIMIZE_SPEED         ; 5              ; Untyped                                    ;
-; CBXI_PARAMETER         ; lpm_divide_vcm ; Untyped                                    ;
+; CBXI_PARAMETER         ; lpm_divide_0dm ; Untyped                                    ;
 ; CARRY_CHAIN            ; MANUAL         ; Untyped                                    ;
 ; OPTIMIZE_FOR_SPEED     ; 5              ; Untyped                                    ;
 ; AUTO_CARRY_CHAINS      ; ON             ; AUTO_CARRY                                 ;
@@ -1238,147 +1198,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 
 
 +-----------------------------------------------------------------------------------------+
-; Parameter Settings for Inferred Entity Instance: track_renderer:u_render|lpm_mult:Mult0 ;
-+------------------------------------------------+------------+---------------------------+
-; Parameter Name                                 ; Value      ; Type                      ;
-+------------------------------------------------+------------+---------------------------+
-; AUTO_CARRY_CHAINS                              ; ON         ; AUTO_CARRY                ;
-; IGNORE_CARRY_BUFFERS                           ; OFF        ; IGNORE_CARRY              ;
-; AUTO_CASCADE_CHAINS                            ; ON         ; AUTO_CASCADE              ;
-; IGNORE_CASCADE_BUFFERS                         ; OFF        ; IGNORE_CASCADE            ;
-; LPM_WIDTHA                                     ; 11         ; Untyped                   ;
-; LPM_WIDTHB                                     ; 11         ; Untyped                   ;
-; LPM_WIDTHP                                     ; 22         ; Untyped                   ;
-; LPM_WIDTHR                                     ; 22         ; Untyped                   ;
-; LPM_WIDTHS                                     ; 1          ; Untyped                   ;
-; LPM_REPRESENTATION                             ; SIGNED     ; Untyped                   ;
-; LPM_PIPELINE                                   ; 0          ; Untyped                   ;
-; LATENCY                                        ; 0          ; Untyped                   ;
-; INPUT_A_IS_CONSTANT                            ; NO         ; Untyped                   ;
-; INPUT_B_IS_CONSTANT                            ; NO         ; Untyped                   ;
-; USE_EAB                                        ; OFF        ; Untyped                   ;
-; MAXIMIZE_SPEED                                 ; 6          ; Untyped                   ;
-; DEVICE_FAMILY                                  ; Cyclone II ; Untyped                   ;
-; CARRY_CHAIN                                    ; MANUAL     ; Untyped                   ;
-; APEX20K_TECHNOLOGY_MAPPER                      ; LUT        ; TECH_MAPPER_APEX20K       ;
-; DEDICATED_MULTIPLIER_CIRCUITRY                 ; AUTO       ; Untyped                   ;
-; DEDICATED_MULTIPLIER_MIN_INPUT_WIDTH_FOR_AUTO  ; 0          ; Untyped                   ;
-; DEDICATED_MULTIPLIER_MIN_OUTPUT_WIDTH_FOR_AUTO ; 0          ; Untyped                   ;
-; CBXI_PARAMETER                                 ; mult_71t   ; Untyped                   ;
-; INPUT_A_FIXED_VALUE                            ; Bx         ; Untyped                   ;
-; INPUT_B_FIXED_VALUE                            ; Bx         ; Untyped                   ;
-; USE_AHDL_IMPLEMENTATION                        ; OFF        ; Untyped                   ;
-+------------------------------------------------+------------+---------------------------+
-Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
-
-
-+-----------------------------------------------------------------------------------------+
-; Parameter Settings for Inferred Entity Instance: track_renderer:u_render|lpm_mult:Mult2 ;
-+------------------------------------------------+------------+---------------------------+
-; Parameter Name                                 ; Value      ; Type                      ;
-+------------------------------------------------+------------+---------------------------+
-; AUTO_CARRY_CHAINS                              ; ON         ; AUTO_CARRY                ;
-; IGNORE_CARRY_BUFFERS                           ; OFF        ; IGNORE_CARRY              ;
-; AUTO_CASCADE_CHAINS                            ; ON         ; AUTO_CASCADE              ;
-; IGNORE_CASCADE_BUFFERS                         ; OFF        ; IGNORE_CASCADE            ;
-; LPM_WIDTHA                                     ; 12         ; Untyped                   ;
-; LPM_WIDTHB                                     ; 11         ; Untyped                   ;
-; LPM_WIDTHP                                     ; 23         ; Untyped                   ;
-; LPM_WIDTHR                                     ; 23         ; Untyped                   ;
-; LPM_WIDTHS                                     ; 1          ; Untyped                   ;
-; LPM_REPRESENTATION                             ; SIGNED     ; Untyped                   ;
-; LPM_PIPELINE                                   ; 0          ; Untyped                   ;
-; LATENCY                                        ; 0          ; Untyped                   ;
-; INPUT_A_IS_CONSTANT                            ; NO         ; Untyped                   ;
-; INPUT_B_IS_CONSTANT                            ; NO         ; Untyped                   ;
-; USE_EAB                                        ; OFF        ; Untyped                   ;
-; MAXIMIZE_SPEED                                 ; 6          ; Untyped                   ;
-; DEVICE_FAMILY                                  ; Cyclone II ; Untyped                   ;
-; CARRY_CHAIN                                    ; MANUAL     ; Untyped                   ;
-; APEX20K_TECHNOLOGY_MAPPER                      ; LUT        ; TECH_MAPPER_APEX20K       ;
-; DEDICATED_MULTIPLIER_CIRCUITRY                 ; AUTO       ; Untyped                   ;
-; DEDICATED_MULTIPLIER_MIN_INPUT_WIDTH_FOR_AUTO  ; 0          ; Untyped                   ;
-; DEDICATED_MULTIPLIER_MIN_OUTPUT_WIDTH_FOR_AUTO ; 0          ; Untyped                   ;
-; CBXI_PARAMETER                                 ; mult_91t   ; Untyped                   ;
-; INPUT_A_FIXED_VALUE                            ; Bx         ; Untyped                   ;
-; INPUT_B_FIXED_VALUE                            ; Bx         ; Untyped                   ;
-; USE_AHDL_IMPLEMENTATION                        ; OFF        ; Untyped                   ;
-+------------------------------------------------+------------+---------------------------+
-Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
-
-
-+-----------------------------------------------------------------------------------------+
-; Parameter Settings for Inferred Entity Instance: track_renderer:u_render|lpm_mult:Mult3 ;
-+------------------------------------------------+------------+---------------------------+
-; Parameter Name                                 ; Value      ; Type                      ;
-+------------------------------------------------+------------+---------------------------+
-; AUTO_CARRY_CHAINS                              ; ON         ; AUTO_CARRY                ;
-; IGNORE_CARRY_BUFFERS                           ; OFF        ; IGNORE_CARRY              ;
-; AUTO_CASCADE_CHAINS                            ; ON         ; AUTO_CASCADE              ;
-; IGNORE_CASCADE_BUFFERS                         ; OFF        ; IGNORE_CASCADE            ;
-; LPM_WIDTHA                                     ; 11         ; Untyped                   ;
-; LPM_WIDTHB                                     ; 11         ; Untyped                   ;
-; LPM_WIDTHP                                     ; 22         ; Untyped                   ;
-; LPM_WIDTHR                                     ; 22         ; Untyped                   ;
-; LPM_WIDTHS                                     ; 1          ; Untyped                   ;
-; LPM_REPRESENTATION                             ; SIGNED     ; Untyped                   ;
-; LPM_PIPELINE                                   ; 0          ; Untyped                   ;
-; LATENCY                                        ; 0          ; Untyped                   ;
-; INPUT_A_IS_CONSTANT                            ; NO         ; Untyped                   ;
-; INPUT_B_IS_CONSTANT                            ; NO         ; Untyped                   ;
-; USE_EAB                                        ; OFF        ; Untyped                   ;
-; MAXIMIZE_SPEED                                 ; 6          ; Untyped                   ;
-; DEVICE_FAMILY                                  ; Cyclone II ; Untyped                   ;
-; CARRY_CHAIN                                    ; MANUAL     ; Untyped                   ;
-; APEX20K_TECHNOLOGY_MAPPER                      ; LUT        ; TECH_MAPPER_APEX20K       ;
-; DEDICATED_MULTIPLIER_CIRCUITRY                 ; AUTO       ; Untyped                   ;
-; DEDICATED_MULTIPLIER_MIN_INPUT_WIDTH_FOR_AUTO  ; 0          ; Untyped                   ;
-; DEDICATED_MULTIPLIER_MIN_OUTPUT_WIDTH_FOR_AUTO ; 0          ; Untyped                   ;
-; CBXI_PARAMETER                                 ; mult_71t   ; Untyped                   ;
-; INPUT_A_FIXED_VALUE                            ; Bx         ; Untyped                   ;
-; INPUT_B_FIXED_VALUE                            ; Bx         ; Untyped                   ;
-; USE_AHDL_IMPLEMENTATION                        ; OFF        ; Untyped                   ;
-+------------------------------------------------+------------+---------------------------+
-Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
-
-
-+-----------------------------------------------------------------------------------------+
-; Parameter Settings for Inferred Entity Instance: track_renderer:u_render|lpm_mult:Mult7 ;
-+------------------------------------------------+------------+---------------------------+
-; Parameter Name                                 ; Value      ; Type                      ;
-+------------------------------------------------+------------+---------------------------+
-; AUTO_CARRY_CHAINS                              ; ON         ; AUTO_CARRY                ;
-; IGNORE_CARRY_BUFFERS                           ; OFF        ; IGNORE_CARRY              ;
-; AUTO_CASCADE_CHAINS                            ; ON         ; AUTO_CASCADE              ;
-; IGNORE_CASCADE_BUFFERS                         ; OFF        ; IGNORE_CASCADE            ;
-; LPM_WIDTHA                                     ; 11         ; Untyped                   ;
-; LPM_WIDTHB                                     ; 11         ; Untyped                   ;
-; LPM_WIDTHP                                     ; 22         ; Untyped                   ;
-; LPM_WIDTHR                                     ; 22         ; Untyped                   ;
-; LPM_WIDTHS                                     ; 1          ; Untyped                   ;
-; LPM_REPRESENTATION                             ; SIGNED     ; Untyped                   ;
-; LPM_PIPELINE                                   ; 0          ; Untyped                   ;
-; LATENCY                                        ; 0          ; Untyped                   ;
-; INPUT_A_IS_CONSTANT                            ; NO         ; Untyped                   ;
-; INPUT_B_IS_CONSTANT                            ; NO         ; Untyped                   ;
-; USE_EAB                                        ; OFF        ; Untyped                   ;
-; MAXIMIZE_SPEED                                 ; 6          ; Untyped                   ;
-; DEVICE_FAMILY                                  ; Cyclone II ; Untyped                   ;
-; CARRY_CHAIN                                    ; MANUAL     ; Untyped                   ;
-; APEX20K_TECHNOLOGY_MAPPER                      ; LUT        ; TECH_MAPPER_APEX20K       ;
-; DEDICATED_MULTIPLIER_CIRCUITRY                 ; AUTO       ; Untyped                   ;
-; DEDICATED_MULTIPLIER_MIN_INPUT_WIDTH_FOR_AUTO  ; 0          ; Untyped                   ;
-; DEDICATED_MULTIPLIER_MIN_OUTPUT_WIDTH_FOR_AUTO ; 0          ; Untyped                   ;
-; CBXI_PARAMETER                                 ; mult_71t   ; Untyped                   ;
-; INPUT_A_FIXED_VALUE                            ; Bx         ; Untyped                   ;
-; INPUT_B_FIXED_VALUE                            ; Bx         ; Untyped                   ;
-; USE_AHDL_IMPLEMENTATION                        ; OFF        ; Untyped                   ;
-+------------------------------------------------+------------+---------------------------+
-Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
-
-
-+-----------------------------------------------------------------------------------------+
-; Parameter Settings for Inferred Entity Instance: track_renderer:u_render|lpm_mult:Mult4 ;
+; Parameter Settings for Inferred Entity Instance: track_renderer:u_render|lpm_mult:Mult1 ;
 +------------------------------------------------+------------+---------------------------+
 ; Parameter Name                                 ; Value      ; Type                      ;
 +------------------------------------------------+------------+---------------------------+
@@ -2502,7 +2322,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 +---------------------------------------+------------------------------------------+
 ; Name                                  ; Value                                    ;
 +---------------------------------------+------------------------------------------+
-; Number of entity instances            ; 47                                       ;
+; Number of entity instances            ; 43                                       ;
 ; Entity Instance                       ; track_renderer:u_render|lpm_mult:Mult8   ;
 ;     -- LPM_WIDTHA                     ; 10                                       ;
 ;     -- LPM_WIDTHB                     ; 6                                        ;
@@ -2624,51 +2444,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 ;     -- DEDICATED_MULTIPLIER_CIRCUITRY ; AUTO                                     ;
 ;     -- INPUT_A_FIXED_VALUE            ; Bx                                       ;
 ;     -- INPUT_B_FIXED_VALUE            ; Bx                                       ;
-; Entity Instance                       ; track_renderer:u_render|lpm_mult:Mult0   ;
-;     -- LPM_WIDTHA                     ; 11                                       ;
-;     -- LPM_WIDTHB                     ; 11                                       ;
-;     -- LPM_WIDTHP                     ; 22                                       ;
-;     -- LPM_REPRESENTATION             ; SIGNED                                   ;
-;     -- INPUT_A_IS_CONSTANT            ; NO                                       ;
-;     -- INPUT_B_IS_CONSTANT            ; NO                                       ;
-;     -- USE_EAB                        ; OFF                                      ;
-;     -- DEDICATED_MULTIPLIER_CIRCUITRY ; AUTO                                     ;
-;     -- INPUT_A_FIXED_VALUE            ; Bx                                       ;
-;     -- INPUT_B_FIXED_VALUE            ; Bx                                       ;
-; Entity Instance                       ; track_renderer:u_render|lpm_mult:Mult2   ;
-;     -- LPM_WIDTHA                     ; 12                                       ;
-;     -- LPM_WIDTHB                     ; 11                                       ;
-;     -- LPM_WIDTHP                     ; 23                                       ;
-;     -- LPM_REPRESENTATION             ; SIGNED                                   ;
-;     -- INPUT_A_IS_CONSTANT            ; NO                                       ;
-;     -- INPUT_B_IS_CONSTANT            ; NO                                       ;
-;     -- USE_EAB                        ; OFF                                      ;
-;     -- DEDICATED_MULTIPLIER_CIRCUITRY ; AUTO                                     ;
-;     -- INPUT_A_FIXED_VALUE            ; Bx                                       ;
-;     -- INPUT_B_FIXED_VALUE            ; Bx                                       ;
-; Entity Instance                       ; track_renderer:u_render|lpm_mult:Mult3   ;
-;     -- LPM_WIDTHA                     ; 11                                       ;
-;     -- LPM_WIDTHB                     ; 11                                       ;
-;     -- LPM_WIDTHP                     ; 22                                       ;
-;     -- LPM_REPRESENTATION             ; SIGNED                                   ;
-;     -- INPUT_A_IS_CONSTANT            ; NO                                       ;
-;     -- INPUT_B_IS_CONSTANT            ; NO                                       ;
-;     -- USE_EAB                        ; OFF                                      ;
-;     -- DEDICATED_MULTIPLIER_CIRCUITRY ; AUTO                                     ;
-;     -- INPUT_A_FIXED_VALUE            ; Bx                                       ;
-;     -- INPUT_B_FIXED_VALUE            ; Bx                                       ;
-; Entity Instance                       ; track_renderer:u_render|lpm_mult:Mult7   ;
-;     -- LPM_WIDTHA                     ; 11                                       ;
-;     -- LPM_WIDTHB                     ; 11                                       ;
-;     -- LPM_WIDTHP                     ; 22                                       ;
-;     -- LPM_REPRESENTATION             ; SIGNED                                   ;
-;     -- INPUT_A_IS_CONSTANT            ; NO                                       ;
-;     -- INPUT_B_IS_CONSTANT            ; NO                                       ;
-;     -- USE_EAB                        ; OFF                                      ;
-;     -- DEDICATED_MULTIPLIER_CIRCUITRY ; AUTO                                     ;
-;     -- INPUT_A_FIXED_VALUE            ; Bx                                       ;
-;     -- INPUT_B_FIXED_VALUE            ; Bx                                       ;
-; Entity Instance                       ; track_renderer:u_render|lpm_mult:Mult4   ;
+; Entity Instance                       ; track_renderer:u_render|lpm_mult:Mult1   ;
 ;     -- LPM_WIDTHA                     ; 11                                       ;
 ;     -- LPM_WIDTHB                     ; 11                                       ;
 ;     -- LPM_WIDTHP                     ; 22                                       ;
@@ -3037,7 +2813,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:26     ;
+; Top            ; 00:00:24     ;
 +----------------+--------------+
 
 
@@ -3047,7 +2823,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit Analysis & Synthesis
     Info: Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
-    Info: Processing started: Thu Apr 30 18:34:24 2026
+    Info: Processing started: Thu Apr 30 18:49:25 2026
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off driving_test -c driving_test
 Warning (20028): Parallel compilation is not licensed and has been disabled
 Info (12021): Found 1 design units, including 1 entities, in source file vga_controller.v
@@ -3094,54 +2870,49 @@ Warning (10036): Verilog HDL or VHDL warning at collision_detector.v(29): object
 Warning (10036): Verilog HDL or VHDL warning at collision_detector.v(30): object "cone_cy" assigned a value but never read
 Info (12128): Elaborating entity "fsm_game" for hierarchy "fsm_game:u_fsm"
 Info (12128): Elaborating entity "track_renderer" for hierarchy "track_renderer:u_render"
-Warning (10036): Verilog HDL or VHDL warning at track_renderer.v(46): object "trig_q8" assigned a value but never read
-Warning (10230): Verilog HDL assignment warning at track_renderer.v(289): truncated value with size 32 to match size of target (16)
+Warning (10036): Verilog HDL or VHDL warning at track_renderer.v(47): object "trig_q8" assigned a value but never read
 Warning (10230): Verilog HDL assignment warning at track_renderer.v(290): truncated value with size 32 to match size of target (16)
-Warning (10776): Verilog HDL warning at track_renderer.v(280): variable row_bits in static task or function car_pixel may have unintended latch behavior
-Warning (10230): Verilog HDL assignment warning at track_renderer.v(315): truncated value with size 32 to match size of target (16)
+Warning (10230): Verilog HDL assignment warning at track_renderer.v(291): truncated value with size 32 to match size of target (16)
+Warning (10776): Verilog HDL warning at track_renderer.v(281): variable row_bits in static task or function car_pixel may have unintended latch behavior
 Warning (10230): Verilog HDL assignment warning at track_renderer.v(316): truncated value with size 32 to match size of target (16)
-Warning (10776): Verilog HDL warning at track_renderer.v(306): variable row_bits in static task or function car_window may have unintended latch behavior
-Warning (10776): Verilog HDL warning at track_renderer.v(128): variable in_inner in static task or function is_on_track may have unintended latch behavior
-Warning (10776): Verilog HDL warning at track_renderer.v(127): variable cross2 in static task or function is_on_track may have unintended latch behavior
-Warning (10776): Verilog HDL warning at track_renderer.v(127): variable cross3 in static task or function is_on_track may have unintended latch behavior
-Warning (10776): Verilog HDL warning at track_renderer.v(127): variable cross4 in static task or function is_on_track may have unintended latch behavior
-Warning (10242): Verilog HDL Function Declaration warning at track_renderer.v(404): variable "bx" may have a Don't Care value because it may not be assigned a value in every possible path through the statements preceding its use
-Warning (10242): Verilog HDL Function Declaration warning at track_renderer.v(404): variable "bw" may have a Don't Care value because it may not be assigned a value in every possible path through the statements preceding its use
-Warning (10242): Verilog HDL Function Declaration warning at track_renderer.v(405): variable "by" may have a Don't Care value because it may not be assigned a value in every possible path through the statements preceding its use
-Warning (10242): Verilog HDL Function Declaration warning at track_renderer.v(405): variable "bh" may have a Don't Care value because it may not be assigned a value in every possible path through the statements preceding its use
-Warning (10242): Verilog HDL Function Declaration warning at track_renderer.v(408): variable "bx" may have a Don't Care value because it may not be assigned a value in every possible path through the statements preceding its use
-Warning (10242): Verilog HDL Function Declaration warning at track_renderer.v(409): variable "by" may have a Don't Care value because it may not be assigned a value in every possible path through the statements preceding its use
-Warning (10776): Verilog HDL warning at track_renderer.v(369): variable bx in static task or function bldg_color may have unintended latch behavior
-Warning (10776): Verilog HDL warning at track_renderer.v(369): variable by in static task or function bldg_color may have unintended latch behavior
-Warning (10776): Verilog HDL warning at track_renderer.v(370): variable bw in static task or function bldg_color may have unintended latch behavior
-Warning (10776): Verilog HDL warning at track_renderer.v(370): variable bh in static task or function bldg_color may have unintended latch behavior
-Warning (10230): Verilog HDL assignment warning at track_renderer.v(344): truncated value with size 32 to match size of target (16)
-Warning (10230): Verilog HDL assignment warning at track_renderer.v(345): truncated value with size 32 to match size of target (16)
-Warning (10776): Verilog HDL warning at track_renderer.v(335): variable row_bits in static task or function car_color may have unintended latch behavior
-Warning (10030): Net "bldg_color.bx" at track_renderer.v(369) has no driver or initial value, using a default initial value '0'
-Warning (10030): Net "bldg_color.by" at track_renderer.v(369) has no driver or initial value, using a default initial value '0'
-Warning (10030): Net "bldg_color.bw" at track_renderer.v(370) has no driver or initial value, using a default initial value '0'
-Warning (10030): Net "bldg_color.bh" at track_renderer.v(370) has no driver or initial value, using a default initial value '0'
-Info (10041): Inferred latch for "trig_q8[90][0]" at track_renderer.v(399)
+Warning (10230): Verilog HDL assignment warning at track_renderer.v(317): truncated value with size 32 to match size of target (16)
+Warning (10776): Verilog HDL warning at track_renderer.v(307): variable row_bits in static task or function car_window may have unintended latch behavior
+Warning (10776): Verilog HDL warning at track_renderer.v(129): variable in_inner in static task or function is_on_track may have unintended latch behavior
+Warning (10776): Verilog HDL warning at track_renderer.v(128): variable cross2 in static task or function is_on_track may have unintended latch behavior
+Warning (10776): Verilog HDL warning at track_renderer.v(128): variable cross3 in static task or function is_on_track may have unintended latch behavior
+Warning (10776): Verilog HDL warning at track_renderer.v(128): variable cross4 in static task or function is_on_track may have unintended latch behavior
+Warning (10242): Verilog HDL Function Declaration warning at track_renderer.v(407): variable "bx" may have a Don't Care value because it may not be assigned a value in every possible path through the statements preceding its use
+Warning (10242): Verilog HDL Function Declaration warning at track_renderer.v(407): variable "bw" may have a Don't Care value because it may not be assigned a value in every possible path through the statements preceding its use
+Warning (10242): Verilog HDL Function Declaration warning at track_renderer.v(408): variable "by" may have a Don't Care value because it may not be assigned a value in every possible path through the statements preceding its use
+Warning (10242): Verilog HDL Function Declaration warning at track_renderer.v(408): variable "bh" may have a Don't Care value because it may not be assigned a value in every possible path through the statements preceding its use
+Warning (10242): Verilog HDL Function Declaration warning at track_renderer.v(411): variable "bx" may have a Don't Care value because it may not be assigned a value in every possible path through the statements preceding its use
+Warning (10242): Verilog HDL Function Declaration warning at track_renderer.v(412): variable "by" may have a Don't Care value because it may not be assigned a value in every possible path through the statements preceding its use
+Warning (10776): Verilog HDL warning at track_renderer.v(372): variable bx in static task or function bldg_color may have unintended latch behavior
+Warning (10776): Verilog HDL warning at track_renderer.v(372): variable by in static task or function bldg_color may have unintended latch behavior
+Warning (10776): Verilog HDL warning at track_renderer.v(373): variable bw in static task or function bldg_color may have unintended latch behavior
+Warning (10776): Verilog HDL warning at track_renderer.v(373): variable bh in static task or function bldg_color may have unintended latch behavior
+Warning (10230): Verilog HDL assignment warning at track_renderer.v(346): truncated value with size 32 to match size of target (16)
+Warning (10230): Verilog HDL assignment warning at track_renderer.v(347): truncated value with size 32 to match size of target (16)
+Warning (10776): Verilog HDL warning at track_renderer.v(337): variable row_bits in static task or function car_color may have unintended latch behavior
+Warning (10030): Net "bldg_color.bx" at track_renderer.v(372) has no driver or initial value, using a default initial value '0'
+Warning (10030): Net "bldg_color.by" at track_renderer.v(372) has no driver or initial value, using a default initial value '0'
+Warning (10030): Net "bldg_color.bw" at track_renderer.v(373) has no driver or initial value, using a default initial value '0'
+Warning (10030): Net "bldg_color.bh" at track_renderer.v(373) has no driver or initial value, using a default initial value '0'
+Info (10041): Inferred latch for "trig_q8[90][0]" at track_renderer.v(402)
 Info (12128): Elaborating entity "lcd_controller" for hierarchy "lcd_controller:u_lcd"
 Info (10008): Verilog HDL or VHDL information: EDA Netlist Writer cannot regroup multidimensional array "msg_rom" into its bus
 Info (12128): Elaborating entity "seg7_display" for hierarchy "seg7_display:u_seg7"
-Warning (10036): Verilog HDL or VHDL warning at seg7_display.v(49): object "min_ones" assigned a value but never read
-Warning (10036): Verilog HDL or VHDL warning at seg7_display.v(50): object "min_tens" assigned a value but never read
-Warning (10230): Verilog HDL assignment warning at seg7_display.v(47): truncated value with size 32 to match size of target (4)
 Warning (10230): Verilog HDL assignment warning at seg7_display.v(48): truncated value with size 32 to match size of target (4)
 Warning (10230): Verilog HDL assignment warning at seg7_display.v(49): truncated value with size 32 to match size of target (4)
-Warning (10230): Verilog HDL assignment warning at seg7_display.v(50): truncated value with size 32 to match size of target (4)
+Warning (10230): Verilog HDL assignment warning at seg7_display.v(51): truncated value with size 32 to match size of target (4)
 Warning (10230): Verilog HDL assignment warning at seg7_display.v(52): truncated value with size 32 to match size of target (4)
-Warning (10230): Verilog HDL assignment warning at seg7_display.v(53): truncated value with size 32 to match size of target (4)
 Info (12128): Elaborating entity "led_indicator" for hierarchy "led_indicator:u_leds"
 Info (12128): Elaborating entity "audio_controller" for hierarchy "audio_controller:u_audio"
-Info (278001): Inferred 53 megafunctions from design logic
+Info (278001): Inferred 48 megafunctions from design logic
     Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "track_renderer:u_render|Mod0"
-    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "seg7_display:u_seg7|Mod2"
+    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "seg7_display:u_seg7|Mod1"
     Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "seg7_display:u_seg7|Div1"
     Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "seg7_display:u_seg7|Mod0"
-    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "seg7_display:u_seg7|Mod1"
     Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "seg7_display:u_seg7|Div0"
     Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "track_renderer:u_render|Mult8"
     Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "track_renderer:u_render|Mult11"
@@ -3154,11 +2925,7 @@ Info (278001): Inferred 53 megafunctions from design logic
     Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "track_renderer:u_render|Mult17"
     Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "track_renderer:u_render|Mult14"
     Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "track_renderer:u_render|Mult15"
-    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "track_renderer:u_render|Mult0"
-    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "track_renderer:u_render|Mult2"
-    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "track_renderer:u_render|Mult3"
-    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "track_renderer:u_render|Mult7"
-    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "track_renderer:u_render|Mult4"
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "track_renderer:u_render|Mult1"
     Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "collision_detector:u_col|Mult1"
     Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "collision_detector:u_col|Mult0"
     Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "collision_detector:u_col|Mult3"
@@ -3206,8 +2973,8 @@ Info (12021): Found 1 design units, including 1 entities, in source file db/add_
     Info (12023): Found entity 1: add_sub_lkc
 Info (12021): Found 1 design units, including 1 entities, in source file db/add_sub_mkc.tdf
     Info (12023): Found entity 1: add_sub_mkc
-Info (12130): Elaborated megafunction instantiation "seg7_display:u_seg7|lpm_divide:Mod2"
-Info (12133): Instantiated megafunction "seg7_display:u_seg7|lpm_divide:Mod2" with the following parameter:
+Info (12130): Elaborated megafunction instantiation "seg7_display:u_seg7|lpm_divide:Mod1"
+Info (12133): Instantiated megafunction "seg7_display:u_seg7|lpm_divide:Mod1" with the following parameter:
     Info (12134): Parameter "LPM_WIDTHN" = "8"
     Info (12134): Parameter "LPM_WIDTHD" = "4"
     Info (12134): Parameter "LPM_NREPRESENTATION" = "UNSIGNED"
@@ -3228,40 +2995,24 @@ Info (12021): Found 1 design units, including 1 entities, in source file db/lpm_
     Info (12023): Found entity 1: lpm_divide_1dm
 Info (12130): Elaborated megafunction instantiation "seg7_display:u_seg7|lpm_divide:Mod0"
 Info (12133): Instantiated megafunction "seg7_display:u_seg7|lpm_divide:Mod0" with the following parameter:
-    Info (12134): Parameter "LPM_WIDTHN" = "4"
+    Info (12134): Parameter "LPM_WIDTHN" = "7"
     Info (12134): Parameter "LPM_WIDTHD" = "4"
     Info (12134): Parameter "LPM_NREPRESENTATION" = "UNSIGNED"
     Info (12134): Parameter "LPM_DREPRESENTATION" = "UNSIGNED"
-Info (12021): Found 1 design units, including 1 entities, in source file db/lpm_divide_05m.tdf
-    Info (12023): Found entity 1: lpm_divide_05m
-Info (12021): Found 1 design units, including 1 entities, in source file db/sign_div_unsign_7kh.tdf
-    Info (12023): Found entity 1: sign_div_unsign_7kh
-Info (12021): Found 1 design units, including 1 entities, in source file db/alt_u_div_gve.tdf
-    Info (12023): Found entity 1: alt_u_div_gve
-Info (12130): Elaborated megafunction instantiation "seg7_display:u_seg7|lpm_divide:Mod1"
-Info (12133): Instantiated megafunction "seg7_display:u_seg7|lpm_divide:Mod1" with the following parameter:
-    Info (12134): Parameter "LPM_WIDTHN" = "16"
-    Info (12134): Parameter "LPM_WIDTHD" = "6"
-    Info (12134): Parameter "LPM_NREPRESENTATION" = "UNSIGNED"
-    Info (12134): Parameter "LPM_DREPRESENTATION" = "UNSIGNED"
-Info (12021): Found 1 design units, including 1 entities, in source file db/lpm_divide_l6m.tdf
-    Info (12023): Found entity 1: lpm_divide_l6m
-Info (12021): Found 1 design units, including 1 entities, in source file db/sign_div_unsign_slh.tdf
-    Info (12023): Found entity 1: sign_div_unsign_slh
-Info (12021): Found 1 design units, including 1 entities, in source file db/alt_u_div_q2f.tdf
-    Info (12023): Found entity 1: alt_u_div_q2f
+Info (12021): Found 1 design units, including 1 entities, in source file db/lpm_divide_35m.tdf
+    Info (12023): Found entity 1: lpm_divide_35m
+Info (12021): Found 1 design units, including 1 entities, in source file db/sign_div_unsign_akh.tdf
+    Info (12023): Found entity 1: sign_div_unsign_akh
+Info (12021): Found 1 design units, including 1 entities, in source file db/alt_u_div_mve.tdf
+    Info (12023): Found entity 1: alt_u_div_mve
 Info (12130): Elaborated megafunction instantiation "seg7_display:u_seg7|lpm_divide:Div0"
 Info (12133): Instantiated megafunction "seg7_display:u_seg7|lpm_divide:Div0" with the following parameter:
-    Info (12134): Parameter "LPM_WIDTHN" = "6"
+    Info (12134): Parameter "LPM_WIDTHN" = "7"
     Info (12134): Parameter "LPM_WIDTHD" = "4"
     Info (12134): Parameter "LPM_NREPRESENTATION" = "UNSIGNED"
     Info (12134): Parameter "LPM_DREPRESENTATION" = "UNSIGNED"
-Info (12021): Found 1 design units, including 1 entities, in source file db/lpm_divide_vcm.tdf
-    Info (12023): Found entity 1: lpm_divide_vcm
-Info (12021): Found 1 design units, including 1 entities, in source file db/sign_div_unsign_9kh.tdf
-    Info (12023): Found entity 1: sign_div_unsign_9kh
-Info (12021): Found 1 design units, including 1 entities, in source file db/alt_u_div_kve.tdf
-    Info (12023): Found entity 1: alt_u_div_kve
+Info (12021): Found 1 design units, including 1 entities, in source file db/lpm_divide_0dm.tdf
+    Info (12023): Found entity 1: lpm_divide_0dm
 Info (12130): Elaborated megafunction instantiation "track_renderer:u_render|lpm_mult:Mult8"
 Info (12133): Instantiated megafunction "track_renderer:u_render|lpm_mult:Mult8" with the following parameter:
     Info (12134): Parameter "LPM_WIDTHA" = "10"
@@ -3518,16 +3269,16 @@ Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
 Warning (21074): Design contains 1 input pin(s) that do not drive logic
     Warning (15610): No output dependent on input pin "KEY[2]"
-Info (21057): Implemented 6336 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 6008 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 7 input pins
     Info (21059): Implemented 111 output pins
-    Info (21061): Implemented 6162 logic cells
-    Info (21062): Implemented 56 DSP elements
-Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 73 warnings
-    Info: Peak virtual memory: 4692 megabytes
-    Info: Processing ended: Thu Apr 30 18:34:54 2026
-    Info: Elapsed time: 00:00:30
-    Info: Total CPU time (on all processors): 00:00:30
+    Info (21061): Implemented 5842 logic cells
+    Info (21062): Implemented 48 DSP elements
+Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 69 warnings
+    Info: Peak virtual memory: 4680 megabytes
+    Info: Processing ended: Thu Apr 30 18:49:52 2026
+    Info: Elapsed time: 00:00:27
+    Info: Total CPU time (on all processors): 00:00:27
 
 
 +------------------------------------------+

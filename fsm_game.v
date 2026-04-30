@@ -6,8 +6,7 @@
 //   FAIL    — collision occurred; wait for KEY[3] to return to IDLE
 //   PASS    — car passed through finish line; wait for KEY[3] to return to IDLE
 //
-// Finish detection: car center crosses the start/finish line (x == SF_X2)
-// while moving in the correct direction (heading northward, angle == 2).
+// Finish detection: car center crosses FINISH_LINE_Y while heading north.
 
 `include "track_data.vh"
 
@@ -24,8 +23,8 @@ module fsm_game (
     // Outputs
     output reg  [1:0]  game_state,  // 0=IDLE 1=DRIVING 2=FAIL 3=PASS
     output reg         game_active, // DRIVING state
-    output reg  [15:0] elapsed_sec, // seconds elapsed (for 7-seg)
-    output reg  [7:0]  elapsed_ms   // sub-second (hundredths)
+    output reg  [15:0] remaining_sec, // countdown seconds (for 7-seg)
+    output reg  [7:0]  remaining_ms   // centiseconds approximation
 );
 
 // ── State encoding ─────────────────────────────────────────────────────────
@@ -35,31 +34,36 @@ localparam FAIL    = 2'd2;
 localparam PASS    = 2'd3;
 
 // ── Timer: counts at 60 Hz ────────────────────────────────────────────────
-// 60 ticks = 1 second.  Count up to 65535 seconds.
+// 60 ticks = 1 second. Countdown starts at 60 seconds.
+localparam [15:0] ROUND_TIME_SEC = 16'd60;
 reg [5:0] tick_cnt;   // counts 0..59
 
 always @(posedge clk50) begin
-    if (!rst_n || game_state != DRIVING) begin
+    if (!rst_n) begin
+        tick_cnt      <= 6'd0;
+        remaining_sec <= ROUND_TIME_SEC;
+        remaining_ms  <= 8'd0;
+    end else if (game_state == IDLE) begin
         tick_cnt   <= 6'd0;
-        elapsed_sec <= 16'd0;
-        elapsed_ms  <= 8'd0;
+        remaining_sec <= ROUND_TIME_SEC;
+        remaining_ms  <= 8'd0;
     end else if (tick_60hz && game_state == DRIVING) begin
         if (tick_cnt == 6'd59) begin
             tick_cnt    <= 6'd0;
-            elapsed_sec <= elapsed_sec + 16'd1;
-            elapsed_ms  <= 8'd0;
+            if (remaining_sec != 16'd0)
+                remaining_sec <= remaining_sec - 16'd1;
+            remaining_ms <= 8'd0;
         end else begin
             tick_cnt   <= tick_cnt + 6'd1;
-            elapsed_ms <= tick_cnt * 8'd166 / 8'd10; // centiseconds approx
+            remaining_ms <= ((6'd59 - tick_cnt) * 8'd100) / 8'd60;
         end
     end
 end
 
 // ── Finish line detection ─────────────────────────────────────────────────
-// Car must cross x == SF_X2 heading north (angle==2) while in DRIVING state.
-// We use car_y in [SF_Y1..SF_Y2] to confirm it's in the finish zone.
-wire at_finish = (car_x >= `SF_X2 - 10'd2 && car_x <= `SF_X2 + 10'd2) &&
-                 (car_y >= `SF_Y1 && car_y <= `SF_Y2) &&
+// Car must cross y == FINISH_LINE_Y heading north (angle==2) while in DRIVING.
+wire at_finish = (car_y >= (`FINISH_LINE_Y - 10'd2) && car_y <= (`FINISH_LINE_Y + 10'd2)) &&
+                 (car_x >= `SF_X1 && car_x <= `SF_X2) &&
                  (car_angle == 3'd2);  // heading North
 
 // Latch finish crossing on tick
@@ -70,6 +74,7 @@ always @(posedge clk50) begin
     else        finish_prev <= at_finish;
 end
 assign finish_pulse = at_finish & ~finish_prev;  // rising edge
+wire time_up = (remaining_sec == 16'd0);
 
 // ── FSM ───────────────────────────────────────────────────────────────────
 always @(posedge clk50) begin
@@ -84,7 +89,7 @@ always @(posedge clk50) begin
             end
             DRIVING: begin
                 game_active <= 1'b1;
-                if (collision)     game_state <= FAIL;
+                if (collision || time_up) game_state <= FAIL;
                 else if (finish_pulse) game_state <= PASS;
             end
             FAIL: begin
