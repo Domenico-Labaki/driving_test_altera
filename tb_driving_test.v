@@ -1,0 +1,206 @@
+// tb_driving_test.v — ModelSim testbench for GEL372 driving test FSM.
+//
+// Covers:
+//   1. Power-up reset → IDLE state
+//   2. KEY[3] press   → IDLE → DRIVING transition
+//   3. Collision input → DRIVING → FAIL transition
+//   4. KEY[3] press   → FAIL → IDLE transition
+//   5. Finish line crossing → DRIVING → PASS transition
+//   6. KEY[3] press   → PASS → IDLE transition
+//
+// Simulation time unit: 1 ns / resolution: 1 ps
+
+`timescale 1ns/1ps
+
+module tb_driving_test;
+
+// ── DUT signals ───────────────────────────────────────────────────────────
+reg        clk50;
+reg        rst_n;
+reg [3:0]  KEY;
+reg [1:0]  SW;
+
+wire [9:0] VGA_R, VGA_G, VGA_B;
+wire       VGA_HS, VGA_VS, VGA_BLANK, VGA_SYNC, VGA_CLK;
+wire       LCD_EN, LCD_RS, LCD_RW;
+wire [7:4] LCD_DATA;
+wire [6:0] HEX0, HEX1, HEX2, HEX3, HEX4, HEX5;
+wire [17:0] LEDR;
+wire [7:0]  LEDG;
+wire        GPIO_0_0;
+
+// ── Clock generation: 50 MHz ──────────────────────────────────────────────
+initial clk50 = 1'b0;
+always  #10 clk50 = ~clk50;  // 20 ns period → 50 MHz
+
+// ── DUT instantiation ─────────────────────────────────────────────────────
+driving_test_top dut (
+    .CLOCK_50 (clk50),
+    .KEY      (KEY),
+    .SW       (SW),
+    .VGA_R    (VGA_R),   .VGA_G  (VGA_G),  .VGA_B    (VGA_B),
+    .VGA_HS   (VGA_HS),  .VGA_VS (VGA_VS), .VGA_BLANK(VGA_BLANK),
+    .VGA_SYNC (VGA_SYNC),.VGA_CLK(VGA_CLK),
+    .LCD_EN   (LCD_EN),  .LCD_RS (LCD_RS), .LCD_RW   (LCD_RW),
+    .LCD_DATA (LCD_DATA),
+    .HEX0(HEX0),.HEX1(HEX1),.HEX2(HEX2),
+    .HEX3(HEX3),.HEX4(HEX4),.HEX5(HEX5),
+    .LEDR    (LEDR),
+    .LEDG    (LEDG),
+    .GPIO_0_0(GPIO_0_0)
+);
+
+// ── Helper: wait N clock cycles ───────────────────────────────────────────
+task wait_clk;
+    input integer n;
+    integer i;
+    begin
+        for (i = 0; i < n; i = i + 1)
+            @(posedge clk50);
+    end
+endtask
+
+// ── Helper: press KEY[k] for ~25 ms (debounce window + margin) ───────────
+// 25 ms at 50 MHz = 1,250,000 cycles
+task press_key;
+    input [1:0] k;
+    begin
+        KEY[k] = 1'b0;          // press (active-low)
+        wait_clk(1_300_000);
+        KEY[k] = 1'b1;          // release
+        wait_clk(1_300_000);    // let debounce settle
+    end
+endtask
+
+// ── Helper: read game_state from FSM via hierarchical reference ───────────
+// (works in ModelSim with full hierarchy enabled)
+wire [1:0] fsm_state = dut.u_fsm.game_state;
+
+// ── Test sequence ─────────────────────────────────────────────────────────
+integer pass_count;
+integer fail_count;
+
+task check;
+    input [1:0] expected_state;
+    input [63:0] test_name;
+    begin
+        if (fsm_state !== expected_state) begin
+            $display("FAIL [%0s]: state=%b, expected=%b at time %0t",
+                     test_name, fsm_state, expected_state, $time);
+            fail_count = fail_count + 1;
+        end else begin
+            $display("PASS [%0s]: state=%b at time %0t",
+                     test_name, fsm_state, $time);
+            pass_count = pass_count + 1;
+        end
+    end
+endtask
+
+initial begin
+    // ── Initialise ──────────────────────────────────────────────────────
+    pass_count = 0; fail_count = 0;
+    KEY  = 4'b1111;   // all released (active-low, so 1=not pressed)
+    SW   = 2'b00;     // no accel/brake
+    rst_n = 1'b0;
+
+    // Apply reset for 10 cycles
+    wait_clk(10);
+    rst_n = 1'b1;
+    // KEY[3] doubles as rst_n in DUT
+    KEY[3] = 1'b1;
+
+    // Wait for VGA/LCD init
+    wait_clk(100);
+
+    // ── Test 1: Power-up → IDLE ─────────────────────────────────────────
+    check(2'd0, "T1_IDLE_AFTER_RESET");
+
+    // ── Test 2: KEY[3] press → DRIVING ─────────────────────────────────
+    press_key(2'd3);
+    wait_clk(10);
+    check(2'd1, "T2_DRIVING_AFTER_START");
+
+    // ── Test 3: Collision → FAIL ─────────────────────────────────────────
+    // Force a corner off-road by temporarily overriding (or use SW path).
+    // In simulation we force the collision_detector output directly.
+    force dut.u_col.collision = 1'b1;
+    wait_clk(5);
+    release dut.u_col.collision;
+    wait_clk(10);
+    check(2'd2, "T3_FAIL_AFTER_COLLISION");
+
+    // ── Test 4: KEY[3] press → IDLE from FAIL ────────────────────────────
+    press_key(2'd3);
+    wait_clk(10);
+    check(2'd0, "T4_IDLE_FROM_FAIL");
+
+    // ── Test 5: DRIVING → PASS via finish line ────────────────────────────
+    press_key(2'd3);   // start driving
+    wait_clk(10);
+    check(2'd1, "T5a_DRIVING_BEFORE_FINISH");
+
+    // Force finish pulse
+    force dut.u_fsm.finish_pulse = 1'b1;  // hierarchical override
+    wait_clk(2);
+    release dut.u_fsm.finish_pulse;
+    wait_clk(10);
+    check(2'd3, "T5b_PASS_AFTER_FINISH");
+
+    // ── Test 6: KEY[3] press → IDLE from PASS ────────────────────────────
+    press_key(2'd3);
+    wait_clk(10);
+    check(2'd0, "T6_IDLE_FROM_PASS");
+
+    // ── Test 7: LEDs in DRIVING → green all on ────────────────────────────
+    press_key(2'd3);
+    wait_clk(10);
+    if (dut.LEDG !== 8'hFF)
+        $display("FAIL [T7_LEDG_DRIVING]: LEDG=%b (expected 0xFF)", dut.LEDG);
+    else
+        $display("PASS [T7_LEDG_DRIVING]: LEDG=0xFF");
+
+    // ── Test 8: Speed display visible (speed_kph driven) ──────────────────
+    SW[0] = 1'b1;  // accelerate
+    wait_clk(2_000_000); // ~40 ms → a few 60 Hz ticks
+    SW[0] = 1'b0;
+    if (dut.speed_kph > 8'd0)
+        $display("PASS [T8_SPEED_NONZERO]: speed_kph=%0d", dut.speed_kph);
+    else
+        $display("FAIL [T8_SPEED_NONZERO]: speed_kph still 0");
+
+    // ── Summary ────────────────────────────────────────────────────────────
+    #100;
+    $display("──────────────────────────────────────");
+    $display("RESULTS: %0d passed, %0d failed", pass_count, fail_count);
+    $display("──────────────────────────────────────");
+    $stop;
+end
+
+// ── VGA signal monitor ─────────────────────────────────────────────────────
+// Verify hsync and vsync toggle (basic sanity).
+integer hsync_edges;
+initial hsync_edges = 0;
+always @(negedge VGA_HS) hsync_edges = hsync_edges + 1;
+
+initial begin
+    wait_clk(1_700_000);   // ~34 ms — time for at least one full frame
+    if (hsync_edges >= 480)
+        $display("PASS [VGA_HSYNC]: %0d hsync edges seen", hsync_edges);
+    else
+        $display("FAIL [VGA_HSYNC]: only %0d edges (expected ≥480)", hsync_edges);
+end
+
+// ── Waveform dump ──────────────────────────────────────────────────────────
+initial begin
+    $dumpfile("tb_driving_test.vcd");
+    $dumpvars(0, tb_driving_test);
+end
+
+// ── Timeout guard ──────────────────────────────────────────────────────────
+initial begin
+    #500_000_000;  // 500 ms simulation limit
+    $display("TIMEOUT: simulation exceeded 500 ms");
+    $stop;
+end
+
+endmodule
