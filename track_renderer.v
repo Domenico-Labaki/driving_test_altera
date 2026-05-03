@@ -424,7 +424,7 @@ wire        w_car   = car_pixel(px, py, car_x, car_y, heading_deg, car_row_bus);
 wire        w_car_win = car_window(px, py, car_x, car_y, heading_deg, car_row_bus);
 wire        w_cone  = is_cone_pixel(px, py);
 wire        w_start  = (py == `START_LINE_Y)  && (px >= `SF_X1) && (px <= `SF_X2);
-wire        w_finish = (py == `FINISH_LINE_Y) && (px >= `SF_X1) && (px <= `SF_X2);
+wire        w_finish = (py == `FINISH_LINE_Y) && (px >= `FINISH_LINE_X1) && (px <= `FINISH_LINE_X2);
 wire        w_track = is_on_track(px, py);
 wire [23:0] w_bldg  = bldg_color(px, py);
 
@@ -454,7 +454,7 @@ always @(posedge pclk) begin
         else if (w_cone)
             rgb <= C_CONE;
         else if (w_finish)
-            rgb <= C_FINISH_MARK;
+            rgb <= ((px[2] ^ py[2])) ? 24'hFFFFFF : 24'h000000;  // checkerboard finish
         else if (w_start)
             rgb <= C_START_MARK;
         else if (w_bldg != 24'h000000 && !w_track)

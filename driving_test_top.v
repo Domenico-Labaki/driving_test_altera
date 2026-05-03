@@ -102,7 +102,7 @@ wire [9:0]   car_x, car_y;
 wire [2:0]   car_angle;
 wire [8:0]   heading_deg;
 wire [7:0]   speed_kph;
-wire [111:0] car_row_bus;  // 8 rows × 14 bits packed
+wire [307:0] car_row_bus;  // 14 rows × 22 bits packed
 wire         game_active;
 
 car_controller u_car (

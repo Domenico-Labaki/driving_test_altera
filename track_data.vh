@@ -119,10 +119,14 @@
 `define SF_Y1 320
 `define SF_Y2 380
 
-// Start/finish markings inside the bay.
-// Car starts inside the bay and exits northward across FINISH_LINE_Y.
+// Start line — bottom of the bay (car spawns here)
 `define START_LINE_Y  `SF_Y2
-`define FINISH_LINE_Y `SF_Y1
+
+// Finish line — horizontal stripe across the left corridor, heading north
+// Left corridor runs x=[20..103] between outer wall and V-notch island
+`define FINISH_LINE_Y  150
+`define FINISH_LINE_X1  20
+`define FINISH_LINE_X2 103
 
 // ──────────────────────────────────────────────────────────
 //  CONE POSITIONS (10 cones, driving test configuration)

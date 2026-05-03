@@ -25,7 +25,7 @@ module car_controller (
     output reg  [8:0]  heading_deg,
     output reg  [7:0]  speed_kph,
     // 8 sprite rows packed into one bus: row k = car_row_bus[k*14 +: 14]
-    output reg  [111:0] car_row_bus
+    output reg  [307:0] car_row_bus
 );
 
 // ── Speed limits (Q8.8) ───────────────────────────────────────────────────
@@ -174,18 +174,24 @@ function signed [15:0] sin_deg_q8;
     end
 endfunction
 
-// ── Sprite ROM: 8 rows × 14 bits ────────────────────────────────────────
-reg [13:0] sprite_rom [0:7];
+// ── Sprite ROM: 14 rows × 22 bits (2 bits per pixel, 11 pixels wide) ────
+reg [21:0] sprite_rom [0:13];
 
 initial begin
-    sprite_rom[0] = `SPR_0_R00;
-    sprite_rom[1] = `SPR_0_R01;
-    sprite_rom[2] = `SPR_0_R02;
-    sprite_rom[3] = `SPR_0_R03;
-    sprite_rom[4] = `SPR_0_R04;
-    sprite_rom[5] = `SPR_0_R05;
-    sprite_rom[6] = `SPR_0_R06;
-    sprite_rom[7] = `SPR_0_R07;
+    sprite_rom[0]  = `SPR_R00;
+    sprite_rom[1]  = `SPR_R01;
+    sprite_rom[2]  = `SPR_R02;
+    sprite_rom[3]  = `SPR_R03;
+    sprite_rom[4]  = `SPR_R04;
+    sprite_rom[5]  = `SPR_R05;
+    sprite_rom[6]  = `SPR_R06;
+    sprite_rom[7]  = `SPR_R07;
+    sprite_rom[8]  = `SPR_R08;
+    sprite_rom[9]  = `SPR_R09;
+    sprite_rom[10] = `SPR_R10;
+    sprite_rom[11] = `SPR_R11;
+    sprite_rom[12] = `SPR_R12;
+    sprite_rom[13] = `SPR_R13;
 end
 
 // ── Q8.8 position and speed registers ────────────────────────────────────
@@ -201,8 +207,8 @@ integer r;
 task pack_sprite_bus;
     integer i;
     begin
-        for (i = 0; i < 8; i = i + 1)
-            car_row_bus[i*14 +: 14] <= sprite_rom[i];
+        for (i = 0; i < 14; i = i + 1)
+            car_row_bus[i*22 +: 22] <= sprite_rom[i];
     end
 endtask
 

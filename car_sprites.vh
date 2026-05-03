@@ -1,25 +1,56 @@
-// car_sprites.vh — 4 car sprite orientations (cardinal directions only)
+// car_sprites.vh — Car sprite 11 wide × 14 tall pixels.
 //
-// Car is 14 wide × 8 tall pixels (bounding box).
-// Each sprite row is 14 bits wide (row-major, MSB = left column).
-// Wider and shorter design for sleeker appearance.
-// angle[2:0]: 0=Up, 1=Right, 2=Down, 3=Left
+// Each row is 11 pixels. Each pixel is 2 bits:
+//   00 = transparent
+//   01 = dark red  (#880015)
+//   10 = black     (#000000)
+//   11 = white     (#FFFFFF, interior)
 //
-// Bit layout per row: bit[13] = leftmost pixel, bit[0] = rightmost pixel
-// A '1' bit means draw the car pixel (yellow).
+// Row encoding: 22 bits, MSB pair = leftmost pixel.
+// car_row_bus: 14 rows × 22 bits = 308 bits total.
+// Car points UP (north).
 
-// New dimensions if rotated:
-`define SPR_W 14
-`define SPR_H 8
+`define SPR_W 11
+`define SPR_H 14
 
-// ── angle 0 — Up (FLAT BODY + WIDE TOP) ───────────────────────────
-// 14 bits per row (bit[13] = leftmost)
+// Row  0: __  __  __  DR  DR  DR  DR  DR  __  __  __
+`define SPR_R00  22'b00_00_00_01_01_01_01_01_00_00_00
 
-`define SPR_0_R00  14'b00111111111100
-`define SPR_0_R01  14'b01111111111110
-`define SPR_0_R02  14'b11111111111111
-`define SPR_0_R03  14'b11111111111111
-`define SPR_0_R04  14'b01111111111110
-`define SPR_0_R05  14'b00111111111100
-`define SPR_0_R06  14'b00011111111000
-`define SPR_0_R07  14'b00001111110000
+// Row  1: __  __  BK  BK  __  __  __  BK  BK  __  __
+`define SPR_R01  22'b00_00_10_10_00_00_00_10_10_00_00
+
+// Row  2: BK  BK  DR  DR  WH  WH  WH  DR  DR  BK  BK
+`define SPR_R02  22'b10_10_01_01_11_11_11_01_01_10_10
+
+// Row  3: BK  BK  DR  DR  WH  WH  WH  DR  DR  BK  BK
+`define SPR_R03  22'b10_10_01_01_11_11_11_01_01_10_10
+
+// Row  4: BK  BK  DR  BK  BK  BK  BK  BK  DR  BK  BK
+`define SPR_R04  22'b10_10_01_10_10_10_10_10_01_10_10
+
+// Row  5: __  DR  BK  BK  BK  BK  BK  BK  BK  DR  __
+`define SPR_R05  22'b00_01_10_10_10_10_10_10_10_01_00
+
+// Row  6: __  __  DR  DR  WH  WH  WH  DR  DR  __  __
+`define SPR_R06  22'b00_00_01_01_11_11_11_01_01_00_00
+
+// Row  7: __  __  BK  DR  BK  BK  BK  DR  BK  __  __
+`define SPR_R07  22'b00_00_10_01_10_10_10_01_10_00_00
+
+// Row  8: __  __  BK  DR  BK  BK  BK  DR  BK  __  __
+`define SPR_R08  22'b00_00_10_01_10_10_10_01_10_00_00
+
+// Row  9: __  __  DR  DR  WH  WH  WH  DR  DR  __  __
+`define SPR_R09  22'b00_00_01_01_11_11_11_01_01_00_00
+
+// Row 10: BK  BK  BK  DR  WH  WH  WH  DR  BK  BK  BK
+`define SPR_R10  22'b10_10_10_01_11_11_11_01_10_10_10
+
+// Row 11: BK  BK  BK  BK  WH  WH  WH  BK  BK  BK  BK
+`define SPR_R11  22'b10_10_10_10_11_11_11_10_10_10_10
+
+// Row 12: BK  BK  DR  BK  BK  BK  BK  BK  DR  BK  BK
+`define SPR_R12  22'b10_10_01_10_10_10_10_10_01_10_10
+
+// Row 13: __  __  DR  DR  WH  WH  WH  DR  DR  __  __
+`define SPR_R13  22'b00_00_01_01_11_11_11_01_01_00_00
