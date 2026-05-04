@@ -1,12 +1,12 @@
-// collision_detector.v — Checks car corner pixels against track boundaries.
+// collision_detector.v — Checks car position against track and cones.
 //
-// Each frame (60 Hz), samples the 4 corners of the car bounding box.
-// Corner pixel colors are provided by the track_renderer via color outputs.
-// A green pixel (24'h00AA00) at any corner triggers collision.
-// Also checks car center against all cone positions (4-px radius).
+// Off-road detection: corner_offroad bits come from corner_probe modules
+// in the top level — those still sample is_on_track via the seg_bus.
+// Cone detection: uses the cone_bus from track_gen.
 //
-// NOTE: color sampling is done externally — the top level reads the rendered
-// color at each corner coordinate and feeds it here as corner_color[3:0].
+// Collision triggers on:
+//   • Any car corner pixel that is off-road (corner_offroad[3:0])
+//   • Car centre within Euclidean radius 6 of any cone
 
 `include "track_data.vh"
 
@@ -17,53 +17,44 @@ module collision_detector (
     // Car position
     input  wire [9:0]  car_x,
     input  wire [9:0]  car_y,
-    // Color at the 4 corners sampled by top-level (1 = green/off-road)
-    // corners: [0]=TL [1]=TR [2]=BL [3]=BR
+    // Off-road corner flags (set by corner_probe in top level)
     input  wire [3:0]  corner_offroad,
+    // Cone bus from track_gen
+    input  wire [(`MAX_CONES*20)-1:0] cone_bus,
+    input  wire [3:0]                 num_cones,
     // Collision output
     output reg         collision
 );
 
-// ── Cone hit check ────────────────────────────────────────────────────────
-// Check if car center (car_x, car_y) is within 4 px radius of any cone.
-reg [9:0] cone_cx [0:`NUM_CONES-1];
-reg [9:0] cone_cy [0:`NUM_CONES-1];
-
-initial begin
-    cone_cx[0] = 10'd108; cone_cy[0] = 10'd135;
-    cone_cx[1] = 10'd83;  cone_cy[1] = 10'd178;
-    cone_cx[2] = 10'd117; cone_cy[2] = 10'd219;
-    cone_cx[3] = 10'd210; cone_cy[3] = 10'd91;
-    cone_cx[4] = 10'd400; cone_cy[4] = 10'd55;
-    cone_cx[5] = 10'd580; cone_cy[5] = 10'd135;
-    cone_cx[6] = 10'd580; cone_cy[6] = 10'd320;
-    cone_cx[7] = 10'd420; cone_cy[7] = 10'd350;
-    cone_cx[8] = 10'd170; cone_cy[8] = 10'd350;
-    cone_cx[9] = 10'd50;  cone_cy[9] = 10'd260;
-end
-
+// ── Cone hit: Euclidean radius 6 (dist² ≤ 36) ───────────────────────────
 function automatic cone_hit;
     input [9:0] cx, cy;
+    input [(`MAX_CONES*20)-1:0] cbus;
+    input [3:0] ncone;
+    integer i;
     reg [10:0] dx, dy;
     reg [21:0] dist2;
-    integer i;
+    reg [9:0]  ccx, ccy;
     begin
         cone_hit = 1'b0;
-        for (i = 0; i < `NUM_CONES; i = i + 1) begin
-            dx = (cx >= cone_cx[i]) ? cx - cone_cx[i] : cone_cx[i] - cx;
-            dy = (cy >= cone_cy[i]) ? cy - cone_cy[i] : cone_cy[i] - cy;
-            dist2 = dx*dx + dy*dy;
-            if (dist2 <= 22'd16) cone_hit = 1'b1;  // radius 4 → 4²=16
+        for (i = 0; i < `MAX_CONES; i = i + 1) begin
+            if (i < ncone) begin
+                ccx   = cbus[i*20+19 -: 10];
+                ccy   = cbus[i*20+ 9 -: 10];
+                dx    = (cx >= ccx) ? cx - ccx : ccx - cx;
+                dy    = (cy >= ccy) ? cy - ccy : ccy - cy;
+                dist2 = dx*dx + dy*dy;
+                if (dist2 <= 22'd36) cone_hit = 1'b1;  // radius 6
+            end
         end
     end
 endfunction
 
-// ── Collision register ─────────────────────────────────────────────────────
 always @(posedge clk50) begin
     if (!rst_n) begin
         collision <= 1'b0;
     end else if (tick_60hz) begin
-        collision <= (|corner_offroad) | cone_hit(car_x, car_y);
+        collision <= (|corner_offroad) | cone_hit(car_x, car_y, cone_bus, num_cones);
     end
 end
 
