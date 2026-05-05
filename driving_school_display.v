@@ -40,20 +40,6 @@ localparam SCALE    = 4;   // each sprite pixel = 4×4 display pixels
 //  10  red flag / accent        #C00  → 12'hC00
 //  11  light sky fill           #9CF  → 12'h9CF   (not used in sprite; for reference)
 
-localparam [11:0] PAL [0:11];
-assign PAL[0]  = 12'h000;   // transparent
-assign PAL[1]  = 12'h222;   // outline
-assign PAL[2]  = 12'h802;   // maroon
-assign PAL[3]  = 12'hEEE;   // wall
-assign PAL[4]  = 12'h601;   // dark maroon
-assign PAL[5]  = 12'hFD0;   // yellow window
-assign PAL[6]  = 12'h111;   // black (garage / shadow)
-assign PAL[7]  = 12'h400;   // dark roof
-assign PAL[8]  = 12'h888;   // mid-grey step
-assign PAL[9]  = 12'hEDB;   // sign background
-assign PAL[10] = 12'hC00;   // red accent
-assign PAL[11] = 12'h9CF;   // light sky (unused but reserved)
-
 // ── Sprite ROM — 30 columns × 27 rows, 4 bits per pixel ───────────────────
 // Each row is a 120-bit vector: pixel[0] in MSB .. pixel[29] in LSB
 // (pixel column 0 = leftmost = bits [119:116])
