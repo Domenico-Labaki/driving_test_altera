@@ -26,11 +26,12 @@
 // Start line — bottom of bay, car spawns just above
 `define START_LINE_Y  `SF_Y2
 
-// Finish line — horizontal stripe in left corridor heading north
-// Must stay inside Seg 0 of every layout (x=[20..70], y=[130..400])
+// Finish line — horizontal stripe; moved to right side of screen
+// Previously on the left; now located near right edge so road must
+// route from the start bay (left) to this finish stripe.
 `define FINISH_LINE_Y   150
-`define FINISH_LINE_X1   20
-`define FINISH_LINE_X2   70
+`define FINISH_LINE_X1   10'd570
+`define FINISH_LINE_X2   10'd620
 
 // ──────────────────────────────────────────────────────────
 //  CAR START POSITION AND HEADING

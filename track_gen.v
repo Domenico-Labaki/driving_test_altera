@@ -31,6 +31,15 @@ module track_gen (
     output reg  [3:0]                  num_coins
 );
 
+// temporaries for procedural mirroring / grass placement
+integer i, gi;
+reg [(`MAX_SEGS*40)-1:0] new_seg_bus;
+reg [(`MAX_BLDGS*36)-1:0] new_bldg_bus;
+reg [9:0] sx1,sy1,sx2,sy2;
+reg [9:0] cx,cy;
+reg [9:0] bx,by,nbx,gbx,gby;
+reg [7:0] bw,bh,gbw,gbh;
+
 // ── Free-running LFSR (16-bit Fibonacci, taps 16,15,13,4) ────────────────
 reg [15:0] lfsr;
 always @(posedge clk50)
@@ -256,6 +265,62 @@ always @(posedge clk50) begin
                 coin_bus[11*20 +: 20] <= {10'd380, 10'd305}; // inner bottom right
             end
         endcase
+
+        // --- Optionally mirror entire layout horizontally for variety
+        if (lfsr[2]) begin
+            // mirror seg_bus: x' = 639 - x (swap left/right correctly)
+            new_seg_bus = seg_bus;
+            for (i = 0; i < `MAX_SEGS; i = i + 1) begin
+                if (i < num_segs) begin
+                    sx1 = seg_bus[i*40+39 -: 10]; sy1 = seg_bus[i*40+29 -: 10];
+                    sx2 = seg_bus[i*40+19 -: 10]; sy2 = seg_bus[i*40+ 9 -: 10];
+                    new_seg_bus[i*40 +: 40] = {10'd639 - sx2, sy1, 10'd639 - sx1, sy2};
+                end
+            end
+            seg_bus <= new_seg_bus;
+
+            // mirror cones
+            for (i = 0; i < `MAX_CONES; i = i + 1) begin
+                if (i < num_cones) begin
+                    cx = cone_bus[i*20+19 -: 10]; cy = cone_bus[i*20+9 -: 10];
+                    cone_bus[i*20 +: 20] <= {10'd639 - cx, cy};
+                end
+            end
+
+            // mirror buildings (top-left coordinate must be recalculated)
+            new_bldg_bus = bldg_bus;
+            for (i = 0; i < `MAX_BLDGS; i = i + 1) begin
+                if (i < num_bldgs) begin
+                    bx = bldg_bus[i*36+35 -: 10]; by = bldg_bus[i*36+25 -: 10];
+                    bw = bldg_bus[i*36+15 -:  8]; bh = bldg_bus[i*36+ 7 -:  8];
+                    nbx = 10'd639 - (bx + {2'b0,bw} - 10'd1);
+                    new_bldg_bus[i*36 +: 36] = {nbx, by, bw, bh};
+                end
+            end
+            bldg_bus <= new_bldg_bus;
+
+            // mirror coins
+            for (i = 0; i < `MAX_COINS; i = i + 1) begin
+                if (i < num_coins) begin
+                    cx = coin_bus[i*20+19 -: 10]; cy = coin_bus[i*20+9 -: 10];
+                    coin_bus[i*20 +: 20] <= {10'd639 - cx, cy};
+                end
+            end
+        end
+
+        // --- Fill remaining building slots with grass patches (marked via bw[7])
+        for (gi = 0; gi < `MAX_BLDGS; gi = gi + 1) begin
+            if (gi >= num_bldgs) begin
+                // Simple pseudo-random placement using LFSR slices mixed with index
+                gbx = 10'd80 + ((lfsr[9:2] + gi*13) % 10'd460);
+                gby = 10'd120 + ((lfsr[7:0]  + gi*7)  % 10'd240);
+                gbw = 8'd16 + ((lfsr[11:8] + gi) & 8'h0F);
+                gbh = 8'd12 + ((lfsr[15:12] + gi) & 8'h0F);
+                gbw = gbw | 8'h80; // set MSB to mark grass
+                bldg_bus[gi*36 +: 36] <= {gbx, gby, gbw, gbh};
+            end
+        end
+        num_bldgs <= `MAX_BLDGS;
     end
 end
 

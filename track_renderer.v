@@ -193,14 +193,21 @@ function [23:0] bldg_color;
                 bw = bbus[i*36+15 -:  8]; bh = bbus[i*36+ 7 -:  8];
                 if (fpx>=bx && fpx<bx+{2'b0,bw} && fpy>=by && fpy<by+{2'b0,bh}) begin
                     hit = 1'b1;
-                    if (fpx==bx || fpx==bx+{2'b0,bw}-10'd1 ||
-                        fpy==by || fpy==by+{2'b0,bh}-10'd1)
-                        bldg_color = C_BLDG_OUT;
-                    else if (((fpx-bx-10'd2)%10'd6 < 10'd2) &&
-                             ((fpy-by-10'd3)%10'd8 < 10'd2))
-                        bldg_color = C_WIN;
-                    else
-                        bldg_color = C_BLDG;
+                    // If MSB of bw is set, treat this entry as a grass patch
+                    if (bw[7]) begin
+                        // simple two-tone grass tile pattern for variety
+                        if (((fpx + fpy) & 1'b1) == 1'b0) bldg_color = C_OFFROAD1;
+                        else                              bldg_color = C_OFFROAD2;
+                    end else begin
+                        if (fpx==bx || fpx==bx+{2'b0,bw}-10'd1 ||
+                            fpy==by || fpy==by+{2'b0,bh}-10'd1)
+                            bldg_color = C_BLDG_OUT;
+                        else if (((fpx-bx-10'd2)%10'd6 < 10'd2) &&
+                                 ((fpy-by-10'd3)%10'd8 < 10'd2))
+                            bldg_color = C_WIN;
+                        else
+                            bldg_color = C_BLDG;
+                    end
                 end
             end
         end
@@ -289,17 +296,11 @@ wire [23:0] w_bldg      = bldg_color(px,py,bldg_bus,num_bldgs);
 // ── Registered pixel pipeline ─────────────────────────────────────────────
 always @(posedge pclk) begin
     if (!rst_n || !active) begin
+        // Default background before everything — show sky top while inactive
         rgb <= C_SKY_TOP;
     end else begin
-        if (py < SKY_H) begin
-            if      (py < (SKY_H/3))   rgb <= C_SKY_TOP;
-            else if (py < (2*SKY_H/3)) rgb <= C_SKY_MID;
-            else                        rgb <= C_SKY_BOTTOM;
-        end
-        else if (py < SKY_H+12 &&
-                 ((px>80&&px<140)||(px>200&&px<260)||(px>330&&px<400)||(px>440&&px<520)))
-            rgb <= C_SKY_SILH;
-        else if (w_car)
+        // Draw higher-priority objects first (car, cones, coins, finish/start, road)
+        if (w_car)
             rgb <= car_color(w_sprite_px);
         else if (w_cone)
             rgb <= C_CONE;
@@ -317,8 +318,20 @@ always @(posedge pclk) begin
             rgb <= C_TRACK;
         else if (w_bldg != 24'h000000)
             rgb <= w_bldg;
-        else
-            rgb <= (px[4]^py[3]) ? C_OFFROAD1 : C_OFFROAD2;
+        else begin
+            // If nothing else, render sky in the top band; silhouettes sit on top of sky
+            if (py < SKY_H) begin
+                if      (py < (SKY_H/3))   rgb <= C_SKY_TOP;
+                else if (py < (2*SKY_H/3)) rgb <= C_SKY_MID;
+                else                        rgb <= C_SKY_BOTTOM;
+                if (py < SKY_H+12 &&
+                    ((px>80&&px<140) || (px>200&&px<260) || (px>330&&px<400) || (px>440&&px<520)))
+                    rgb <= C_SKY_SILH;
+            end else begin
+                // Off-road / grass checker pattern
+                rgb <= (px[4]^py[3]) ? C_OFFROAD1 : C_OFFROAD2;
+            end
+        end
     end
 end
 
