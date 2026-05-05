@@ -160,7 +160,7 @@ always @(posedge clk50) begin
                 // Left corridor: 3 coins going north
                 coin_bus[ 0*20 +: 20] <= {10'd45,  10'd320};
                 coin_bus[ 1*20 +: 20] <= {10'd45,  10'd215};
-                coin_bus[ 2*20 +: 20] <= {10'd45,  10'd155};
+                coin_bus[ 2*20 +: 20] <= {10'd45,  10'd250};
                 // Top strip: 3 coins spread across
                 coin_bus[ 3*20 +: 20] <= {10'd200, 10'd155};
                 coin_bus[ 4*20 +: 20] <= {10'd420, 10'd155};
@@ -220,7 +220,7 @@ always @(posedge clk50) begin
 
                 // Cones — slalom gates at the three bends of the S
                 // Gate 1: top-left bend (driver must go right here)
-                cone_bus[0*20 +: 20] <= {10'd45,  10'd160};
+                cone_bus[0*20 +: 20] <= {10'd45,  10'd200};
                 cone_bus[1*20 +: 20] <= {10'd200, 10'd160};
                 // Gate 2: centre spine (driver must choose left or right side of spine)
                 cone_bus[2*20 +: 20] <= {10'd305, 10'd200};
@@ -306,7 +306,7 @@ always @(posedge clk50) begin
 
                 // Cones — at the four corners of each loop and at the crossing
                 // Top-left corner
-                cone_bus[0*20 +: 20] <= {10'd45,  10'd155};
+                cone_bus[0*20 +: 20] <= {10'd45,  10'd200};
                 // Top-right corner
                 cone_bus[1*20 +: 20] <= {10'd595, 10'd155};
                 // Bottom-left corner
@@ -399,7 +399,7 @@ always @(posedge clk50) begin
 
                 // Cones — outer corners and inner rectangle entry/exit guards
                 // Outer top corners
-                cone_bus[0*20 +: 20] <= {10'd45,  10'd155};
+                cone_bus[0*20 +: 20] <= {10'd45,  10'd200};
                 cone_bus[1*20 +: 20] <= {10'd595, 10'd155};
                 // Outer bottom corners
                 cone_bus[2*20 +: 20] <= {10'd45,  10'd375};
@@ -491,7 +491,7 @@ always @(posedge clk50) begin
                 gby = 10'd120 + ((lfsr[7:0]  + gi*7)  % 10'd240);
                 gbw = 8'd16 + ((lfsr[11:8] + gi) & 8'h0F);
                 gbh = 8'd12 + ((lfsr[15:12] + gi) & 8'h0F);
-                gbw = gbw | 8'h80; // set MSB to mark grass
+                // Render as buildings instead of grass
                 bldg_bus[gi*36 +: 36] <= {gbx, gby, gbw, gbh};
             end
         end

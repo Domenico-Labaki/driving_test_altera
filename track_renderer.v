@@ -187,13 +187,18 @@ function [23:0] bldg_color;
     input [9:0] fpx, fpy;
     input [(`MAX_BLDGS*36)-1:0] bbus;
     input [3:0] nbldg;
-    integer i;
+    integer i, j;
     reg [9:0] bx,by;
     reg [7:0] bw,bh;
     reg hit;
+    reg is_inside_grass;
+    reg [9:0] parent_bx, parent_by;
+    reg [7:0] parent_bw, parent_bh;
     begin
         bldg_color = 24'h000000;
         hit = 1'b0;
+        is_inside_grass = 1'b0;
+        
         for (i = 0; i < `MAX_BLDGS; i = i + 1) begin
             if (!hit && i < nbldg) begin
                 bx = bbus[i*36+35 -: 10]; by = bbus[i*36+25 -: 10];
@@ -202,9 +207,34 @@ function [23:0] bldg_color;
                     hit = 1'b1;
                     // If MSB of bw is set, treat this entry as a grass patch
                     if (bw[7]) begin
-                        // simple two-tone grass tile pattern for variety
-                        if (((fpx + fpy) & 1'b1) == 1'b0) bldg_color = C_OFFROAD1;
-                        else                              bldg_color = C_OFFROAD2;
+                        // Check if this grass patch is inside another grass patch
+                        for (j = 0; j < `MAX_BLDGS; j = j + 1) begin
+                            if (j != i && j < nbldg) begin
+                                parent_bx = bbus[j*36+35 -: 10];
+                                parent_by = bbus[j*36+25 -: 10];
+                                parent_bw = bbus[j*36+15 -:  8];
+                                parent_bh = bbus[j*36+ 7 -:  8];
+                                // Check if parent is grass and contains current pixel
+                                if (parent_bw[7] &&
+                                    fpx >= parent_bx && fpx < parent_bx + {2'b0,parent_bw} &&
+                                    fpy >= parent_by && fpy < parent_by + {2'b0,parent_bh}) begin
+                                    is_inside_grass = 1'b1;
+                                end
+                            end
+                        end
+                        
+                        // If inside another grass patch, render as building
+                        if (is_inside_grass) begin
+                            if (fpx==bx || fpx==bx+{2'b0,bw}-10'd1 ||
+                                fpy==by || fpy==by+{2'b0,bh}-10'd1)
+                                bldg_color = C_BLDG_OUT;
+                            else
+                                bldg_color = C_BLDG;
+                        end else begin
+                            // Not inside another grass, so render as grass
+                            if (((fpx + fpy) & 1'b1) == 1'b0) bldg_color = C_OFFROAD1;
+                            else                              bldg_color = C_OFFROAD2;
+                        end
                     end else begin
                         if (fpx==bx || fpx==bx+{2'b0,bw}-10'd1 ||
                             fpy==by || fpy==by+{2'b0,bh}-10'd1)
