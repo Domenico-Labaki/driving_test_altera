@@ -16,7 +16,7 @@ module driving_test_top (
     output wire        VGA_HS, VGA_VS, VGA_BLANK, VGA_SYNC, VGA_CLK,
     // LCD
     output wire        LCD_EN, LCD_RS, LCD_RW,
-    output wire [7:4]  LCD_DATA,
+    output wire [7:0]  LCD_DATA,
     output wire        LCD_ON, LCD_BLON,
     // Seven-segment
     output wire [6:0]  HEX0, HEX1, HEX2, HEX3, HEX4, HEX5, HEX6, HEX7,

@@ -1,14 +1,14 @@
-Analysis & Synthesis Status : Successful - Tue May 05 08:29:09 2026
+Analysis & Synthesis Status : Successful - Tue May 05 10:56:51 2026
 Quartus II 64-Bit Version : 13.0.1 Build 232 06/12/2013 SP 1 SJ Web Edition
 Revision Name : driving_test
 Top-level Entity Name : driving_test_top
 Family : Cyclone II
-Total logic elements : 5,839
-    Total combinational functions : 5,813
-    Dedicated logic registers : 451
-Total registers : 451
-Total pins : 118
+Total logic elements : 14,719
+    Total combinational functions : 14,678
+    Dedicated logic registers : 553
+Total registers : 553
+Total pins : 138
 Total virtual pins : 0
 Total memory bits : 0
-Embedded Multiplier 9-bit elements : 48
+Embedded Multiplier 9-bit elements : 70
 Total PLLs : 0

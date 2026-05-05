@@ -142,8 +142,8 @@ set_location_assignment PIN_J4 -to LCD_DATA[4]
 set_location_assignment PIN_J3 -to LCD_DATA[5]
 set_location_assignment PIN_H4 -to LCD_DATA[6]
 set_location_assignment PIN_H3 -to LCD_DATA[7]
-set_location_assignment PIN_M23 -to LCD_ON
-set_location_assignment PIN_M24 -to LCD_BLON
+set_location_assignment PIN_L4 -to LCD_ON
+set_location_assignment PIN_K2 -to LCD_BLON
 
 # ---------- Audio codec (WM8731) ----------
 set_location_assignment PIN_B6 -to I2C_SDAT
