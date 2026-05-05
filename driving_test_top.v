@@ -129,13 +129,13 @@ coin_collector u_coins (
 // ── Collision detection ───────────────────────────────────────────────────
 wire [3:0] corner_offroad;
 
-corner_probe u_c0 (.px(car_x-10'd5), .py(car_y-10'd7),
+corner_probe u_c0 (.px(car_x-10'd7), .py(car_y-10'd5),
                    .seg_bus(seg_bus), .num_segs(num_segs), .offroad(corner_offroad[0]));
-corner_probe u_c1 (.px(car_x+10'd4), .py(car_y-10'd7),
+corner_probe u_c1 (.px(car_x+10'd6), .py(car_y-10'd5),
                    .seg_bus(seg_bus), .num_segs(num_segs), .offroad(corner_offroad[1]));
-corner_probe u_c2 (.px(car_x-10'd5), .py(car_y+10'd6),
+corner_probe u_c2 (.px(car_x-10'd7), .py(car_y+10'd5),
                    .seg_bus(seg_bus), .num_segs(num_segs), .offroad(corner_offroad[2]));
-corner_probe u_c3 (.px(car_x+10'd4), .py(car_y+10'd6),
+corner_probe u_c3 (.px(car_x+10'd6), .py(car_y+10'd5),
                    .seg_bus(seg_bus), .num_segs(num_segs), .offroad(corner_offroad[3]));
 
 wire collision;

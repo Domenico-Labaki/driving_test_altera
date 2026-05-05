@@ -1,7 +1,7 @@
 // car_controller.v — Car physics: position, heading, speed.
 //
 // Fixed-point Q8.8 throughout (16-bit signed).
-// Sprite rows exported as flat 112-bit bus: car_row_bus[k*14 +: 14] = row k.
+// Sprite rows exported as flat 308-bit bus: car_row_bus[k*28 +: 28] = row k.
 //
 // Heading updates in small degree steps internally.
 // The renderer uses this heading to rotate the original sprite visually.
@@ -25,7 +25,7 @@ module car_controller (
     output reg  [2:0]  car_angle,
     output reg  [8:0]  heading_deg,
     output reg  [7:0]  speed_kph,
-    // 8 sprite rows packed into one bus: row k = car_row_bus[k*14 +: 14]
+    // 11 sprite rows packed into one bus: row k = car_row_bus[k*28 +: 28]
     output reg  [307:0] car_row_bus
 );
 
@@ -175,24 +175,21 @@ function signed [15:0] sin_deg_q8;
     end
 endfunction
 
-// ── Sprite ROM: 14 rows × 22 bits (2 bits per pixel, 11 pixels wide) ────
-reg [21:0] sprite_rom [0:13];
+// ── Sprite ROM: 11 rows × 28 bits (2 bits per pixel, 14 pixels wide) ────
+reg [27:0] sprite_rom [0:10];
 
 initial begin
-    sprite_rom[0]  = `SPR_R00;
-    sprite_rom[1]  = `SPR_R01;
-    sprite_rom[2]  = `SPR_R02;
-    sprite_rom[3]  = `SPR_R03;
-    sprite_rom[4]  = `SPR_R04;
-    sprite_rom[5]  = `SPR_R05;
-    sprite_rom[6]  = `SPR_R06;
-    sprite_rom[7]  = `SPR_R07;
-    sprite_rom[8]  = `SPR_R08;
-    sprite_rom[9]  = `SPR_R09;
-    sprite_rom[10] = `SPR_R10;
-    sprite_rom[11] = `SPR_R11;
-    sprite_rom[12] = `SPR_R12;
-    sprite_rom[13] = `SPR_R13;
+    sprite_rom[0]  = `SPR_ROT_R00;
+    sprite_rom[1]  = `SPR_ROT_R01;
+    sprite_rom[2]  = `SPR_ROT_R02;
+    sprite_rom[3]  = `SPR_ROT_R03;
+    sprite_rom[4]  = `SPR_ROT_R04;
+    sprite_rom[5]  = `SPR_ROT_R05;
+    sprite_rom[6]  = `SPR_ROT_R06;
+    sprite_rom[7]  = `SPR_ROT_R07;
+    sprite_rom[8]  = `SPR_ROT_R08;
+    sprite_rom[9]  = `SPR_ROT_R09;
+    sprite_rom[10] = `SPR_ROT_R10;
 end
 
 // ── Q8.8 position and speed registers ────────────────────────────────────
@@ -208,8 +205,8 @@ integer r;
 task pack_sprite_bus;
     integer i;
     begin
-        for (i = 0; i < 14; i = i + 1)
-            car_row_bus[i*22 +: 22] <= sprite_rom[i];
+        for (i = 0; i < 11; i = i + 1)
+            car_row_bus[i*28 +: 28] <= sprite_rom[i];
     end
 endtask
 
