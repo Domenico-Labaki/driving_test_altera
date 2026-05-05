@@ -1,5 +1,5 @@
 TimeQuest Timing Analyzer report for driving_test
-Thu Apr 30 18:50:36 2026
+Tue May 05 08:29:33 2026
 Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
 
 
@@ -98,7 +98,7 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +------------------+--------+--------------------------+
 ; SDC File Path    ; Status ; Read at                  ;
 +------------------+--------+--------------------------+
-; driving_test.sdc ; OK     ; Thu Apr 30 18:50:34 2026 ;
+; driving_test.sdc ; OK     ; Tue May 05 08:29:32 2026 ;
 +------------------+--------+--------------------------+
 
 
@@ -2223,7 +2223,7 @@ No dedicated SERDES Receiver circuitry present in device or used in design
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit TimeQuest Timing Analyzer
     Info: Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
-    Info: Processing started: Thu Apr 30 18:50:32 2026
+    Info: Processing started: Tue May 05 08:29:31 2026
 Info: Command: quartus_sta driving_test -c driving_test
 Info: qsta_default_script.tcl version: #1
 Warning (20028): Parallel compilation is not licensed and has been disabled
@@ -2424,9 +2424,9 @@ Info (332001): The selected device family is not supported by the report_metasta
 Info (332102): Design is not fully constrained for setup requirements
 Info (332102): Design is not fully constrained for hold requirements
 Info: Quartus II 64-Bit TimeQuest Timing Analyzer was successful. 0 errors, 153 warnings
-    Info: Peak virtual memory: 4638 megabytes
-    Info: Processing ended: Thu Apr 30 18:50:36 2026
-    Info: Elapsed time: 00:00:04
-    Info: Total CPU time (on all processors): 00:00:03
+    Info: Peak virtual memory: 4631 megabytes
+    Info: Processing ended: Tue May 05 08:29:33 2026
+    Info: Elapsed time: 00:00:02
+    Info: Total CPU time (on all processors): 00:00:02
 
 
