@@ -156,6 +156,7 @@ fsm_game u_fsm (
     .tick_60hz(tick_60hz),
     .start_btn(start_btn), .collision(collision),
     .car_x(car_x), .car_y(car_y), .car_angle(car_angle),
+    .speed_kph(speed_kph), .coin_count(coin_count), .num_coins(num_coins),
     .game_state(game_state), .game_active(game_active),
     .remaining_sec(remaining_sec), .remaining_ms(remaining_ms)
 );

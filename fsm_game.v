@@ -6,7 +6,7 @@
 //   FAIL    — collision occurred; wait for KEY[3] to return to IDLE
 //   PASS    — car passed through finish line; wait for KEY[3] to return to IDLE
 //
-// Finish detection: car center crosses FINISH_LINE_Y while heading north.
+// Finish detection: car must stop completely inside parking rectangle with all coins collected.
 
 `include "track_data.vh"
 
@@ -20,6 +20,9 @@ module fsm_game (
     input  wire [9:0]  car_x,
     input  wire [9:0]  car_y,
     input  wire [2:0]  car_angle,
+    input  wire [7:0]  speed_kph,   // car speed (0 when stopped)
+    input  wire [3:0]  coin_count,  // coins collected
+    input  wire [3:0]  num_coins,   // total coins in level
     // Outputs
     output reg  [1:0]  game_state,  // 0=IDLE 1=DRIVING 2=FAIL 3=PASS
     output reg         game_active, // DRIVING state
@@ -60,21 +63,28 @@ always @(posedge clk50) begin
     end
 end
 
-// ── Finish line detection ─────────────────────────────────────────────────
-// Car crosses FINISH_LINE_Y heading north (heading_deg ~225..315, car_angle 5 or 6).
+// ── Finish line detection (parking space requirement) ──────────────────────
+// Car must:
+//   1. Be completely stopped (speed_kph == 0)
+//   2. Be positioned inside the parking rectangle
+//   3. Have collected all coins (coin_count == num_coins)
+//   4. Be heading north-ish (car_angle 5 or 6)
 // A "has_left_start" flag prevents triggering before the car has moved away.
 reg has_left_start;
 always @(posedge clk50) begin
     if (!rst_n || game_state == IDLE)
         has_left_start <= 1'b0;
-    else if (game_state == DRIVING && car_y < (`FINISH_LINE_Y + 10'd50))
-        has_left_start <= 1'b1;  // car has travelled well past start
+    else if (game_state == DRIVING && car_x < (`PARKING_X2 + 10'd50))
+        has_left_start <= 1'b1;  // car has travelled towards parking zone
 end
 
+wire all_coins_collected = (num_coins > 4'd0) && (coin_count == num_coins);
 wire at_finish = has_left_start &&
-                 (car_y >= (`FINISH_LINE_Y - 10'd3) && car_y <= (`FINISH_LINE_Y + 10'd3)) &&
-                 (car_x >= `FINISH_LINE_X1 && car_x <= `FINISH_LINE_X2) &&
-                 (car_angle == 3'd5 || car_angle == 3'd6);  // heading north-ish (225..315 deg)
+                 (car_x >= `PARKING_X1 && car_x <= `PARKING_X2) &&
+                 (car_y >= `PARKING_Y1 && car_y <= `PARKING_Y2) &&
+                 (speed_kph == 8'd0) &&
+                 all_coins_collected &&
+                 (car_angle == 3'd5 || car_angle == 3'd6);  // heading north
 
 // Latch finish crossing on tick
 reg finish_prev;

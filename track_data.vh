@@ -26,9 +26,14 @@
 // Start line — bottom of bay, car spawns just above
 `define START_LINE_Y  `SF_Y2
 
-// Finish line — horizontal stripe; moved to right side of screen
-// Previously on the left; now located near right edge so road must
-// route from the start bay (left) to this finish stripe.
+// Parking space (finish area) — rectangular zone on left side
+// Car must stop completely inside this rectangle with all coins collected
+`define PARKING_X1      10'd20
+`define PARKING_X2      10'd80
+`define PARKING_Y1      10'd130
+`define PARKING_Y2      10'd175
+
+// Legacy finish line constants (kept for reference)
 `define FINISH_LINE_Y   150
 `define FINISH_LINE_X1   10'd570
 `define FINISH_LINE_X2   10'd620

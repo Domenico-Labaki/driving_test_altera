@@ -1,7 +1,7 @@
 // track_renderer.v — Pixel color determination for VGA output.
 //
 // Color priority (high→low):
-//   Car > Cone > Coin (uncollected) > Finish > Start > Road dash > Track > Building > Grass
+//   Car > Cone > Coin (uncollected) > Finish bay > Start > Road dash > Track > Building > Grass
 
 `include "track_data.vh"
 
@@ -44,6 +44,10 @@ localparam C_BLDG       = 24'h555555;
 localparam C_BLDG_OUT   = 24'h222222;
 localparam C_WIN        = 24'hFFFFCC;
 localparam C_START_MARK = 24'h66CCFF;
+localparam C_FINISH_OPEN = 24'h2DBE5A;
+localparam C_FINISH_CLOSED = 24'hD94A4A;
+localparam C_FINISH_FRAME = 24'h101010;
+localparam C_FINISH_TEXT = 24'hF4F4F4;
 localparam C_TRACK      = 24'h282828;
 localparam C_ROAD_LINE  = 24'hFFFFFF;
 localparam C_SKY_TOP    = 24'h9BD6F8;
@@ -251,6 +255,20 @@ function [23:0] car_color;
     end
 endfunction
 
+function [0:0] all_coins_collected;
+    input [(`MAX_COINS*20)-1:0] cbus;
+    input [3:0] ncoin;
+    input [`MAX_COINS-1:0] col;
+    integer i;
+    begin
+        all_coins_collected = 1'b1;
+        for (i = 0; i < `MAX_COINS; i = i + 1) begin
+            if (i < ncoin && !col[i])
+                all_coins_collected = 1'b0;
+        end
+    end
+endfunction
+
 // ── Road centre-line dashes ───────────────────────────────────────────────
 function [0:0] is_road_dash;
     input [9:0] fpx, fpy;
@@ -287,7 +305,9 @@ wire [1:0]  w_sprite_px = car_sprite_px(px,py,car_x,car_y,heading_deg,car_row_bu
 wire        w_car       = (w_sprite_px != 2'b00);
 wire        w_cone      = is_cone_pixel(px,py,cone_bus,num_cones);
 wire [1:0]  w_coin      = coin_pixel(px,py,coin_bus,num_coins,collected);
-wire        w_finish    = (py==`FINISH_LINE_Y) && (px>=`FINISH_LINE_X1) && (px<=`FINISH_LINE_X2);
+wire        w_finish_box = (px>=`PARKING_X1) && (px<=`PARKING_X2) &&
+                           (py>=`PARKING_Y1) && (py<=`PARKING_Y2);
+wire        w_finish_open = w_finish_box && all_coins_collected(coin_bus, num_coins, collected);
 wire        w_start     = (py==`START_LINE_Y)  && (px>=`SF_X1) && (px<=`SF_X2);
 wire        w_track     = is_on_track(px,py,seg_bus,num_segs);
 wire        w_dash      = w_track & is_road_dash(px,py,seg_bus,num_segs);
@@ -308,8 +328,26 @@ always @(posedge pclk) begin
             rgb <= C_COIN_INNER;           // bright inner disc
         else if (w_coin == 2'b01)
             rgb <= C_COIN_OUTER;           // gold rim
-        else if (w_finish)
-            rgb <= (px[2]^py[2]) ? 24'hFFFFFF : 24'h000000;
+        else if (w_finish_box) begin
+            if (px == `PARKING_X1 || px == `PARKING_X2 ||
+                py == `PARKING_Y1 || py == `PARKING_Y2) begin
+                rgb <= C_FINISH_FRAME;
+            end else if (w_finish_open) begin
+                if (px[4:3] == 2'b00 || py[3:2] == 2'b00)
+                    rgb <= C_FINISH_TEXT;
+                else if ((px[3] ^ py[3]) == 1'b0)
+                    rgb <= C_FINISH_OPEN;
+                else
+                    rgb <= 24'h65E08A;
+            end else begin
+                if (px[4:3] == 2'b00 || py[3:2] == 2'b00)
+                    rgb <= C_FINISH_FRAME;
+                else if ((px[2] ^ py[2]) == 1'b0)
+                    rgb <= C_FINISH_CLOSED;
+                else
+                    rgb <= 24'hF26B6B;
+            end
+        end
         else if (w_start)
             rgb <= C_START_MARK;
         else if (w_dash)
