@@ -80,14 +80,14 @@ end
 
 wire all_coins_collected = (num_coins > 4'd0) && (coin_count == num_coins);
 // Sprite extents:
-//  - horizontal: car occupies car_x - 5 .. car_x + 5  (11 pixels)
-//  - vertical:   car occupies car_y - 7 .. car_y + 6  (14 pixels)
+//  - horizontal: car occupies car_x - 7 .. car_x + 6  (14 pixels)
+//  - vertical:   car occupies car_y - 5 .. car_y + 5  (11 pixels)
 // Require the whole sprite bounding box to be inside the parking rectangle.
 wire stopped = (speed_kph <= 8'd2);
 
 wire at_finish = has_left_start &&
-                 (car_x >= (`PARKING_X1 + 10'd5) && car_x <= (`PARKING_X2 - 10'd5)) &&
-                 (car_y >= (`PARKING_Y1 + 10'd7) && car_y <= (`PARKING_Y2 - 10'd6)) &&
+                 (car_x >= (`PARKING_X1 + 10'd7) && car_x <= (`PARKING_X2 - 10'd6)) &&
+                 (car_y >= (`PARKING_Y1 + 10'd5) && car_y <= (`PARKING_Y2 - 10'd5)) &&
                  stopped &&
                  all_coins_collected &&
                  (car_angle == 3'd5 || car_angle == 3'd6);  // heading north

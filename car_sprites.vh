@@ -1,52 +1,31 @@
-// car_sprites.vh — Updated Car Sprite
-// 11 wide × 14 tall pixels.
+// car_sprites_rot.vh — Rotated Car Sprite
+// 14 wide × 11 tall pixels.
 //
-// 00 (T) = transparent
-// 01 (D) = dark red
-// 10 (B) = black
-// 11 (W) = white
+// 00 (T) = transparent | 01 (D) = dark red 
+// 10 (B) = black       | 11 (W) = white
 
-`define SPR_W 11
-`define SPR_H 14
+`define SPR_W_ROT 14
+`define SPR_H_ROT 11
 
-// Row 0: TTTDDDDDTTT
-`define SPR_R00  22'b00_00_00_01_01_01_01_01_00_00_00
-
-// Row 1: TTDDWWWDDTT
-`define SPR_R01  22'b00_00_01_01_11_11_11_01_01_00_00
-
-// Row 2: BBDDWWWDDBB
-`define SPR_R02  22'b10_10_01_01_11_11_11_01_01_10_10
-
-// Row 3: BBDDWWWDDBB
-`define SPR_R03  22'b10_10_01_01_11_11_11_01_01_10_10
-
-// Row 4: BBDBBBBBDBB
-`define SPR_R04  22'b10_10_01_10_10_10_10_10_01_10_10
-
-// Row 5: TDBBBBBBBDT
-`define SPR_R05  22'b00_01_10_10_10_10_10_10_10_01_00
-
-// Row 6: TTDDWWWDDTT
-`define SPR_R06  22'b00_00_01_01_11_11_11_01_01_00_00
-
-// Row 7: TTBDBBBDBTT
-`define SPR_R07  22'b00_00_10_01_10_10_10_01_10_00_00
-
-// Row 8: TTBDBBBDBTT
-`define SPR_R08  22'b00_00_10_01_10_10_10_01_10_00_00
-
-// Row 9: TTDDWWWDDTT
-`define SPR_R09  22'b00_00_01_01_11_11_11_01_01_00_00
-
-// Row 10: BBBDWWWDBBB
-`define SPR_R10  22'b10_10_10_01_11_11_11_01_10_10_10
-
-// Row 11: BBBBWWWBBBB
-`define SPR_R11  22'b10_10_10_10_11_11_11_10_10_10_10
-
-// Row 12: BBDBBBBBDBB
-`define SPR_R12  22'b10_10_01_10_10_10_10_10_01_10_10
-
-// Row 13: TTDDWWWDDTT
-`define SPR_R13  22'b00_00_01_01_11_11_11_01_01_00_00
+// Row 0
+`define SPR_ROT_R00  28'b00_00_10_10_10_00_00_00_00_00_10_10_10_00
+// Row 1
+`define SPR_ROT_R01  28'b00_00_10_10_10_01_00_00_00_00_10_10_10_00
+// Row 2
+`define SPR_ROT_R02  28'b00_01_01_01_01_10_01_10_10_01_01_10_01_01
+// Row 3
+`define SPR_ROT_R03  28'b01_01_01_01_10_10_01_01_01_01_01_10_10_01
+// Row 4
+`define SPR_ROT_R04  28'b01_11_11_11_10_10_11_10_10_11_11_10_10_11
+// Row 5
+`define SPR_ROT_R05  28'b01_11_11_11_10_10_11_10_10_11_11_11_10_11
+// Row 6
+`define SPR_ROT_R06  28'b01_11_11_11_10_10_11_10_10_11_11_11_10_11
+// Row 7
+`define SPR_ROT_R07  28'b01_01_01_01_10_10_01_01_01_01_01_10_10_01
+// Row 8
+`define SPR_ROT_R08  28'b01_01_01_01_10_01_10_10_01_01_10_01_01_00
+// Row 9
+`define SPR_ROT_R09  28'b00_00_10_10_10_00_00_00_00_00_10_10_10_00
+// Row 10
+`define SPR_ROT_R10  28'b00_00_10_10_10_00_00_00_00_00_10_10_10_00

@@ -226,19 +226,19 @@ function [1:0] car_sprite_px;
     reg signed [15:0] dx,dy;
     reg signed [31:0] sx_q8,sy_q8;
     reg signed [15:0] src_x,src_y;
-    reg [21:0] row_bits;
+    reg [27:0] row_bits;
     begin
         car_sprite_px = 2'b00;
         dx = $signed({1'b0,fpx})-$signed({1'b0,carx});
         dy = $signed({1'b0,fpy})-$signed({1'b0,cary});
         sx_q8 = $signed(dx)*$signed(cos_deg_q8(heading))
-               +$signed(dy)*$signed(sin_deg_q8(heading))+32'sd1408;
+               +$signed(dy)*$signed(sin_deg_q8(heading))+32'sd1792;
         sy_q8 =-$signed(dx)*$signed(sin_deg_q8(heading))
-               +$signed(dy)*$signed(cos_deg_q8(heading))+32'sd1792;
+               +$signed(dy)*$signed(cos_deg_q8(heading))+32'sd1408;
         src_x = sx_q8>>>8; src_y = sy_q8>>>8;
-        if (src_x>=0 && src_x<11 && src_y>=0 && src_y<14) begin
-            row_bits = row_bus[src_y*22 +: 22];
-            car_sprite_px = row_bits[(10-src_x)*2 +: 2];
+        if (src_x>=0 && src_x<14 && src_y>=0 && src_y<11) begin
+            row_bits = row_bus[src_y*28 +: 28];
+            car_sprite_px = row_bits[(13-src_x)*2 +: 2];
         end
     end
 endfunction
