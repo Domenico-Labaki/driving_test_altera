@@ -152,6 +152,8 @@ set_location_assignment PIN_A5 -to AUD_XCK
 set_location_assignment PIN_B4 -to AUD_BCLK
 set_location_assignment PIN_C6 -to AUD_DACLRCK
 set_location_assignment PIN_A4 -to AUD_DACDAT
+set_location_assignment PIN_C5 -to AUD_ADCLRCK
+set_location_assignment PIN_B5 -to AUD_ADCDAT
 
 # ============================================================================
 # I/O STANDARDS (all 3.3-V LVTTL on DE2)
