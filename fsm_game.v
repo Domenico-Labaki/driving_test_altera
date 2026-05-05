@@ -61,10 +61,20 @@ always @(posedge clk50) begin
 end
 
 // ── Finish line detection ─────────────────────────────────────────────────
-// Car must cross y == FINISH_LINE_Y heading north (angle==2) while in DRIVING.
-wire at_finish = (car_y >= (`FINISH_LINE_Y - 10'd2) && car_y <= (`FINISH_LINE_Y + 10'd2)) &&
-                 (car_x >= `SF_X1 && car_x <= `SF_X2) &&
-                 (car_angle == 3'd2);  // heading North
+// Car crosses FINISH_LINE_Y heading north (heading_deg ~225..315, car_angle 5 or 6).
+// A "has_left_start" flag prevents triggering before the car has moved away.
+reg has_left_start;
+always @(posedge clk50) begin
+    if (!rst_n || game_state == IDLE)
+        has_left_start <= 1'b0;
+    else if (game_state == DRIVING && car_y < (`FINISH_LINE_Y + 10'd50))
+        has_left_start <= 1'b1;  // car has travelled well past start
+end
+
+wire at_finish = has_left_start &&
+                 (car_y >= (`FINISH_LINE_Y - 10'd3) && car_y <= (`FINISH_LINE_Y + 10'd3)) &&
+                 (car_x >= `FINISH_LINE_X1 && car_x <= `FINISH_LINE_X2) &&
+                 (car_angle == 3'd5 || car_angle == 3'd6);  // heading north-ish (225..315 deg)
 
 // Latch finish crossing on tick
 reg finish_prev;

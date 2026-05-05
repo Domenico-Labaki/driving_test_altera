@@ -43,23 +43,23 @@ initial begin
     msg_rom[0][6]=8'h53; msg_rom[0][7]=8'h54; msg_rom[0][8]=8'h41;
     msg_rom[0][9]=8'h52; msg_rom[0][10]=8'h54; msg_rom[0][11]=8'h20;
     msg_rom[0][12]=8'h20; msg_rom[0][13]=8'h20; msg_rom[0][14]=8'h20; msg_rom[0][15]=8'h20;
-    // "DRIVE SAFELY    "
+    // "DRIVE MODE       "
     msg_rom[1][0]=8'h44; msg_rom[1][1]=8'h52; msg_rom[1][2]=8'h49;
     msg_rom[1][3]=8'h56; msg_rom[1][4]=8'h45; msg_rom[1][5]=8'h20;
-    msg_rom[1][6]=8'h53; msg_rom[1][7]=8'h41; msg_rom[1][8]=8'h46;
-    msg_rom[1][9]=8'h45; msg_rom[1][10]=8'h4C; msg_rom[1][11]=8'h59;
+    msg_rom[1][6]=8'h4D; msg_rom[1][7]=8'h4F; msg_rom[1][8]=8'h44;
+    msg_rom[1][9]=8'h45; msg_rom[1][10]=8'h20; msg_rom[1][11]=8'h20;
     msg_rom[1][12]=8'h20; msg_rom[1][13]=8'h20; msg_rom[1][14]=8'h20; msg_rom[1][15]=8'h20;
-    // "TEST FAILED     "
+    // "YOU FAILED      "
     msg_rom[2][0]=8'h54; msg_rom[2][1]=8'h45; msg_rom[2][2]=8'h53;
-    msg_rom[2][3]=8'h54; msg_rom[2][4]=8'h20; msg_rom[2][5]=8'h46;
-    msg_rom[2][6]=8'h41; msg_rom[2][7]=8'h49; msg_rom[2][8]=8'h4C;
-    msg_rom[2][9]=8'h45; msg_rom[2][10]=8'h44; msg_rom[2][11]=8'h20;
+    msg_rom[2][3]=8'h20; msg_rom[2][4]=8'h46; msg_rom[2][5]=8'h41;
+    msg_rom[2][6]=8'h49; msg_rom[2][7]=8'h4C; msg_rom[2][8]=8'h45;
+    msg_rom[2][9]=8'h20; msg_rom[2][10]=8'h20; msg_rom[2][11]=8'h20;
     msg_rom[2][12]=8'h20; msg_rom[2][13]=8'h20; msg_rom[2][14]=8'h20; msg_rom[2][15]=8'h20;
-    // "TEST PASSED     "
+    // "YOU PASSED      "
     msg_rom[3][0]=8'h54; msg_rom[3][1]=8'h45; msg_rom[3][2]=8'h53;
-    msg_rom[3][3]=8'h54; msg_rom[3][4]=8'h20; msg_rom[3][5]=8'h50;
-    msg_rom[3][6]=8'h41; msg_rom[3][7]=8'h53; msg_rom[3][8]=8'h53;
-    msg_rom[3][9]=8'h45; msg_rom[3][10]=8'h44; msg_rom[3][11]=8'h20;
+    msg_rom[3][3]=8'h20; msg_rom[3][4]=8'h50; msg_rom[3][5]=8'h41;
+    msg_rom[3][6]=8'h53; msg_rom[3][7]=8'h53; msg_rom[3][8]=8'h45;
+    msg_rom[3][9]=8'h20; msg_rom[3][10]=8'h20; msg_rom[3][11]=8'h20;
     msg_rom[3][12]=8'h20; msg_rom[3][13]=8'h20; msg_rom[3][14]=8'h20; msg_rom[3][15]=8'h20;
 end
 
@@ -69,13 +69,15 @@ localparam S_INIT_1    = 4'd1;
 localparam S_INIT_2    = 4'd2;
 localparam S_INIT_3    = 4'd3;
 localparam S_INIT_4    = 4'd4;
-localparam S_HOME      = 4'd5;
-localparam S_WRITE_HI  = 4'd6;
-localparam S_WRITE_LO  = 4'd7;
-localparam S_ENABLE_HI = 4'd8;
-localparam S_ENABLE_LO = 4'd9;
-localparam S_NEXT_CHAR = 4'd10;
-localparam S_DONE      = 4'd11;
+localparam S_INIT_5    = 4'd5;  // Display OFF
+localparam S_CLEAR     = 4'd6;
+localparam S_HOME      = 4'd7;
+localparam S_WRITE_HI  = 4'd8;
+localparam S_WRITE_LO  = 4'd9;
+localparam S_ENABLE_HI = 4'd10;
+localparam S_ENABLE_LO = 4'd11;
+localparam S_NEXT_CHAR = 4'd12;
+localparam S_DONE      = 4'd13;
 
 reg [3:0]  state;
 reg [23:0] wait_cnt;
@@ -130,14 +132,14 @@ always @(posedge clk50) begin
                 end
             end
 
-            // ── Display ON, cursor OFF (0x0C) ─────────────────────────
+            // ── Display OFF, cursor OFF (0x08) ────────────────────────
             S_INIT_3: begin
                 LCD_RS <= 1'b0;
                 if (wait_cnt < WAIT_CMD)
                     wait_cnt <= wait_cnt + 24'd1;
                 else begin
                     wait_cnt <= 24'd0;
-                    // 0x0C → high nibble 0x0, low nibble 0xC
+                    // 0x08 → high nibble 0x0, low nibble 0x8
                     LCD_DATA <= 4'h0; LCD_EN <= 1'b1;
                     state    <= S_INIT_4;
                 end
@@ -147,11 +149,43 @@ always @(posedge clk50) begin
                 if (wait_cnt < WAIT_ENABLE)
                     wait_cnt <= wait_cnt + 24'd1;
                 else begin
-                    LCD_DATA <= 4'hC; LCD_EN <= 1'b1;
+                    LCD_DATA <= 4'h8; LCD_EN <= 1'b1;
                     if (wait_cnt < WAIT_ENABLE*2)
                         wait_cnt <= wait_cnt + 24'd1;
                     else begin
                         LCD_EN <= 1'b0; wait_cnt <= 24'd0;
+                        state  <= S_INIT_5;
+                    end
+                end
+            end
+
+            // ── Display ON, cursor OFF (0x0C) ──────────────────────────
+            S_INIT_5: begin
+                LCD_RS   <= 1'b0;
+                LCD_DATA <= 4'h0;
+                LCD_EN   <= 1'b1;
+                if (wait_cnt < WAIT_ENABLE) wait_cnt <= wait_cnt + 24'd1;
+                else begin
+                    LCD_DATA <= 4'hC; LCD_EN <= 1'b0;
+                    if (wait_cnt < WAIT_CMD) wait_cnt <= wait_cnt + 24'd1;
+                    else begin
+                        wait_cnt <= 24'd0;
+                        state  <= S_CLEAR;
+                    end
+                end
+            end
+
+            // ── Clear Display (0x01) ──────────────────────────────────
+            S_CLEAR: begin
+                LCD_RS   <= 1'b0;
+                LCD_DATA <= 4'h0;
+                LCD_EN   <= 1'b1;
+                if (wait_cnt < WAIT_ENABLE) wait_cnt <= wait_cnt + 24'd1;
+                else begin
+                    LCD_DATA <= 4'h1; LCD_EN <= 1'b0;
+                    if (wait_cnt < WAIT_CMD) wait_cnt <= wait_cnt + 24'd1;
+                    else begin
+                        wait_cnt <= 24'd0;
                         state  <= S_HOME;
                     end
                 end
