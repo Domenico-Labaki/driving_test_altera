@@ -80,13 +80,15 @@ wire [(`MAX_BLDGS*36)-1:0]  bldg_bus;
 wire [3:0]                  num_bldgs;
 wire [(`MAX_COINS*20)-1:0]  coin_bus;
 wire [3:0]                  num_coins;
+wire                        placement_valid;
 
 track_gen u_tgen (
     .clk50(CLOCK_50), .rst_n(rst_n),
     .seg_bus(seg_bus),   .num_segs(num_segs),
     .cone_bus(cone_bus), .num_cones(num_cones),
     .bldg_bus(bldg_bus), .num_bldgs(num_bldgs),
-    .coin_bus(coin_bus), .num_coins(num_coins)
+    .coin_bus(coin_bus), .num_coins(num_coins),
+    .placement_valid(placement_valid)
 );
 
 // ── Car controller ────────────────────────────────────────────────────────

@@ -28,7 +28,10 @@ module track_gen (
     output reg  [3:0]                  num_bldgs,
     // Coins
     output reg  [(`MAX_COINS*20)-1:0]  coin_bus,
-    output reg  [3:0]                  num_coins
+    output reg  [3:0]                  num_coins,
+    // Placement validity: asserted when all cones/coins are on-track
+    // and no coin shares a position with a cone.
+    output wire                         placement_valid
 );
 
 // temporaries for procedural mirroring / grass placement
@@ -40,6 +43,23 @@ reg [9:0] cx,cy;
 reg [9:0] bx,by,nbx,gbx,gby;
 reg [7:0] bw,bh,gbw,gbh;
 
+// ── Placement validation ──────────────────────────────────────────────────
+// Separate integer indices to avoid sharing with i/gi in the same block.
+integer vi, vj, vk;
+// Temporaries used only in the sequential correction phase.
+reg [9:0] v_px, v_py, v_x1, v_y1, v_x2, v_y2, v_cnx, v_cny;
+reg       v_hit;
+// Temporaries used only in the combinational checker (separate drivers).
+reg [9:0] c_px, c_py, c_x1, c_y1, c_x2, c_y2, c_cnx, c_cny;
+reg       c_hit;
+// Per-object validity flags driven by the combinational checker.
+reg [`MAX_CONES-1:0] cone_ok;
+reg [`MAX_COINS-1:0] coin_ok;
+reg no_overlap;
+assign placement_valid = (&cone_ok) & (&coin_ok) & no_overlap;
+// Fires one cycle after load_track so the corrector reads committed positions.
+reg do_validate;
+
 // ── Free-running LFSR (16-bit Fibonacci, taps 16,15,13,4) ────────────────
 reg [15:0] lfsr;
 always @(posedge clk50)
@@ -50,7 +70,10 @@ reg [1:0] layout_idx = 2'd0;
 
 // ── Reset rising-edge detector ────────────────────────────────────────────
 reg rst_prev;
-always @(posedge clk50) rst_prev <= rst_n;
+always @(posedge clk50) begin
+    rst_prev    <= rst_n;
+    do_validate <= load_track;   // arm corrector for next cycle
+end
 wire load_track = rst_n & ~rst_prev;
 
 // ── Layout load ───────────────────────────────────────────────────────────
@@ -327,6 +350,134 @@ always @(posedge clk50) begin
             end
         end
         num_bldgs <= `MAX_BLDGS;
+    end
+
+    // ── Correction phase ─────────────────────────────────────────────────────
+    // Runs one cycle after load_track, when seg_bus/cone_bus/coin_bus hold their
+    // newly committed values.  Fixes two constraint classes:
+    //   1. Coin shares exact pixel position with a cone → nudge coin +15 px in X.
+    //   2. Coin or cone lies outside every road segment  → snap to centre of seg 0.
+    if (do_validate) begin
+
+        // --- Correct each coin ---
+        for (vi = 0; vi < `MAX_COINS; vi = vi + 1) begin
+            if (vi < num_coins) begin
+                v_px = coin_bus[vi*20+19 -: 10];
+                v_py = coin_bus[vi*20+ 9 -: 10];
+
+                // Nudge coin if it sits exactly on any cone
+                for (vk = 0; vk < `MAX_CONES; vk = vk + 1) begin
+                    if (vk < num_cones) begin
+                        v_cnx = cone_bus[vk*20+19 -: 10];
+                        v_cny = cone_bus[vk*20+ 9 -: 10];
+                        if (v_px == v_cnx && v_py == v_cny)
+                            v_px = v_px + 10'd15;
+                    end
+                end
+
+                // Check whether coin (after potential nudge) is inside any segment
+                v_hit = 1'b0;
+                for (vj = 0; vj < `MAX_SEGS; vj = vj + 1) begin
+                    if (vj < num_segs) begin
+                        v_x1 = seg_bus[vj*40+39 -: 10]; v_y1 = seg_bus[vj*40+29 -: 10];
+                        v_x2 = seg_bus[vj*40+19 -: 10]; v_y2 = seg_bus[vj*40+ 9 -: 10];
+                        if (v_px >= v_x1 && v_px <= v_x2 && v_py >= v_y1 && v_py <= v_y2)
+                            v_hit = 1'b1;
+                    end
+                end
+                // If still off-track, snap to centre of segment 0
+                if (!v_hit) begin
+                    v_x1 = seg_bus[39 -: 10]; v_x2 = seg_bus[19 -: 10];
+                    v_y1 = seg_bus[29 -: 10]; v_y2 = seg_bus[ 9 -: 10];
+                    v_px = (v_x1 + v_x2) >> 1;
+                    v_py = (v_y1 + v_y2) >> 1;
+                end
+
+                coin_bus[vi*20 +: 20] <= {v_px, v_py};
+            end
+        end
+
+        // --- Correct each cone ---
+        for (vi = 0; vi < `MAX_CONES; vi = vi + 1) begin
+            if (vi < num_cones) begin
+                v_cnx = cone_bus[vi*20+19 -: 10];
+                v_cny = cone_bus[vi*20+ 9 -: 10];
+                v_hit = 1'b0;
+                for (vj = 0; vj < `MAX_SEGS; vj = vj + 1) begin
+                    if (vj < num_segs) begin
+                        v_x1 = seg_bus[vj*40+39 -: 10]; v_y1 = seg_bus[vj*40+29 -: 10];
+                        v_x2 = seg_bus[vj*40+19 -: 10]; v_y2 = seg_bus[vj*40+ 9 -: 10];
+                        if (v_cnx >= v_x1 && v_cnx <= v_x2 && v_cny >= v_y1 && v_cny <= v_y2)
+                            v_hit = 1'b1;
+                    end
+                end
+                if (!v_hit) begin
+                    v_x1 = seg_bus[39 -: 10]; v_x2 = seg_bus[19 -: 10];
+                    v_y1 = seg_bus[29 -: 10]; v_y2 = seg_bus[ 9 -: 10];
+                    cone_bus[vi*20 +: 20] <= {(v_x1 + v_x2) >> 1, (v_y1 + v_y2) >> 1};
+                end
+            end
+        end
+    end
+end
+
+// ── Combinational Placement Validity Checker ──────────────────────────────
+// Continuously reflects whether every active cone/coin lies inside at least
+// one road segment and no coin shares its pixel position with any cone.
+//   cone_ok[i]  high → cone i is on-track (or i >= num_cones)
+//   coin_ok[i]  high → coin i is on-track (or i >= num_coins)
+//   no_overlap  high → no coin position equals any cone position
+//   placement_valid = (&cone_ok) & (&coin_ok) & no_overlap
+always @(*) begin : placement_checker
+    integer ci, cj, ck;
+
+    cone_ok    = {`MAX_CONES{1'b1}};
+    coin_ok    = {`MAX_COINS{1'b1}};
+    no_overlap = 1'b1;
+
+    // Cone on-track check
+    for (ci = 0; ci < `MAX_CONES; ci = ci + 1) begin
+        if (ci < num_cones) begin
+            c_cnx = cone_bus[ci*20+19 -: 10];
+            c_cny = cone_bus[ci*20+ 9 -: 10];
+            c_hit = 1'b0;
+            for (cj = 0; cj < `MAX_SEGS; cj = cj + 1) begin
+                if (cj < num_segs) begin
+                    c_x1 = seg_bus[cj*40+39 -: 10]; c_y1 = seg_bus[cj*40+29 -: 10];
+                    c_x2 = seg_bus[cj*40+19 -: 10]; c_y2 = seg_bus[cj*40+ 9 -: 10];
+                    if (c_cnx >= c_x1 && c_cnx <= c_x2 && c_cny >= c_y1 && c_cny <= c_y2)
+                        c_hit = 1'b1;
+                end
+            end
+            cone_ok[ci] = c_hit;
+        end
+    end
+
+    // Coin on-track check + cone-overlap check
+    for (ci = 0; ci < `MAX_COINS; ci = ci + 1) begin
+        if (ci < num_coins) begin
+            c_px = coin_bus[ci*20+19 -: 10];
+            c_py = coin_bus[ci*20+ 9 -: 10];
+            c_hit = 1'b0;
+            for (cj = 0; cj < `MAX_SEGS; cj = cj + 1) begin
+                if (cj < num_segs) begin
+                    c_x1 = seg_bus[cj*40+39 -: 10]; c_y1 = seg_bus[cj*40+29 -: 10];
+                    c_x2 = seg_bus[cj*40+19 -: 10]; c_y2 = seg_bus[cj*40+ 9 -: 10];
+                    if (c_px >= c_x1 && c_px <= c_x2 && c_py >= c_y1 && c_py <= c_y2)
+                        c_hit = 1'b1;
+                end
+            end
+            coin_ok[ci] = c_hit;
+
+            for (ck = 0; ck < `MAX_CONES; ck = ck + 1) begin
+                if (ck < num_cones) begin
+                    c_cnx = cone_bus[ck*20+19 -: 10];
+                    c_cny = cone_bus[ck*20+ 9 -: 10];
+                    if (c_px == c_cnx && c_py == c_cny)
+                        no_overlap = 1'b0;
+                end
+            end
+        end
     end
 end
 
