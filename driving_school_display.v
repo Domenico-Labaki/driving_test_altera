@@ -2,15 +2,17 @@
 // Renders a pixel-art "Driving School" building on a VGA display.
 //
 // Output: 12-bit RGB (4R 4G 4B) — 12'h000 means "not my pixel" (transparent).
-// The caller in track_renderer expands it to 24-bit:
-//   {rgb[11:8],rgb[11:8], rgb[7:4],rgb[7:4], rgb[3:0],rgb[3:0]}
+// The caller in track_renderer expands it to 24-bit.
 //
 // Sprite dimensions : SPRITE_W × SPRITE_H = 30 × 27  pixels
-//                     Each source pixel is scaled × SCALE (default 4)
+//                     Each source pixel is scaled × SCALE (4)
 //                     → 120 × 108 display pixels
 //
 // Position on screen : top-left corner at (x_offset, y_offset)
-//   caller passes 10'd50, 10'd15  (sky band)
+//
+// NOTE: The sprite ROM uses a flat function (row*SPRITE_W + col) with a
+// case statement so Quartus infers a proper synchronous ROM rather than
+// relying on 2D-array initial-block synthesis (unreliable on Cyclone II).
 
 module driving_school_display (
     input  wire [9:0]  h_count,
@@ -20,140 +22,153 @@ module driving_school_display (
     output reg  [11:0] rgb          // 12-bit; 12'h000 = transparent
 );
 
-// ── Sprite parameters ──────────────────────────────────────────────────────
 localparam SPRITE_W = 30;
 localparam SPRITE_H = 27;
-localparam SCALE    = 4;   // each sprite pixel = 4×4 display pixels
+localparam SCALE    = 4;
 
-// ── Palette (4-bit per channel → 12-bit) ──────────────────────────────
-//   0  transparent / off
-//   1  dark red/brown outline   #A44  → 12'hA44   (was dark grey 222)
-//   2  red/brown body           #C66  → 12'hC66   (was maroon 802)
-//   3  white / light grey wall  #FFF  → 12'hFFF   (was EEE)
-//   4  medium brown band        #A54  → 12'hA54   (was dark 601)
-//   5  bright yellow window     #FF0  → 12'hFF0   (was FD0)
-//   6  dark brown window/garage #553  → 12'h553   (was 111)
-//   7  dark brown roof shadow   #743  → 12'h743   (was 400)
-//   8  light grey step          #BBB  → 12'hBBB   (was 888)
-//   9  cream door sign bg       #FDB  → 12'hFDB   (was EDB)
-//  10  red accent               #F33  → 12'hF33   (was C00)
-//  11  light sky fill           #9CF  → 12'h9CF   (not used in sprite; for reference)
+// ── Palette ────────────────────────────────────────────────────────────────
+// 0  transparent
+// 1  dark red/brown outline   12'hA44
+// 2  red/brown body           12'hC66
+// 3  white wall               12'hFFF
+// 4  medium brown band        12'hA54
+// 5  bright yellow window     12'hFF0
+// 6  dark brown garage/door   12'h553
+// 7  dark brown roof shadow   12'h743
+// 8  light grey step          12'hBBB
+// 9  cream sign background    12'hFDB
+// 10 red accent               12'hF33
 
-// ── Sprite ROM — Simplified initialization ────────────────────────────────
-reg [3:0] sprite_rom [0:SPRITE_H-1][0:SPRITE_W-1];
+// ── Flat ROM: index = row*30 + col, total 810 entries ─────────────────────
+// Palette values encoded row by row.
+// Row layout (Y downward):
+//   0-1   : chimneys only (rest transparent)
+//   2-3   : transparent sky
+//   4-6   : brown cornice band / white stripe
+//   7-9   : white wall, upper floor
+//   10-12 : white wall with yellow windows
+//   13-15 : white wall, mid floor  
+//   16-18 : white wall with yellow windows, lower floor
+//   19-22 : garage + cream sign strip
+//   23-24 : grey step
+//   25-26 : transparent (ground)
 
-initial begin
-    integer r, c;
-    
-    // Fill entire ROM with outline color by default
-    for (r = 0; r < SPRITE_H; r = r + 1) begin
-        for (c = 0; c < SPRITE_W; c = c + 1) begin
-            sprite_rom[r][c] = 4'd1;
+function [3:0] rom_val;
+    input [9:0] addr;   // row*30 + col, 0..809
+    reg [4:0] r;
+    reg [4:0] c;
+    begin
+        r = addr / 30;
+        c = addr % 30;
+        // default transparent
+        rom_val = 4'd0;
+
+        // ── Chimneys (rows 0-1) ──────────────────────────────────────────
+        if (r <= 1) begin
+            if (c==5'd4 || c==5'd6 || c==5'd23 || c==5'd25) rom_val = 4'd1;
+            else if (c==5'd5 || c==5'd24)                    rom_val = 4'd2;
+            else                                              rom_val = 4'd0;
         end
-    end
-    
-    // Top rows: roof and chimneys (mostly transparent)
-    for (r = 0; r <= 3; r = r + 1)
-        for (c = 0; c < SPRITE_W; c = c + 1)
-            sprite_rom[r][c] = 4'd0;  // transparent fill
-    
-    // Now add specific roof details
-    sprite_rom[0][4] = 4'd1; sprite_rom[0][5] = 4'd2; sprite_rom[0][6] = 4'd1;
-    sprite_rom[0][23] = 4'd1; sprite_rom[0][24] = 4'd2; sprite_rom[0][25] = 4'd1;
-    sprite_rom[1][4] = 4'd1; sprite_rom[1][5] = 4'd2; sprite_rom[1][6] = 4'd1;
-    sprite_rom[1][23] = 4'd1; sprite_rom[1][24] = 4'd2; sprite_rom[1][25] = 4'd1;
-    
-    // Main building body: rows 4-22 initialized to palette 1 (outline)
-    // Fill entire interior sections with visible colors
-    for (r = 4; r <= 22; r = r + 1) begin
-        for (c = 0; c < SPRITE_W; c = c + 1) begin
-            if (c == 0 || c == 29)
-                sprite_rom[r][c] = 4'd1;  // left/right edge outline
-            else if (r >= 4 && r <= 18)
-                sprite_rom[r][c] = (c >= 1 && c <= 28) ? 4'd3 : 4'd1;  // white fill with outlines
-            else
-                sprite_rom[r][c] = 4'd1;  // default outline
-        end
-    end
-    
-    // Rows 4-6: roof bands and cornice
-    for (r = 4; r <= 6; r = r + 1) begin
-        for (c = 1; c <= 10; c = c + 1) sprite_rom[r][c] = 4'd4;
-        for (c = 12; c <= 17; c = c + 1) sprite_rom[r][c] = 4'd4;
-        for (c = 19; c <= 28; c = c + 1) sprite_rom[r][c] = 4'd4;
-    end
-    
-    // Rows 5: white stripe (cornice)
-    for (c = 1; c <= 10; c = c + 1) sprite_rom[5][c] = 4'd3;
-    for (c = 12; c <= 17; c = c + 1) sprite_rom[5][c] = 4'd3;
-    for (c = 19; c <= 28; c = c + 1) sprite_rom[5][c] = 4'd3;
-    
-    // Rows 7-9: walls with white
-    for (r = 7; r <= 9; r = r + 1) begin
-        for (c = 1; c <= 10; c = c + 1) sprite_rom[r][c] = 4'd3;
-        for (c = 12; c <= 17; c = c + 1) sprite_rom[r][c] = 4'd3;
-        for (c = 19; c <= 28; c = c + 1) sprite_rom[r][c] = 4'd3;
-    end
-    
-    // Rows 10-18: alternating red/brown and white floors
-    for (r = 10; r <= 18; r = r + 1) begin
-        for (c = 1; c <= 10; c = c + 1) sprite_rom[r][c] = 4'd3;
-        for (c = 12; c <= 17; c = c + 1) sprite_rom[r][c] = 4'd3;
-        for (c = 19; c <= 28; c = c + 1) sprite_rom[r][c] = 4'd3;
-    end
-    
-    // Rows 19-22: garage and sign
-    for (r = 19; r <= 22; r = r + 1) begin
-        for (c = 1; c <= 4; c = c + 1) sprite_rom[r][c] = 4'd6;   // garage door (dark)
-        for (c = 5; c <= 24; c = c + 1) sprite_rom[r][c] = 4'd9;  // sign (cream)
-        for (c = 25; c <= 28; c = c + 1) sprite_rom[r][c] = 4'd6; // entrance (dark)
-    end
-    
-    // Rows 23-24: step
-    for (r = 23; r <= 24; r = r + 1)
-        for (c = 1; c <= 28; c = c + 1)
-            sprite_rom[r][c] = 4'd8;  // grey step
-    
-    // Rows 25-26: ground shadow (transparent)
-    for (r = 25; r <= 26; r = r + 1)
-        for (c = 0; c < SPRITE_W; c = c + 1)
-            sprite_rom[r][c] = 4'd0;
-end
 
-// ── Pixel coordinate calculation (combinational) ──────────────────────────
-wire signed [10:0] rel_x = $signed({1'b0,h_count}) - $signed({1'b0,x_offset});
-wire signed [10:0] rel_y = $signed({1'b0,v_count}) - $signed({1'b0,y_offset});
+        // ── Rows 2-3: transparent ────────────────────────────────────────
+        else if (r <= 3) rom_val = 4'd0;
+
+        // ── Rows 4-6: cornice band (brown, white stripe on row 5) ────────
+        else if (r <= 6) begin
+            if (c==0 || c==29)                rom_val = 4'd1; // side outline
+            else if (c==11 || c==18)          rom_val = 4'd1; // chimney gaps
+            else if (r==5)                    rom_val = 4'd3; // white stripe
+            else                              rom_val = 4'd4; // brown band
+        end
+
+        // ── Rows 7-9: upper white wall ────────────────────────────────────
+        else if (r <= 9) begin
+            if (c==0 || c==29)   rom_val = 4'd1;
+            else if (c==11)      rom_val = 4'd1; // interior divider
+            else if (c==18)      rom_val = 4'd1;
+            else                 rom_val = 4'd3;
+        end
+
+        // ── Rows 10-12: white wall + windows ─────────────────────────────
+        else if (r <= 12) begin
+            if (c==0 || c==29)   rom_val = 4'd1;
+            else if (c==11 || c==18) rom_val = 4'd1;
+            // Window columns: 3-5, 13-15, 20-22, 25-27
+            else if ((c>=3  && c<=5)  ||
+                     (c>=13 && c<=15) ||
+                     (c>=20 && c<=22) ||
+                     (c>=25 && c<=27)) rom_val = 4'd5; // yellow window
+            else                 rom_val = 4'd3;
+        end
+
+        // ── Rows 13-15: white wall ────────────────────────────────────────
+        else if (r <= 15) begin
+            if (c==0 || c==29)   rom_val = 4'd1;
+            else if (c==11 || c==18) rom_val = 4'd1;
+            else                 rom_val = 4'd3;
+        end
+
+        // ── Rows 16-18: white wall + windows (lower floor) ───────────────
+        else if (r <= 18) begin
+            if (c==0 || c==29)   rom_val = 4'd1;
+            else if (c==11 || c==18) rom_val = 4'd1;
+            else if ((c>=3  && c<=5)  ||
+                     (c>=13 && c<=15) ||
+                     (c>=20 && c<=22) ||
+                     (c>=25 && c<=27)) rom_val = 4'd5;
+            else                 rom_val = 4'd3;
+        end
+
+        // ── Rows 19-22: garage door (left/right) + cream sign (centre) ───
+        else if (r <= 22) begin
+            if (c==0 || c==29)         rom_val = 4'd1;  // outline
+            else if (c>=1  && c<=4)    rom_val = 4'd6;  // left garage (dark)
+            else if (c>=5  && c<=24)   rom_val = 4'd9;  // sign (cream)
+            else if (c>=25 && c<=28)   rom_val = 4'd6;  // right entrance (dark)
+        end
+
+        // ── Rows 23-24: grey step ─────────────────────────────────────────
+        else if (r <= 24) begin
+            if (c==0 || c==29) rom_val = 4'd1;
+            else               rom_val = 4'd8;
+        end
+
+        // ── Rows 25-26: transparent ───────────────────────────────────────
+        else rom_val = 4'd0;
+    end
+endfunction
+
+// ── Coordinate math ───────────────────────────────────────────────────────
+wire signed [10:0] rel_x = $signed({1'b0, h_count}) - $signed({1'b0, x_offset});
+wire signed [10:0] rel_y = $signed({1'b0, v_count}) - $signed({1'b0, y_offset});
 
 wire in_bounds = (rel_x >= 0) && (rel_x < (SPRITE_W * SCALE)) &&
                  (rel_y >= 0) && (rel_y < (SPRITE_H * SCALE));
 
-// Divide by SCALE (power-of-2 shift)
-wire [4:0] sp_col = rel_x[10:2];
-wire [4:0] sp_row = rel_y[10:2];
+// Divide by SCALE=4 (right-shift 2)
+wire [4:0] sp_col = rel_x[6:2];
+wire [4:0] sp_row = rel_y[6:2];
 
-// Clamp to valid sprite index
-wire [4:0] safe_col = (sp_col < SPRITE_W) ? sp_col : (SPRITE_W-1);
-wire [4:0] safe_row = (sp_row < SPRITE_H) ? sp_row : (SPRITE_H-1);
+wire [9:0] rom_addr = ({5'b0, sp_row} * 10'd30) + {5'b0, sp_col};
 
-// Palette lookup wires
-wire [3:0] pal_idx = sprite_rom[safe_row][safe_col];
+wire [3:0] pal_idx = in_bounds ? rom_val(rom_addr) : 4'd0;
 
-// ── Combinational output (not registered) ────────────────────────────────
+// ── Palette output ────────────────────────────────────────────────────────
 always @(*) begin
     if (!in_bounds || pal_idx == 4'd0) begin
-        rgb = 12'h000;   // transparent
+        rgb = 12'h000;
     end else begin
         case (pal_idx)
-            4'd1:  rgb = 12'hA44;  // dark red/brown outline
-            4'd2:  rgb = 12'hC66;  // red/brown body
-            4'd3:  rgb = 12'hFFF;  // white walls
-            4'd4:  rgb = 12'hA54;  // medium brown band
-            4'd5:  rgb = 12'hFF0;  // bright yellow window
-            4'd6:  rgb = 12'h553;  // dark brown window/garage
-            4'd7:  rgb = 12'h743;  // dark roof shadow
-            4'd8:  rgb = 12'hBBB;  // light grey step
-            4'd9:  rgb = 12'hFDB;  // cream sign background
-            4'd10: rgb = 12'hF33;  // red accent
+            4'd1:    rgb = 12'hA44;
+            4'd2:    rgb = 12'hC66;
+            4'd3:    rgb = 12'hFFF;
+            4'd4:    rgb = 12'hA54;
+            4'd5:    rgb = 12'hFF0;
+            4'd6:    rgb = 12'h553;
+            4'd7:    rgb = 12'h743;
+            4'd8:    rgb = 12'hBBB;
+            4'd9:    rgb = 12'hFDB;
+            4'd10:   rgb = 12'hF33;
             default: rgb = 12'h000;
         endcase
     end
