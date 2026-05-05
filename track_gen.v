@@ -446,43 +446,7 @@ always @(posedge clk50) begin
         // Advance to the next layout for the next reset cycle.
         layout_idx <= layout_idx + 2'd1;
 
-        // --- Optionally mirror entire layout horizontally for variety
-        if (lfsr[2]) begin
-            new_seg_bus = seg_bus;
-            for (i = 0; i < `MAX_SEGS; i = i + 1) begin
-                if (i < num_segs) begin
-                    sx1 = seg_bus[i*40+39 -: 10]; sy1 = seg_bus[i*40+29 -: 10];
-                    sx2 = seg_bus[i*40+19 -: 10]; sy2 = seg_bus[i*40+ 9 -: 10];
-                    new_seg_bus[i*40 +: 40] = {10'd639 - sx2, sy1, 10'd639 - sx1, sy2};
-                end
-            end
-            seg_bus <= new_seg_bus;
-
-            for (i = 0; i < `MAX_CONES; i = i + 1) begin
-                if (i < num_cones) begin
-                    cx = cone_bus[i*20+19 -: 10]; cy = cone_bus[i*20+9 -: 10];
-                    cone_bus[i*20 +: 20] <= {10'd639 - cx, cy};
-                end
-            end
-
-            new_bldg_bus = bldg_bus;
-            for (i = 0; i < `MAX_BLDGS; i = i + 1) begin
-                if (i < num_bldgs) begin
-                    bx = bldg_bus[i*36+35 -: 10]; by = bldg_bus[i*36+25 -: 10];
-                    bw = bldg_bus[i*36+15 -:  8]; bh = bldg_bus[i*36+ 7 -:  8];
-                    nbx = 10'd639 - (bx + {2'b0,bw} - 10'd1);
-                    new_bldg_bus[i*36 +: 36] = {nbx, by, bw, bh};
-                end
-            end
-            bldg_bus <= new_bldg_bus;
-
-            for (i = 0; i < `MAX_COINS; i = i + 1) begin
-                if (i < num_coins) begin
-                    cx = coin_bus[i*20+19 -: 10]; cy = coin_bus[i*20+9 -: 10];
-                    coin_bus[i*20 +: 20] <= {10'd639 - cx, cy};
-                end
-            end
-        end
+        // Mirroring disabled — layouts used as defined (no optional horizontal flip).
 
         // --- Fill remaining building slots with pseudo-random grass patches
         for (gi = 0; gi < `MAX_BLDGS; gi = gi + 1) begin
