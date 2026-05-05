@@ -45,6 +45,9 @@ reg [15:0] lfsr;
 always @(posedge clk50)
     lfsr <= {lfsr[14:0], lfsr[15] ^ lfsr[14] ^ lfsr[12] ^ lfsr[3]};
 
+// Track layout index that advances on each reset-release reload.
+reg [1:0] layout_idx = 2'd0;
+
 // ── Reset rising-edge detector ────────────────────────────────────────────
 reg rst_prev;
 always @(posedge clk50) rst_prev <= rst_n;
@@ -58,7 +61,7 @@ always @(posedge clk50) begin
         bldg_bus <= 0;
         coin_bus <= 0;
 
-        case (lfsr[1:0])
+        case (layout_idx)
 
             // ═══════════════════════════════════════════════════════════════
             // LAYOUT 0 — clockwise outer loop with inner detour
@@ -265,6 +268,9 @@ always @(posedge clk50) begin
                 coin_bus[11*20 +: 20] <= {10'd380, 10'd305}; // inner bottom right
             end
         endcase
+
+        // Advance to the next layout for the next reset cycle.
+        layout_idx <= layout_idx + 2'd1;
 
         // --- Optionally mirror entire layout horizontally for variety
         if (lfsr[2]) begin

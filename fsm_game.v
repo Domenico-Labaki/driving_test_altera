@@ -65,7 +65,7 @@ end
 
 // ── Finish line detection (parking space requirement) ──────────────────────
 // Car must:
-//   1. Be completely stopped (speed_kph == 0)
+//   1. Be effectively stopped (displayed speed near 0)
 //   2. Have the entire sprite bounding box inside the parking rectangle
 //   3. Have collected all coins (coin_count == num_coins)
 //   4. Be heading north-ish (car_angle 5 or 6)
@@ -83,10 +83,12 @@ wire all_coins_collected = (num_coins > 4'd0) && (coin_count == num_coins);
 //  - horizontal: car occupies car_x - 5 .. car_x + 5  (11 pixels)
 //  - vertical:   car occupies car_y - 7 .. car_y + 6  (14 pixels)
 // Require the whole sprite bounding box to be inside the parking rectangle.
+wire stopped = (speed_kph <= 8'd2);
+
 wire at_finish = has_left_start &&
                  (car_x >= (`PARKING_X1 + 10'd5) && car_x <= (`PARKING_X2 - 10'd5)) &&
                  (car_y >= (`PARKING_Y1 + 10'd7) && car_y <= (`PARKING_Y2 - 10'd6)) &&
-                 (speed_kph == 8'd0) &&
+                 stopped &&
                  all_coins_collected &&
                  (car_angle == 3'd5 || car_angle == 3'd6);  // heading north
 

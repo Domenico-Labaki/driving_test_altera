@@ -14,6 +14,7 @@ module car_controller (
     input  wire        clk50,
     input  wire        rst_n,
     input  wire        tick_60hz,
+    input  wire [1:0]  game_state,
     input  wire        accel,
     input  wire        brake,
     input  wire        steer_left,
@@ -223,7 +224,7 @@ always @(posedge clk50) begin
         car_y     <= `CAR_START_Y;
         speed_kph <= 8'd0;
         pack_sprite_bus;
-    end else if (!game_active) begin
+    end else if (game_state == 2'd0) begin
         pos_x_q8  <= {2'b00, `CAR_START_X, 8'd0};
         pos_y_q8  <= {2'b00, `CAR_START_Y, 8'd0};
         speed_q8  <= 16'sh0000;
@@ -233,8 +234,8 @@ always @(posedge clk50) begin
         car_y     <= `CAR_START_Y;
         speed_kph <= 8'd0;
         pack_sprite_bus;
-    end else begin
-
+    end else if (game_state == 2'd1) begin
+        // Active driving: update physics at 60 Hz
         if (tick_60hz) begin
             // ── Steering ───────────────────────────────────────────────
             if (steer_left && !steer_right) begin
@@ -301,6 +302,9 @@ always @(posedge clk50) begin
             // Sprite stays in the original orientation.
             pack_sprite_bus;
         end
+    end else begin
+        // FAIL or PASS: freeze all dynamic state (hold registers). Do nothing so
+        // car remains exactly where it crashed or finished.
     end
 end
 

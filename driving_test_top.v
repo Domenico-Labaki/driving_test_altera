@@ -100,6 +100,7 @@ wire         game_active;
 car_controller u_car (
     .clk50(CLOCK_50), .rst_n(rst_n),
     .tick_60hz(tick_60hz),
+    .game_state(game_state),
     .accel(accel), .brake(brake),
     .steer_left(steer_left), .steer_right(steer_right),
     .game_active(game_active),
@@ -228,12 +229,7 @@ always @(posedge CLOCK_50) begin
     end
 end
 
-// LEDR[0..3] are debug mirrors for LCD control lines.
-assign LEDR[0] = (lcd_en_vis != 24'd0);
-assign LEDR[1] = LCD_RS;
-assign LEDR[2] = LCD_ON;
-assign LEDR[3] = LCD_BLON;
-assign LEDR[17:4] = ledr_fsm[17:4];
+assign LEDR = ledr_fsm;
 assign LEDG = ledg_fsm;
 
 audio_controller u_audio (
