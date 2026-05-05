@@ -351,7 +351,7 @@ wire [23:0] menu_rgb;
 driving_school_display u_school (
     .h_count(px),
     .v_count(py),
-    .x_offset(10'd50),
+    .x_offset(10'd260), // centered: (640 - 30*4) / 2 = 260
     .y_offset(10'd15),
     .rgb(school_rgb)
 );
