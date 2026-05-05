@@ -1,5 +1,5 @@
 Analysis & Synthesis report for driving_test
-Tue May 05 08:16:22 2026
+Tue May 05 08:24:09 2026
 Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
 
 
@@ -37,7 +37,7 @@ applicable agreement for further details.
 +--------------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                         ;
 +------------------------------------+-------------------------------------------------+
-; Analysis & Synthesis Status        ; Failed - Tue May 05 08:16:22 2026               ;
+; Analysis & Synthesis Status        ; Failed - Tue May 05 08:24:09 2026               ;
 ; Quartus II 64-Bit Version          ; 13.0.1 Build 232 06/12/2013 SP 1 SJ Web Edition ;
 ; Revision Name                      ; driving_test                                    ;
 ; Top-level Entity Name              ; driving_test_top                                ;
@@ -156,7 +156,7 @@ Parallel compilation was disabled, but you have multiple processors available. E
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit Analysis & Synthesis
     Info: Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
-    Info: Processing started: Tue May 05 08:16:22 2026
+    Info: Processing started: Tue May 05 08:24:09 2026
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off driving_test -c driving_test
 Warning (20028): Parallel compilation is not licensed and has been disabled
 Info (12021): Found 1 design units, including 1 entities, in source file vga_controller.v
@@ -190,13 +190,11 @@ Info (12021): Found 1 design units, including 1 entities, in source file audio_c
 Critical Warning (10191): Verilog HDL Compiler Directive warning at track_gen.v(30): text macro "MAX_COINS" is undefined
 Error (10170): Verilog HDL syntax error at track_gen.v(30) near text "*";  expecting an operand File: C:/Users/user/Documents/Computer Engineering/2025-2026/Spring 25-26/GEL372 - Digital Circuits Lab/Final Project new/track_gen.v Line: 30
 Info (12021): Found 0 design units, including 0 entities, in source file track_gen.v
-Critical Warning (10191): Verilog HDL Compiler Directive warning at coin_collector.v(22): text macro "MAX_COINS" is undefined
-Error (10170): Verilog HDL syntax error at coin_collector.v(22) near text "*";  expecting an operand File: C:/Users/user/Documents/Computer Engineering/2025-2026/Spring 25-26/GEL372 - Digital Circuits Lab/Final Project new/coin_collector.v Line: 22
-Info (12021): Found 0 design units, including 0 entities, in source file coin_collector.v
+Warning (12019): Can't analyze file -- file coin_collector.v is missing
 Info (144001): Generated suppressed messages file C:/Users/user/Documents/Computer Engineering/2025-2026/Spring 25-26/GEL372 - Digital Circuits Lab/Final Project new/output_files/driving_test.map.smsg
-Error: Quartus II 64-Bit Analysis & Synthesis was unsuccessful. 6 errors, 5 warnings
-    Error: Peak virtual memory: 4605 megabytes
-    Error: Processing ended: Tue May 05 08:16:22 2026
+Error: Quartus II 64-Bit Analysis & Synthesis was unsuccessful. 5 errors, 5 warnings
+    Error: Peak virtual memory: 4599 megabytes
+    Error: Processing ended: Tue May 05 08:24:09 2026
     Error: Elapsed time: 00:00:00
     Error: Total CPU time (on all processors): 00:00:00
 

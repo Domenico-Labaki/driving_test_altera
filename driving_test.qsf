@@ -201,6 +201,12 @@ set_location_assignment PIN_H12 -to VGA_R[7]
 set_location_assignment PIN_H11 -to VGA_R[6]
 set_location_assignment PIN_A8 -to VGA_R[5]
 set_location_assignment PIN_C9 -to VGA_R[4]
+set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
+set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
+set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
+set_global_assignment -name VERILOG_INCLUDE_FILE track_data.vh
+set_global_assignment -name VERILOG_INCLUDE_FILE "track_data copy.vh"
+set_global_assignment -name VERILOG_INCLUDE_FILE car_sprites.vh
 set_global_assignment -name VERILOG_FILE vga_controller.v
 set_global_assignment -name VERILOG_FILE track_renderer.v
 set_global_assignment -name VERILOG_FILE tb_driving_test.v
@@ -215,7 +221,6 @@ set_global_assignment -name VERILOG_FILE car_controller.v
 set_global_assignment -name VERILOG_FILE audio_controller.v
 set_global_assignment -name VERILOG_FILE track_gen.v
 set_global_assignment -name VERILOG_FILE coin_collector.v
-set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
-set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
-set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
+set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
+set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
