@@ -312,6 +312,16 @@ wire        w_start     = (py==`START_LINE_Y)  && (px>=`SF_X1) && (px<=`SF_X2);
 wire        w_track     = is_on_track(px,py,seg_bus,num_segs);
 wire        w_dash      = w_track & is_road_dash(px,py,seg_bus,num_segs);
 wire [23:0] w_bldg      = bldg_color(px,py,bldg_bus,num_bldgs);
+wire [11:0] school_rgb;
+
+driving_school_display u_school (
+    .pixel_clk(pclk),
+    .h_count(px),
+    .v_count(py),
+    .x_offset(10'd50),
+    .y_offset(10'd15),
+    .rgb(school_rgb)
+);
 
 // ── Registered pixel pipeline ─────────────────────────────────────────────
 always @(posedge pclk) begin
@@ -356,15 +366,14 @@ always @(posedge pclk) begin
             rgb <= C_TRACK;
         else if (w_bldg != 24'h000000)
             rgb <= w_bldg;
+        else if (school_rgb != 12'h000)
+            rgb <= {school_rgb[11:8], school_rgb[11:8], school_rgb[7:4], school_rgb[7:4], school_rgb[3:0], school_rgb[3:0]};
         else begin
             // If nothing else, render sky in the top band; silhouettes sit on top of sky
             if (py < SKY_H) begin
                 if      (py < (SKY_H/3))   rgb <= C_SKY_TOP;
                 else if (py < (2*SKY_H/3)) rgb <= C_SKY_MID;
                 else                        rgb <= C_SKY_BOTTOM;
-                if (py < SKY_H+12 &&
-                    ((px>80&&px<140) || (px>200&&px<260) || (px>330&&px<400) || (px>440&&px<520)))
-                    rgb <= C_SKY_SILH;
             end else begin
                 // Off-road / grass checker pattern
                 rgb <= (px[4]^py[3]) ? C_OFFROAD1 : C_OFFROAD2;
