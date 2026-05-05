@@ -1,14 +1,14 @@
-Fitter Status : Successful - Tue May 05 10:58:23 2026
+Fitter Status : Successful - Tue May 05 11:09:47 2026
 Quartus II 64-Bit Version : 13.0.1 Build 232 06/12/2013 SP 1 SJ Web Edition
 Revision Name : driving_test
 Top-level Entity Name : driving_test_top
 Family : Cyclone II
 Device : EP2C35F672C6
 Timing Models : Final
-Total logic elements : 14,757 / 33,216 ( 44 % )
-    Total combinational functions : 14,678 / 33,216 ( 44 % )
-    Dedicated logic registers : 553 / 33,216 ( 2 % )
-Total registers : 553
+Total logic elements : 14,767 / 33,216 ( 44 % )
+    Total combinational functions : 14,687 / 33,216 ( 44 % )
+    Dedicated logic registers : 552 / 33,216 ( 2 % )
+Total registers : 552
 Total pins : 138 / 475 ( 29 % )
 Total virtual pins : 0
 Total memory bits : 0 / 483,840 ( 0 % )

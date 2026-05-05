@@ -24,7 +24,7 @@ module lcd_controller (
 assign LCD_RW = 1'b0;  // write-only
 
 // ── Timing (50 MHz) ───────────────────────────────────────────────────────
-localparam T_PWRUP   = 24'd750_000;   // 15 ms
+localparam T_PWRUP   = 24'd2_500_000; // 50 ms
 localparam T_4P1MS   = 24'd205_000;   // 4.1 ms
 localparam T_100US   = 24'd5_000;     // 100 us
 localparam T_40US    = 24'd2_000;     // 40 us
@@ -34,34 +34,79 @@ localparam T_E_PULSE = 24'd50;        // 1 us EN high
 
 // ── Message ROM: 4 messages × 16 chars ───────────────────────────────────
 // game_state: 0=IDLE 1=DRIVING 2=FAIL 3=PASS
-reg [7:0] msg_rom [0:3][0:15];
-
-initial begin
-    // "PRESS START     "
-    msg_rom[0][0]=8'h50; msg_rom[0][1]=8'h52; msg_rom[0][2]=8'h45;
-    msg_rom[0][3]=8'h53; msg_rom[0][4]=8'h53; msg_rom[0][5]=8'h20;
-    msg_rom[0][6]=8'h53; msg_rom[0][7]=8'h54; msg_rom[0][8]=8'h41;
-    msg_rom[0][9]=8'h52; msg_rom[0][10]=8'h54; msg_rom[0][11]=8'h20;
-    msg_rom[0][12]=8'h20; msg_rom[0][13]=8'h20; msg_rom[0][14]=8'h20; msg_rom[0][15]=8'h20;
-    // "DRIVE MODE      "
-    msg_rom[1][0]=8'h44; msg_rom[1][1]=8'h52; msg_rom[1][2]=8'h49;
-    msg_rom[1][3]=8'h56; msg_rom[1][4]=8'h45; msg_rom[1][5]=8'h20;
-    msg_rom[1][6]=8'h4D; msg_rom[1][7]=8'h4F; msg_rom[1][8]=8'h44;
-    msg_rom[1][9]=8'h45; msg_rom[1][10]=8'h20; msg_rom[1][11]=8'h20;
-    msg_rom[1][12]=8'h20; msg_rom[1][13]=8'h20; msg_rom[1][14]=8'h20; msg_rom[1][15]=8'h20;
-    // "TEST FAILED     "
-    msg_rom[2][0]=8'h54; msg_rom[2][1]=8'h45; msg_rom[2][2]=8'h53;
-    msg_rom[2][3]=8'h54; msg_rom[2][4]=8'h20; msg_rom[2][5]=8'h46;
-    msg_rom[2][6]=8'h41; msg_rom[2][7]=8'h49; msg_rom[2][8]=8'h4C;
-    msg_rom[2][9]=8'h45; msg_rom[2][10]=8'h44; msg_rom[2][11]=8'h20;
-    msg_rom[2][12]=8'h20; msg_rom[2][13]=8'h20; msg_rom[2][14]=8'h20; msg_rom[2][15]=8'h20;
-    // "TEST PASSED     "
-    msg_rom[3][0]=8'h54; msg_rom[3][1]=8'h45; msg_rom[3][2]=8'h53;
-    msg_rom[3][3]=8'h54; msg_rom[3][4]=8'h20; msg_rom[3][5]=8'h50;
-    msg_rom[3][6]=8'h41; msg_rom[3][7]=8'h53; msg_rom[3][8]=8'h53;
-    msg_rom[3][9]=8'h45; msg_rom[3][10]=8'h44; msg_rom[3][11]=8'h20;
-    msg_rom[3][12]=8'h20; msg_rom[3][13]=8'h20; msg_rom[3][14]=8'h20; msg_rom[3][15]=8'h20;
-end
+function [7:0] msg_char;
+    input [1:0] state;
+    input [4:0] index;
+    begin
+        case (state)
+            2'd0: begin
+                case (index)
+                    5'd0: msg_char = 8'h50;
+                    5'd1: msg_char = 8'h52;
+                    5'd2: msg_char = 8'h45;
+                    5'd3: msg_char = 8'h53;
+                    5'd4: msg_char = 8'h53;
+                    5'd5: msg_char = 8'h20;
+                    5'd6: msg_char = 8'h53;
+                    5'd7: msg_char = 8'h54;
+                    5'd8: msg_char = 8'h41;
+                    5'd9: msg_char = 8'h52;
+                    5'd10: msg_char = 8'h54;
+                    default: msg_char = 8'h20;
+                endcase
+            end
+            2'd1: begin
+                case (index)
+                    5'd0: msg_char = 8'h44;
+                    5'd1: msg_char = 8'h52;
+                    5'd2: msg_char = 8'h49;
+                    5'd3: msg_char = 8'h56;
+                    5'd4: msg_char = 8'h45;
+                    5'd5: msg_char = 8'h20;
+                    5'd6: msg_char = 8'h53;
+                    5'd7: msg_char = 8'h41;
+                    5'd8: msg_char = 8'h46;
+                    5'd9: msg_char = 8'h45;
+                    5'd10: msg_char = 8'h4C;
+                    5'd11: msg_char = 8'h59;
+                    default: msg_char = 8'h20;
+                endcase
+            end
+            2'd2: begin
+                case (index)
+                    5'd0: msg_char = 8'h54;
+                    5'd1: msg_char = 8'h45;
+                    5'd2: msg_char = 8'h53;
+                    5'd3: msg_char = 8'h54;
+                    5'd4: msg_char = 8'h20;
+                    5'd5: msg_char = 8'h46;
+                    5'd6: msg_char = 8'h41;
+                    5'd7: msg_char = 8'h49;
+                    5'd8: msg_char = 8'h4C;
+                    5'd9: msg_char = 8'h45;
+                    5'd10: msg_char = 8'h44;
+                    default: msg_char = 8'h20;
+                endcase
+            end
+            default: begin
+                case (index)
+                    5'd0: msg_char = 8'h54;
+                    5'd1: msg_char = 8'h45;
+                    5'd2: msg_char = 8'h53;
+                    5'd3: msg_char = 8'h54;
+                    5'd4: msg_char = 8'h20;
+                    5'd5: msg_char = 8'h50;
+                    5'd6: msg_char = 8'h41;
+                    5'd7: msg_char = 8'h53;
+                    5'd8: msg_char = 8'h53;
+                    5'd9: msg_char = 8'h45;
+                    5'd10: msg_char = 8'h44;
+                    default: msg_char = 8'h20;
+                endcase
+            end
+        endcase
+    end
+endfunction
 
 // ── Driver FSM ────────────────────────────────────────────────────────────
 localparam ST_WAIT_PWR = 3'd0;
@@ -129,11 +174,22 @@ always @(posedge clk50) begin
                     6'd7: begin tx_rs <= 1'b0; tx_byte <= 8'h06; tx_full_byte <= 1'b1; wait_target <= T_40US; end // entry mode
                     6'd8: begin tx_rs <= 1'b0; tx_byte <= 8'h80; tx_full_byte <= 1'b1; wait_target <= T_40US; end // line 1, col 0
 
-                    // 16 chars
+                    // Line 1: message text
                     6'd9,6'd10,6'd11,6'd12,6'd13,6'd14,6'd15,6'd16,
                     6'd17,6'd18,6'd19,6'd20,6'd21,6'd22,6'd23,6'd24: begin
                         tx_rs       <= 1'b1;
-                        tx_byte     <= msg_rom[disp_state][step - 6'd9];
+                        tx_byte     <= msg_char(disp_state, step - 6'd9);
+                        tx_full_byte<= 1'b1;
+                        wait_target <= T_40US;
+                    end
+
+                    6'd25: begin tx_rs <= 1'b0; tx_byte <= 8'hC0; tx_full_byte <= 1'b1; wait_target <= T_40US; end // line 2, col 0
+
+                    // Line 2: explicit spaces to clear any leftover power-on garbage
+                    6'd26,6'd27,6'd28,6'd29,6'd30,6'd31,6'd32,6'd33,
+                    6'd34,6'd35,6'd36,6'd37,6'd38,6'd39,6'd40,6'd41: begin
+                        tx_rs       <= 1'b1;
+                        tx_byte     <= 8'h20;
                         tx_full_byte<= 1'b1;
                         wait_target <= T_40US;
                     end
@@ -194,7 +250,7 @@ always @(posedge clk50) begin
             end
 
             ST_NEXT: begin
-                if (step < 6'd24) begin
+                if (step < 6'd41) begin
                     step  <= step + 6'd1;
                     state <= ST_LOAD;
                 end else begin
