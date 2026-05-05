@@ -15,7 +15,6 @@ module track_renderer (
     // Car
     input  wire [9:0]  car_x,
     input  wire [9:0]  car_y,
-    input  wire [2:0]  car_angle,
     input  wire [8:0]  heading_deg,
     input  wire [307:0] car_row_bus,
     // Procedural track buses
@@ -320,7 +319,6 @@ wire [11:0] school_rgb;
 wire [23:0] menu_rgb;
 
 driving_school_display u_school (
-    .pixel_clk(pclk),
     .h_count(px),
     .v_count(py),
     .x_offset(10'd50),

@@ -13,7 +13,6 @@ module seg7_display (
     input  wire        clk50,
     input  wire        rst_n,
     input  wire [15:0] remaining_sec,
-    input  wire [7:0]  remaining_ms,
     input  wire [7:0]  speed_kph,
     input  wire [3:0]  coin_count,     // 0–15, from coin_collector
     // DE2 seven-segment outputs (active-low)

@@ -26,8 +26,7 @@ module fsm_game (
     // Outputs
     output reg  [1:0]  game_state,  // 0=MENU 1=DRIVING 2=FAIL 3=PASS
     output reg         game_active, // DRIVING state
-    output reg  [15:0] remaining_sec, // countdown seconds (for 7-seg)
-    output reg  [7:0]  remaining_ms   // centiseconds approximation
+    output reg  [15:0] remaining_sec // countdown seconds (for 7-seg)
 );
 
 // ── State encoding ─────────────────────────────────────────────────────────
@@ -45,20 +44,16 @@ always @(posedge clk50) begin
     if (!rst_n) begin
         tick_cnt      <= 6'd0;
         remaining_sec <= ROUND_TIME_SEC;
-        remaining_ms  <= 8'd0;
     end else if (game_state == MENU) begin
-        tick_cnt   <= 6'd0;
+        tick_cnt      <= 6'd0;
         remaining_sec <= ROUND_TIME_SEC;
-        remaining_ms  <= 8'd0;
     end else if (tick_60hz && game_state == DRIVING) begin
         if (tick_cnt == 6'd59) begin
-            tick_cnt    <= 6'd0;
+            tick_cnt <= 6'd0;
             if (remaining_sec != 16'd0)
                 remaining_sec <= remaining_sec - 16'd1;
-            remaining_ms <= 8'd0;
         end else begin
-            tick_cnt   <= tick_cnt + 6'd1;
-            remaining_ms <= ((6'd59 - tick_cnt) * 8'd100) / 8'd60;
+            tick_cnt <= tick_cnt + 6'd1;
         end
     end
 end

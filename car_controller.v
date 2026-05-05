@@ -19,7 +19,6 @@ module car_controller (
     input  wire        brake,
     input  wire        steer_left,
     input  wire        steer_right,
-    input  wire        game_active,
     output reg  [9:0]  car_x,
     output reg  [9:0]  car_y,
     output reg  [2:0]  car_angle,

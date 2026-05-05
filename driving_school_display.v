@@ -13,7 +13,6 @@
 //   caller passes 10'd50, 10'd15  (sky band)
 
 module driving_school_display (
-    input  wire        pixel_clk,
     input  wire [9:0]  h_count,
     input  wire [9:0]  v_count,
     input  wire [9:0]  x_offset,
@@ -129,8 +128,8 @@ wire in_bounds = (rel_x >= 0) && (rel_x < (SPRITE_W * SCALE)) &&
                  (rel_y >= 0) && (rel_y < (SPRITE_H * SCALE));
 
 // Divide by SCALE (power-of-2 shift)
-wire [4:0] sp_col = rel_x[($clog2(SPRITE_W * SCALE)-1):$clog2(SCALE)];
-wire [4:0] sp_row = rel_y[($clog2(SPRITE_H * SCALE)-1):$clog2(SCALE)];
+wire [4:0] sp_col = rel_x[10:2];
+wire [4:0] sp_row = rel_y[10:2];
 
 // Clamp to valid sprite index
 wire [4:0] safe_col = (sp_col < SPRITE_W) ? sp_col : (SPRITE_W-1);

@@ -156,6 +156,14 @@ integer glyph_y;
 reg [7:0] ch;
 
 always @(*) begin
+    lx = 0;
+    ly = 0;
+    idx = 0;
+    cell_x = 0;
+    glyph_x = 0;
+    glyph_y = 0;
+    ch = 8'h20;
+
     if (py < SKY_H) begin
         if      (py < (SKY_H/3))   rgb = C_SKY_TOP;
         else if (py < (2*SKY_H/3)) rgb = C_SKY_MID;
@@ -170,10 +178,19 @@ always @(*) begin
         (px >= LINE1_X) && (px < LINE1_X + LINE1_N * CELL_W)) begin
         lx = px - LINE1_X;
         ly = py - LINE1_Y;
-        idx = lx / CELL_W;
-        cell_x = lx % CELL_W;
-        glyph_x = cell_x / SCALE;
-        glyph_y = ly / SCALE;
+        idx = 0;
+        cell_x = lx;
+        if (lx >= (1 * CELL_W)) begin idx = 1; cell_x = lx - (1 * CELL_W); end
+        if (lx >= (2 * CELL_W)) begin idx = 2; cell_x = lx - (2 * CELL_W); end
+        if (lx >= (3 * CELL_W)) begin idx = 3; cell_x = lx - (3 * CELL_W); end
+        if (lx >= (4 * CELL_W)) begin idx = 4; cell_x = lx - (4 * CELL_W); end
+        if (lx >= (5 * CELL_W)) begin idx = 5; cell_x = lx - (5 * CELL_W); end
+        if (lx >= (6 * CELL_W)) begin idx = 6; cell_x = lx - (6 * CELL_W); end
+        if (lx >= (7 * CELL_W)) begin idx = 7; cell_x = lx - (7 * CELL_W); end
+        if (lx >= (8 * CELL_W)) begin idx = 8; cell_x = lx - (8 * CELL_W); end
+        if (lx >= (9 * CELL_W)) begin idx = 9; cell_x = lx - (9 * CELL_W); end
+        glyph_x = cell_x >> 2;
+        glyph_y = ly >> 2;
         if (idx < LINE1_N && glyph_x < CHAR_W && glyph_y < CHAR_H) begin
             ch = line1_char(idx);
             if (glyph_bit(ch, glyph_x[2:0], glyph_y[2:0]))
@@ -185,10 +202,17 @@ always @(*) begin
         (px >= LINE2_X) && (px < LINE2_X + LINE2_N * CELL_W)) begin
         lx = px - LINE2_X;
         ly = py - LINE2_Y;
-        idx = lx / CELL_W;
-        cell_x = lx % CELL_W;
-        glyph_x = cell_x / SCALE;
-        glyph_y = ly / SCALE;
+        idx = 0;
+        cell_x = lx;
+        if (lx >= (1 * CELL_W)) begin idx = 1; cell_x = lx - (1 * CELL_W); end
+        if (lx >= (2 * CELL_W)) begin idx = 2; cell_x = lx - (2 * CELL_W); end
+        if (lx >= (3 * CELL_W)) begin idx = 3; cell_x = lx - (3 * CELL_W); end
+        if (lx >= (4 * CELL_W)) begin idx = 4; cell_x = lx - (4 * CELL_W); end
+        if (lx >= (5 * CELL_W)) begin idx = 5; cell_x = lx - (5 * CELL_W); end
+        if (lx >= (6 * CELL_W)) begin idx = 6; cell_x = lx - (6 * CELL_W); end
+        if (lx >= (7 * CELL_W)) begin idx = 7; cell_x = lx - (7 * CELL_W); end
+        glyph_x = cell_x >> 2;
+        glyph_y = ly >> 2;
         if (idx < LINE2_N && glyph_x < CHAR_W && glyph_y < CHAR_H) begin
             ch = line2_char(idx);
             if (glyph_bit(ch, glyph_x[2:0], glyph_y[2:0]))

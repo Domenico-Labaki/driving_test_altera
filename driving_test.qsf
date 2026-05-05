@@ -189,11 +189,11 @@ set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
 set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
 set_global_assignment -name VERILOG_INCLUDE_FILE track_data.vh
-set_global_assignment -name VERILOG_INCLUDE_FILE "track_data copy.vh"
 set_global_assignment -name VERILOG_INCLUDE_FILE car_sprites.vh
 set_global_assignment -name VERILOG_FILE vga_controller.v
 set_global_assignment -name VERILOG_FILE track_renderer.v
-set_global_assignment -name VERILOG_FILE tb_driving_test.v
+set_global_assignment -name VERILOG_FILE driving_school_display.v
+set_global_assignment -name VERILOG_FILE menu_display.v
 set_global_assignment -name VERILOG_FILE seg7_display.v
 set_global_assignment -name VERILOG_FILE led_indicator.v
 set_global_assignment -name VERILOG_FILE lcd_controller.v

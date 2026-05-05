@@ -54,17 +54,15 @@ end
 wire tick_60hz = vsync_d & ~vsync;
 
 // ── Input handler ─────────────────────────────────────────────────────────
-wire accel, brake, steer_left, steer_right, start_btn_db;
+wire accel, brake, steer_left, steer_right, start_btn;
 
 input_handler u_input (
     .clk50(CLOCK_50), .rst_n(rst_n),
     .sw(SW[1:0]), .key(KEY),
     .accel(accel), .brake(brake),
     .steer_left(steer_left), .steer_right(steer_right),
-    .start_btn(start_btn_db)
+    .start_btn(start_btn)
 );
-
-wire start_btn = start_btn_db;
 
 // ── Procedural track generator ────────────────────────────────────────────
 wire [(`MAX_SEGS*40)-1:0]  seg_bus;
@@ -101,7 +99,6 @@ car_controller u_car (
     .game_state(game_state),
     .accel(accel), .brake(brake),
     .steer_left(steer_left), .steer_right(steer_right),
-    .game_active(game_active),
     .car_x(car_x), .car_y(car_y),
     .car_angle(car_angle), .heading_deg(heading_deg),
     .speed_kph(speed_kph),
@@ -148,7 +145,6 @@ collision_detector u_col (
 // ── Game FSM ──────────────────────────────────────────────────────────────
 wire [1:0]  game_state;
 wire [15:0] remaining_sec;
-wire [7:0]  remaining_ms;
 
 fsm_game u_fsm (
     .clk50(CLOCK_50), .rst_n(rst_n),
@@ -157,7 +153,7 @@ fsm_game u_fsm (
     .car_x(car_x), .car_y(car_y), .car_angle(car_angle),
     .speed_kph(speed_kph), .coin_count(coin_count), .num_coins(num_coins),
     .game_state(game_state), .game_active(game_active),
-    .remaining_sec(remaining_sec), .remaining_ms(remaining_ms)
+    .remaining_sec(remaining_sec)
 );
 
 // ── Track renderer ────────────────────────────────────────────────────────
@@ -167,7 +163,7 @@ track_renderer u_render (
     .pclk(pclk), .rst_n(rst_n), .active(active),
     .px(px), .py(py), .game_state(game_state),
     .car_x(car_x), .car_y(car_y),
-    .car_angle(car_angle), .heading_deg(heading_deg),
+    .heading_deg(heading_deg),
     .car_row_bus(car_row_bus),
     .seg_bus(seg_bus),   .num_segs(num_segs),
     .cone_bus(cone_bus), .num_cones(num_cones),
@@ -195,7 +191,7 @@ assign LCD_BLON = 1'b1;
 // ── Seven-segment (coin count on HEX7:HEX6) ──────────────────────────────
 seg7_display u_seg7 (
     .clk50(CLOCK_50), .rst_n(rst_n),
-    .remaining_sec(remaining_sec), .remaining_ms(remaining_ms),
+    .remaining_sec(remaining_sec),
     .speed_kph(speed_kph),
     .coin_count(coin_count),
     .HEX0(HEX0), .HEX1(HEX1), .HEX2(HEX2),
@@ -205,27 +201,12 @@ seg7_display u_seg7 (
 // ── LEDs / Audio ──────────────────────────────────────────────────────────
 wire [17:0] ledr_fsm;
 wire [7:0]  ledg_fsm;
-reg         lcd_en_d;
-reg [23:0]  lcd_en_vis;
 
 led_indicator u_leds (
     .clk50(CLOCK_50), .rst_n(rst_n),
     .game_state(game_state),
     .LEDR(ledr_fsm), .LEDG(ledg_fsm)
 );
-
-always @(posedge CLOCK_50) begin
-    if (!rst_n) begin
-        lcd_en_d   <= 1'b0;
-        lcd_en_vis <= 24'd0;
-    end else begin
-        lcd_en_d <= LCD_EN;
-        if (LCD_EN & ~lcd_en_d)
-            lcd_en_vis <= 24'd25_000_000; // ~0.5 s hold per enable pulse
-        else if (lcd_en_vis != 24'd0)
-            lcd_en_vis <= lcd_en_vis - 24'd1;
-    end
-end
 
 assign LEDR = ledr_fsm;
 assign LEDG = ledg_fsm;
