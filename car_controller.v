@@ -179,17 +179,17 @@ endfunction
 reg [27:0] sprite_rom [0:10];
 
 initial begin
-    sprite_rom[0]  = `SPR_R00;
-    sprite_rom[1]  = `SPR_R01;
-    sprite_rom[2]  = `SPR_R02;
-    sprite_rom[3]  = `SPR_R03;
-    sprite_rom[4]  = `SPR_R04;
-    sprite_rom[5]  = `SPR_R05;
-    sprite_rom[6]  = `SPR_R06;
-    sprite_rom[7]  = `SPR_R07;
-    sprite_rom[8]  = `SPR_R08;
-    sprite_rom[9]  = `SPR_R09;
-    sprite_rom[10] = `SPR_R10;
+    sprite_rom[0]  = `SPR_ROT_R00;
+    sprite_rom[1]  = `SPR_ROT_R01;
+    sprite_rom[2]  = `SPR_ROT_R02;
+    sprite_rom[3]  = `SPR_ROT_R03;
+    sprite_rom[4]  = `SPR_ROT_R04;
+    sprite_rom[5]  = `SPR_ROT_R05;
+    sprite_rom[6]  = `SPR_ROT_R06;
+    sprite_rom[7]  = `SPR_ROT_R07;
+    sprite_rom[8]  = `SPR_ROT_R08;
+    sprite_rom[9]  = `SPR_ROT_R09;
+    sprite_rom[10] = `SPR_ROT_R10;
 end
 
 // ── Q8.8 position and speed registers ────────────────────────────────────
