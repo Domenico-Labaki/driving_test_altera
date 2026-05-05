@@ -71,7 +71,7 @@ end
 wire start_btn = KEY[3] & ~key3_prev;
 
 // ── Procedural track generator ────────────────────────────────────────────
-wire [(`MAX_SEGS *40)-1:0]  seg_bus;
+wire [(`MAX_SEGS*40)-1:0]  seg_bus;
 wire [3:0]                  num_segs;
 wire [(`MAX_CONES*20)-1:0]  cone_bus;
 wire [3:0]                  num_cones;

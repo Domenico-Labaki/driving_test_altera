@@ -18,7 +18,7 @@ module track_gen (
     input  wire        clk50,
     input  wire        rst_n,
     // Road segments
-    output reg  [(`MAX_SEGS *40)-1:0]  seg_bus,
+    output reg  [(`MAX_SEGS*40)-1:0]  seg_bus,
     output reg  [3:0]                  num_segs,
     // Cones
     output reg  [(`MAX_CONES*20)-1:0]  cone_bus,

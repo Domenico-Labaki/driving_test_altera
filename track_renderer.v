@@ -18,7 +18,7 @@ module track_renderer (
     input  wire [8:0]  heading_deg,
     input  wire [307:0] car_row_bus,
     // Procedural track buses
-    input  wire [(`MAX_SEGS *40)-1:0]  seg_bus,
+    input  wire [(`MAX_SEGS*40)-1:0]  seg_bus,
     input  wire [3:0]                  num_segs,
     input  wire [(`MAX_CONES*20)-1:0]  cone_bus,
     input  wire [3:0]                  num_cones,
