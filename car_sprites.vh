@@ -1,58 +1,52 @@
-// car_sprites.vh — Car sprite 11 wide × 14 tall pixels.
+// car_sprites.vh — Updated Car Sprite
+// 11 wide × 14 tall pixels.
 //
-// Each row is 11 pixels. Each pixel is 2 bits:
-//   00 = transparent
-//   01 = dark red  (#880015)
-//   10 = black     (#000000)
-//   11 = white     (#FFFFFF, interior)
-//
-// Row encoding: 22 bits, MSB pair = leftmost pixel.
-// car_row_bus: 14 rows × 22 bits = 308 bits total.
-// Car points UP (north).
+// 00 (T) = transparent
+// 01 (D) = dark red
+// 10 (B) = black
+// 11 (W) = white
 
 `define SPR_W 11
 `define SPR_H 14
 
-// Rotated sprite: CCW 90° mapped into same 11×14 bounding box
-// (so the sprite visually points up without runtime heading offset).
-// Row  0: all transparent
-`define SPR_R00  22'b00_00_00_00_00_00_00_00_00_00_00
+// Row 0: TTTDDDDDTTT
+`define SPR_R00  22'b00_00_00_01_01_01_01_01_00_00_00
 
-// Row  1: all transparent
-`define SPR_R01  22'b00_00_00_00_00_00_00_00_00_00_00
+// Row 1: TTDDWWWDDTT
+`define SPR_R01  22'b00_00_01_01_11_11_11_01_01_00_00
 
-// Row  2
-`define SPR_R02  22'b10_10_10_00_00_00_00_01_10_10_10
+// Row 2: BBDDWWWDDBB
+`define SPR_R02  22'b10_10_01_01_11_11_11_01_01_10_10
 
-// Row  3
-`define SPR_R03  22'b01_10_10_01_10_10_01_10_01_01_10
+// Row 3: BBDDWWWDDBB
+`define SPR_R03  22'b10_10_01_01_11_11_11_01_01_10_10
 
-// Row  4
-`define SPR_R04  22'b10_10_01_01_01_01_01_10_10_01_10
+// Row 4: BBDBBBBBDBB
+`define SPR_R04  22'b10_10_01_10_10_10_10_10_01_10_10
 
-// Row  5
-`define SPR_R05  22'b10_11_11_11_10_10_11_10_10_11_11
+// Row 5: TDBBBBBBBDT
+`define SPR_R05  22'b00_01_10_10_10_10_10_10_10_01_00
 
-// Row  6
-`define SPR_R06  22'b10_11_11_11_10_10_11_10_10_11_11
+// Row 6: TTDDWWWDDTT
+`define SPR_R06  22'b00_00_01_01_11_11_11_01_01_00_00
 
-// Row  7
-`define SPR_R07  22'b10_11_11_11_10_10_11_10_10_11_11
+// Row 7: TTBDBBBDBTT
+`define SPR_R07  22'b00_00_10_01_10_10_10_01_10_00_00
 
-// Row  8
-`define SPR_R08  22'b10_10_01_01_01_01_01_10_10_01_01
+// Row 8: TTBDBBBDBTT
+`define SPR_R08  22'b00_00_10_01_10_10_10_01_10_00_00
 
-// Row  9
-`define SPR_R09  22'b01_10_10_01_10_10_01_10_01_01_01
+// Row 9: TTDDWWWDDTT
+`define SPR_R09  22'b00_00_01_01_11_11_11_01_01_00_00
 
-// Row 10
-`define SPR_R10  22'b10_10_10_00_00_00_00_01_10_10_10
+// Row 10: BBBDWWWDBBB
+`define SPR_R10  22'b10_10_10_01_11_11_11_01_10_10_10
 
-// Row 11
-`define SPR_R11  22'b10_10_10_00_00_00_00_00_01_01_10
+// Row 11: BBBBWWWBBBB
+`define SPR_R11  22'b10_10_10_10_11_11_11_10_10_10_10
 
-// Row 12: all transparent
-`define SPR_R12  22'b00_00_00_00_00_00_00_00_00_00_00
+// Row 12: BBDBBBBBDBB
+`define SPR_R12  22'b10_10_01_10_10_10_10_10_01_10_10
 
-// Row 13: all transparent
-`define SPR_R13  22'b00_00_00_00_00_00_00_00_00_00_00
+// Row 13: TTDDWWWDDTT
+`define SPR_R13  22'b00_00_01_01_11_11_11_01_01_00_00

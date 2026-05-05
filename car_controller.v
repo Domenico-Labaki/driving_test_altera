@@ -14,6 +14,7 @@ module car_controller (
     input  wire        clk50,
     input  wire        rst_n,
     input  wire        tick_60hz,
+    input  wire [1:0]  game_state,
     input  wire        accel,
     input  wire        brake,
     input  wire        steer_left,
@@ -30,7 +31,7 @@ module car_controller (
 
 // ── Speed limits (Q8.8) ───────────────────────────────────────────────────
 localparam signed [15:0] SPD_MAX   =  16'sh0100;  // +1.0 px/frame
-localparam signed [15:0] SPD_MIN   = -16'sh0180;  // -1.5 px/frame (reverse)
+localparam signed [15:0] SPD_MIN   = -16'sh0080;  // -0.5 px/frame (reverse)
 localparam signed [15:0] SPD_ACCEL =  16'sh0005;  // 0.02 px/frame per tick
 localparam signed [15:0] SPD_BRAKE =  16'sh0008;  // 0.03 px/frame per tick
 localparam signed [15:0] SPD_DRAG  =  16'sh0003;  // 0.01 px/frame drag
@@ -223,7 +224,7 @@ always @(posedge clk50) begin
         car_y     <= `CAR_START_Y;
         speed_kph <= 8'd0;
         pack_sprite_bus;
-    end else if (!game_active) begin
+    end else if (game_state == 2'd0) begin
         pos_x_q8  <= {2'b00, `CAR_START_X, 8'd0};
         pos_y_q8  <= {2'b00, `CAR_START_Y, 8'd0};
         speed_q8  <= 16'sh0000;
@@ -233,8 +234,8 @@ always @(posedge clk50) begin
         car_y     <= `CAR_START_Y;
         speed_kph <= 8'd0;
         pack_sprite_bus;
-    end else begin
-
+    end else if (game_state == 2'd1) begin
+        // Active driving: update physics at 60 Hz
         if (tick_60hz) begin
             // ── Steering ───────────────────────────────────────────────
             if (steer_left && !steer_right) begin
@@ -288,17 +289,22 @@ always @(posedge clk50) begin
             car_x <= pos_x_q8[17:8];
             car_y <= pos_y_q8[17:8];
 
-            // Speed in display units (Q8.8 integer part × 25, capped at 99)
+            // Speed in display units: include Q8.8 fraction (scale 25), cap at 99
             if (speed_q8[15])
-                speed_kph <= 8'd0;  // negative speed shows 0
-            else if (speed_q8[15:8] >= 8'd4)
-                speed_kph <= 8'd99;
-            else
-                speed_kph <= {speed_q8[11:8], 4'b0} + speed_q8[11:8] * 8'd25;
+                speed_kph <= 8'd0;  // negative speed shows 0 (keep current behavior)
+            else begin
+                if ((($unsigned(speed_q8) * 8'd25) >> 8) >= 8'd99)
+                    speed_kph <= 8'd99;
+                else
+                    speed_kph <= (($unsigned(speed_q8) * 8'd25) >> 8);
+            end
 
             // Sprite stays in the original orientation.
             pack_sprite_bus;
         end
+    end else begin
+        // FAIL or PASS: freeze all dynamic state (hold registers). Do nothing so
+        // car remains exactly where it crashed or finished.
     end
 end
 
