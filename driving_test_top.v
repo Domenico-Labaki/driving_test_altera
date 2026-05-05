@@ -17,6 +17,7 @@ module driving_test_top (
     // LCD
     output wire        LCD_EN, LCD_RS, LCD_RW,
     output wire [7:4]  LCD_DATA,
+    output wire        LCD_ON, LCD_BLON,
     // Seven-segment
     output wire [6:0]  HEX0, HEX1, HEX2, HEX3, HEX4, HEX5, HEX6, HEX7,
     // LEDs
@@ -187,6 +188,10 @@ lcd_controller u_lcd (
     .LCD_EN(LCD_EN), .LCD_RS(LCD_RS), .LCD_RW(LCD_RW), .LCD_DATA(LCD_DATA)
 );
 
+// Tie LCD power and backlight on (required for display to show)
+assign LCD_ON   = 1'b1;
+assign LCD_BLON = 1'b1;
+
 // ── Seven-segment (coin count on HEX7:HEX6) ──────────────────────────────
 seg7_display u_seg7 (
     .clk50(CLOCK_50), .rst_n(rst_n),
@@ -198,11 +203,37 @@ seg7_display u_seg7 (
 );
 
 // ── LEDs / Audio ──────────────────────────────────────────────────────────
+wire [17:0] ledr_fsm;
+wire [7:0]  ledg_fsm;
+reg         lcd_en_d;
+reg [23:0]  lcd_en_vis;
+
 led_indicator u_leds (
     .clk50(CLOCK_50), .rst_n(rst_n),
     .game_state(game_state),
-    .LEDR(LEDR), .LEDG(LEDG)
+    .LEDR(ledr_fsm), .LEDG(ledg_fsm)
 );
+
+always @(posedge CLOCK_50) begin
+    if (!rst_n) begin
+        lcd_en_d   <= 1'b0;
+        lcd_en_vis <= 24'd0;
+    end else begin
+        lcd_en_d <= LCD_EN;
+        if (LCD_EN & ~lcd_en_d)
+            lcd_en_vis <= 24'd25_000_000; // ~0.5 s hold per enable pulse
+        else if (lcd_en_vis != 24'd0)
+            lcd_en_vis <= lcd_en_vis - 24'd1;
+    end
+end
+
+// LEDR[0..3] are debug mirrors for LCD control lines.
+assign LEDR[0] = (lcd_en_vis != 24'd0);
+assign LEDR[1] = LCD_RS;
+assign LEDR[2] = LCD_ON;
+assign LEDR[3] = LCD_BLON;
+assign LEDR[17:4] = ledr_fsm[17:4];
+assign LEDG = ledg_fsm;
 
 audio_controller u_audio (
     .clk50(CLOCK_50), .rst_n(rst_n),

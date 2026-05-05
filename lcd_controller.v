@@ -69,13 +69,15 @@ localparam S_INIT_1    = 4'd1;
 localparam S_INIT_2    = 4'd2;
 localparam S_INIT_3    = 4'd3;
 localparam S_INIT_4    = 4'd4;
-localparam S_HOME      = 4'd5;
-localparam S_WRITE_HI  = 4'd6;
-localparam S_WRITE_LO  = 4'd7;
-localparam S_ENABLE_HI = 4'd8;
-localparam S_ENABLE_LO = 4'd9;
-localparam S_NEXT_CHAR = 4'd10;
-localparam S_DONE      = 4'd11;
+localparam S_INIT_5    = 4'd5;  // Display OFF
+localparam S_CLEAR     = 4'd6;
+localparam S_HOME      = 4'd7;
+localparam S_WRITE_HI  = 4'd8;
+localparam S_WRITE_LO  = 4'd9;
+localparam S_ENABLE_HI = 4'd10;
+localparam S_ENABLE_LO = 4'd11;
+localparam S_NEXT_CHAR = 4'd12;
+localparam S_DONE      = 4'd13;
 
 reg [3:0]  state;
 reg [23:0] wait_cnt;
@@ -130,14 +132,14 @@ always @(posedge clk50) begin
                 end
             end
 
-            // ── Display ON, cursor OFF (0x0C) ─────────────────────────
+            // ── Display OFF, cursor OFF (0x08) ────────────────────────
             S_INIT_3: begin
                 LCD_RS <= 1'b0;
                 if (wait_cnt < WAIT_CMD)
                     wait_cnt <= wait_cnt + 24'd1;
                 else begin
                     wait_cnt <= 24'd0;
-                    // 0x0C → high nibble 0x0, low nibble 0xC
+                    // 0x08 → high nibble 0x0, low nibble 0x8
                     LCD_DATA <= 4'h0; LCD_EN <= 1'b1;
                     state    <= S_INIT_4;
                 end
@@ -147,11 +149,43 @@ always @(posedge clk50) begin
                 if (wait_cnt < WAIT_ENABLE)
                     wait_cnt <= wait_cnt + 24'd1;
                 else begin
-                    LCD_DATA <= 4'hC; LCD_EN <= 1'b1;
+                    LCD_DATA <= 4'h8; LCD_EN <= 1'b1;
                     if (wait_cnt < WAIT_ENABLE*2)
                         wait_cnt <= wait_cnt + 24'd1;
                     else begin
                         LCD_EN <= 1'b0; wait_cnt <= 24'd0;
+                        state  <= S_INIT_5;
+                    end
+                end
+            end
+
+            // ── Display ON, cursor OFF (0x0C) ──────────────────────────
+            S_INIT_5: begin
+                LCD_RS   <= 1'b0;
+                LCD_DATA <= 4'h0;
+                LCD_EN   <= 1'b1;
+                if (wait_cnt < WAIT_ENABLE) wait_cnt <= wait_cnt + 24'd1;
+                else begin
+                    LCD_DATA <= 4'hC; LCD_EN <= 1'b0;
+                    if (wait_cnt < WAIT_CMD) wait_cnt <= wait_cnt + 24'd1;
+                    else begin
+                        wait_cnt <= 24'd0;
+                        state  <= S_CLEAR;
+                    end
+                end
+            end
+
+            // ── Clear Display (0x01) ──────────────────────────────────
+            S_CLEAR: begin
+                LCD_RS   <= 1'b0;
+                LCD_DATA <= 4'h0;
+                LCD_EN   <= 1'b1;
+                if (wait_cnt < WAIT_ENABLE) wait_cnt <= wait_cnt + 24'd1;
+                else begin
+                    LCD_DATA <= 4'h1; LCD_EN <= 1'b0;
+                    if (wait_cnt < WAIT_CMD) wait_cnt <= wait_cnt + 24'd1;
+                    else begin
+                        wait_cnt <= 24'd0;
                         state  <= S_HOME;
                     end
                 end
