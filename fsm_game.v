@@ -1,10 +1,10 @@
 // fsm_game.v — Top-level game state machine.
 //
 // States:
-//   IDLE    — waiting for KEY[3] press
+//   MENU    — waiting for KEY[3] press
 //   DRIVING — car active, collision detection running, timer counting
-//   FAIL    — collision occurred; wait for KEY[3] to return to IDLE
-//   PASS    — car passed through finish line; wait for KEY[3] to return to IDLE
+//   FAIL    — collision occurred; wait for KEY[3] to return to MENU
+//   PASS    — car passed through finish line; wait for KEY[3] to return to MENU
 //
 // Finish detection: car must stop completely inside parking rectangle with all coins collected.
 
@@ -24,14 +24,14 @@ module fsm_game (
     input  wire [3:0]  coin_count,  // coins collected
     input  wire [3:0]  num_coins,   // total coins in level
     // Outputs
-    output reg  [1:0]  game_state,  // 0=IDLE 1=DRIVING 2=FAIL 3=PASS
+    output reg  [1:0]  game_state,  // 0=MENU 1=DRIVING 2=FAIL 3=PASS
     output reg         game_active, // DRIVING state
     output reg  [15:0] remaining_sec, // countdown seconds (for 7-seg)
     output reg  [7:0]  remaining_ms   // centiseconds approximation
 );
 
 // ── State encoding ─────────────────────────────────────────────────────────
-localparam IDLE    = 2'd0;
+localparam MENU    = 2'd0;
 localparam DRIVING = 2'd1;
 localparam FAIL    = 2'd2;
 localparam PASS    = 2'd3;
@@ -46,7 +46,7 @@ always @(posedge clk50) begin
         tick_cnt      <= 6'd0;
         remaining_sec <= ROUND_TIME_SEC;
         remaining_ms  <= 8'd0;
-    end else if (game_state == IDLE) begin
+    end else if (game_state == MENU) begin
         tick_cnt   <= 6'd0;
         remaining_sec <= ROUND_TIME_SEC;
         remaining_ms  <= 8'd0;
@@ -72,7 +72,7 @@ end
 // A "has_left_start" flag prevents triggering before the car has moved away.
 reg has_left_start;
 always @(posedge clk50) begin
-    if (!rst_n || game_state == IDLE)
+    if (!rst_n || game_state == MENU)
         has_left_start <= 1'b0;
     else if (game_state == DRIVING && car_x < (`PARKING_X2 + 10'd50))
         has_left_start <= 1'b1;  // car has travelled towards parking zone
@@ -105,28 +105,29 @@ wire time_up = (remaining_sec == 16'd0);
 // ── FSM ───────────────────────────────────────────────────────────────────
 always @(posedge clk50) begin
     if (!rst_n) begin
-        game_state  <= IDLE;
+        game_state  <= MENU;
         game_active <= 1'b0;
     end else begin
         case (game_state)
-            IDLE: begin
+            MENU: begin
                 game_active <= 1'b0;
                 if (start_btn) game_state <= DRIVING;
             end
             DRIVING: begin
                 game_active <= 1'b1;
-                if (collision || time_up) game_state <= FAIL;
+                if (start_btn) game_state <= MENU;
+                else if (collision || time_up) game_state <= FAIL;
                 else if (finish_pulse) game_state <= PASS;
             end
             FAIL: begin
                 game_active <= 1'b0;
-                if (start_btn) game_state <= IDLE;
+                if (start_btn) game_state <= MENU;
             end
             PASS: begin
                 game_active <= 1'b0;
-                if (start_btn) game_state <= IDLE;
+                if (start_btn) game_state <= MENU;
             end
-            default: game_state <= IDLE;
+            default: game_state <= MENU;
         endcase
     end
 end

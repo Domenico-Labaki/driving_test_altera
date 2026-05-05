@@ -11,6 +11,7 @@ module track_renderer (
     input  wire        active,
     input  wire [9:0]  px,
     input  wire [9:0]  py,
+    input  wire [1:0]  game_state,    // 0=MENU, 1=DRIVING, 2=FAIL, 3=PASS
     // Car
     input  wire [9:0]  car_x,
     input  wire [9:0]  car_y,
@@ -30,6 +31,9 @@ module track_renderer (
     input  wire [`MAX_COINS-1:0]       collected,   // bitmask from coin_collector
     output reg  [23:0] rgb
 );
+
+localparam MENU    = 2'd0;
+localparam DRIVING = 2'd1;
 
 // ── Color constants ───────────────────────────────────────────────────────
 localparam C_OFFROAD1   = 24'h1FA71F;
@@ -311,8 +315,9 @@ wire        w_finish_open = w_finish_box && all_coins_collected(coin_bus, num_co
 wire        w_start     = (py==`START_LINE_Y)  && (px>=`SF_X1) && (px<=`SF_X2);
 wire        w_track     = is_on_track(px,py,seg_bus,num_segs);
 wire        w_dash      = w_track & is_road_dash(px,py,seg_bus,num_segs);
-wire [23:0] w_bldg      = bldg_color(px,py,bldg_bus,num_bldgs);
+wire [23:0] w_bldg       = bldg_color(px,py,bldg_bus,num_bldgs);
 wire [11:0] school_rgb;
+wire [23:0] menu_rgb;
 
 driving_school_display u_school (
     .pixel_clk(pclk),
@@ -323,11 +328,20 @@ driving_school_display u_school (
     .rgb(school_rgb)
 );
 
+menu_display u_menu (
+    .px(px),
+    .py(py),
+    .rgb(menu_rgb)
+);
+
 // ── Registered pixel pipeline ─────────────────────────────────────────────
 always @(posedge pclk) begin
     if (!rst_n || !active) begin
         // Default background before everything — show sky top while inactive
         rgb <= C_SKY_TOP;
+    end else if (game_state == MENU) begin
+        // Display menu screen
+        rgb <= menu_rgb;
     end else begin
         // Draw higher-priority objects first (car, cones, coins, finish/start, road)
         if (w_car)

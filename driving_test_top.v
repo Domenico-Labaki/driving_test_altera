@@ -27,7 +27,7 @@ module driving_test_top (
     output wire        GPIO_0_0
 );
 
-wire rst_n = KEY[3];
+wire rst_n = KEY[2];
 
 // ── VGA ───────────────────────────────────────────────────────────────────
 wire pclk, active, hsync, vsync;
@@ -64,12 +64,7 @@ input_handler u_input (
     .start_btn(start_btn_db)
 );
 
-reg key3_prev;
-always @(posedge CLOCK_50) begin
-    if (!rst_n) key3_prev <= 1'b0;
-    else        key3_prev <= KEY[3];
-end
-wire start_btn = KEY[3] & ~key3_prev;
+wire start_btn = start_btn_db;
 
 // ── Procedural track generator ────────────────────────────────────────────
 wire [(`MAX_SEGS*40)-1:0]  seg_bus;
@@ -84,6 +79,7 @@ wire                        placement_valid;
 
 track_gen u_tgen (
     .clk50(CLOCK_50), .rst_n(rst_n),
+    .reload(start_btn),
     .seg_bus(seg_bus),   .num_segs(num_segs),
     .cone_bus(cone_bus), .num_cones(num_cones),
     .bldg_bus(bldg_bus), .num_bldgs(num_bldgs),
@@ -169,7 +165,7 @@ wire [23:0] rgb;
 
 track_renderer u_render (
     .pclk(pclk), .rst_n(rst_n), .active(active),
-    .px(px), .py(py),
+    .px(px), .py(py), .game_state(game_state),
     .car_x(car_x), .car_y(car_y),
     .car_angle(car_angle), .heading_deg(heading_deg),
     .car_row_bus(car_row_bus),

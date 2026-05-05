@@ -23,6 +23,7 @@
 module track_gen (
     input  wire        clk50,
     input  wire        rst_n,
+    input  wire        reload,
     // Road segments
     output reg  [(`MAX_SEGS*40)-1:0]  seg_bus,
     output reg  [3:0]                  num_segs,
@@ -74,7 +75,7 @@ always @(posedge clk50) begin
     rst_prev    <= rst_n;
     do_validate <= load_track;
 end
-wire load_track = rst_n & ~rst_prev;
+wire load_track = (rst_n & ~rst_prev) | reload;
 
 // ── Layout load ───────────────────────────────────────────────────────────
 always @(posedge clk50) begin
