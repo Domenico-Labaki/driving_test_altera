@@ -18,7 +18,7 @@ module driving_test_top (
     output wire        LCD_EN, LCD_RS, LCD_RW,
     output wire [7:4]  LCD_DATA,
     // Seven-segment
-    output wire [6:0]  HEX0, HEX1, HEX2, HEX3, HEX4, HEX5,
+    output wire [6:0]  HEX0, HEX1, HEX2, HEX3, HEX4, HEX5, HEX6, HEX7,
     // LEDs
     output wire [17:0] LEDR,
     output wire [7:0]  LEDG,
@@ -187,14 +187,14 @@ lcd_controller u_lcd (
     .LCD_EN(LCD_EN), .LCD_RS(LCD_RS), .LCD_RW(LCD_RW), .LCD_DATA(LCD_DATA)
 );
 
-// ── Seven-segment (coin count on HEX1:HEX0) ──────────────────────────────
+// ── Seven-segment (coin count on HEX7:HEX6) ──────────────────────────────
 seg7_display u_seg7 (
     .clk50(CLOCK_50), .rst_n(rst_n),
     .remaining_sec(remaining_sec), .remaining_ms(remaining_ms),
     .speed_kph(speed_kph),
     .coin_count(coin_count),
     .HEX0(HEX0), .HEX1(HEX1), .HEX2(HEX2),
-    .HEX3(HEX3), .HEX4(HEX4), .HEX5(HEX5)
+    .HEX3(HEX3), .HEX4(HEX4), .HEX5(HEX5), .HEX6(HEX6), .HEX7(HEX7)
 );
 
 // ── LEDs / Audio ──────────────────────────────────────────────────────────

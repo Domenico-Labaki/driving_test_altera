@@ -43,23 +43,23 @@ initial begin
     msg_rom[0][6]=8'h53; msg_rom[0][7]=8'h54; msg_rom[0][8]=8'h41;
     msg_rom[0][9]=8'h52; msg_rom[0][10]=8'h54; msg_rom[0][11]=8'h20;
     msg_rom[0][12]=8'h20; msg_rom[0][13]=8'h20; msg_rom[0][14]=8'h20; msg_rom[0][15]=8'h20;
-    // "DRIVE SAFELY    "
+    // "DRIVE MODE       "
     msg_rom[1][0]=8'h44; msg_rom[1][1]=8'h52; msg_rom[1][2]=8'h49;
     msg_rom[1][3]=8'h56; msg_rom[1][4]=8'h45; msg_rom[1][5]=8'h20;
-    msg_rom[1][6]=8'h53; msg_rom[1][7]=8'h41; msg_rom[1][8]=8'h46;
-    msg_rom[1][9]=8'h45; msg_rom[1][10]=8'h4C; msg_rom[1][11]=8'h59;
+    msg_rom[1][6]=8'h4D; msg_rom[1][7]=8'h4F; msg_rom[1][8]=8'h44;
+    msg_rom[1][9]=8'h45; msg_rom[1][10]=8'h20; msg_rom[1][11]=8'h20;
     msg_rom[1][12]=8'h20; msg_rom[1][13]=8'h20; msg_rom[1][14]=8'h20; msg_rom[1][15]=8'h20;
-    // "TEST FAILED     "
+    // "YOU FAILED      "
     msg_rom[2][0]=8'h54; msg_rom[2][1]=8'h45; msg_rom[2][2]=8'h53;
-    msg_rom[2][3]=8'h54; msg_rom[2][4]=8'h20; msg_rom[2][5]=8'h46;
-    msg_rom[2][6]=8'h41; msg_rom[2][7]=8'h49; msg_rom[2][8]=8'h4C;
-    msg_rom[2][9]=8'h45; msg_rom[2][10]=8'h44; msg_rom[2][11]=8'h20;
+    msg_rom[2][3]=8'h20; msg_rom[2][4]=8'h46; msg_rom[2][5]=8'h41;
+    msg_rom[2][6]=8'h49; msg_rom[2][7]=8'h4C; msg_rom[2][8]=8'h45;
+    msg_rom[2][9]=8'h20; msg_rom[2][10]=8'h20; msg_rom[2][11]=8'h20;
     msg_rom[2][12]=8'h20; msg_rom[2][13]=8'h20; msg_rom[2][14]=8'h20; msg_rom[2][15]=8'h20;
-    // "TEST PASSED     "
+    // "YOU PASSED      "
     msg_rom[3][0]=8'h54; msg_rom[3][1]=8'h45; msg_rom[3][2]=8'h53;
-    msg_rom[3][3]=8'h54; msg_rom[3][4]=8'h20; msg_rom[3][5]=8'h50;
-    msg_rom[3][6]=8'h41; msg_rom[3][7]=8'h53; msg_rom[3][8]=8'h53;
-    msg_rom[3][9]=8'h45; msg_rom[3][10]=8'h44; msg_rom[3][11]=8'h20;
+    msg_rom[3][3]=8'h20; msg_rom[3][4]=8'h50; msg_rom[3][5]=8'h41;
+    msg_rom[3][6]=8'h53; msg_rom[3][7]=8'h53; msg_rom[3][8]=8'h45;
+    msg_rom[3][9]=8'h20; msg_rom[3][10]=8'h20; msg_rom[3][11]=8'h20;
     msg_rom[3][12]=8'h20; msg_rom[3][13]=8'h20; msg_rom[3][14]=8'h20; msg_rom[3][15]=8'h20;
 end
 

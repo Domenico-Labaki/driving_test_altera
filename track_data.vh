@@ -12,6 +12,7 @@
 `define MAX_SEGS   12   // max road segments per layout
 `define MAX_CONES   8   // max cones per layout
 `define MAX_BLDGS   6   // max buildings per layout
+`define MAX_COINS  12   // max coins per layout
 
 // ──────────────────────────────────────────────────────────
 //  START / FINISH (fixed across all layouts)
