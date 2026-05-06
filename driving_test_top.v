@@ -8,7 +8,7 @@
 module driving_test_top (
     input  wire        CLOCK_50,
     input  wire [3:0]  KEY,
-    input  wire [3:0]  SW,
+    input  wire [17:0]  SW,
     // VGA
     output wire [9:0]  VGA_R, VGA_G, VGA_B,
     output wire        VGA_HS, VGA_VS, VGA_BLANK, VGA_SYNC, VGA_CLK,
@@ -34,8 +34,9 @@ module driving_test_top (
     inout  wire        I2C_SDAT
 );
 
-// Use KEY[3] as the start/reset button (active-low on DE2). Keep KEY[2] free for "honk"/audio control.
-wire rst_n = KEY[3];
+// Use SW[17] as the global reset (active-low). Keep KEY[3] for start/reset to menu
+// (start button). KEY[2] remains honk/audio control.
+wire rst_n = SW[17];
 
 // ?? VGA ???????????????????????????????????????????????????????????????????
 wire pclk, active, hsync, vsync;
