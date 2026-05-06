@@ -119,6 +119,7 @@ reg        tone_phase;
 reg [4:0]  bit_index;
 reg [15:0] left_shift;
 reg [15:0] right_shift;
+reg        mode_start; // single-sample zero pad on mode changes to avoid DAC pop
 
 wire [2:0] requested_mode =
     (game_state == 2'd3 && !win_done) ? MODE_WIN   :
@@ -328,6 +329,10 @@ always @(posedge clk50) begin
                     mode       <= requested_mode;
                     tone_count <= 16'd0;
                     tone_phase <= 1'b0;
+                    mode_start <= 1'b1;
+                end else if (mode_start) begin
+                    // clear the one-sample pad on the following frame
+                    mode_start <= 1'b0;
                 end
 
                 case (requested_mode)
@@ -364,13 +369,17 @@ always @(posedge clk50) begin
                     end
 
                     MODE_HONK: begin
-                        if (tone_count >= HALF_440 - 16'd1) begin
-                            tone_count <= 16'd0;
-                            tone_phase <= ~tone_phase;
+                        if (mode_start) begin
+                            current_sample <= 16'sd0;
                         end else begin
-                            tone_count <= tone_count + 16'd1;
+                            if (tone_count >= HALF_440 - 16'd1) begin
+                                tone_count <= 16'd0;
+                                tone_phase <= ~tone_phase;
+                            end else begin
+                                tone_count <= tone_count + 16'd1;
+                            end
+                            current_sample <= tone_phase ? AMP : -AMP;
                         end
-                        current_sample <= tone_phase ? AMP : -AMP;
                     end
 
                     default: begin

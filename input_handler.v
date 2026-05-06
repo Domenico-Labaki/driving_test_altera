@@ -18,7 +18,8 @@ module input_handler (
     output reg        brake,        // SW[1] debounced level
     output reg        steer_left,   // KEY[0] single-cycle pulse
     output reg        steer_right,  // KEY[1] single-cycle pulse
-    output reg        start_btn     // KEY[3] single-cycle pulse
+    output reg        start_btn,    // KEY[3] single-cycle pulse
+    output reg        honk          // KEY[2] debounced level (held while pressed)
 );
 
 // ── Debounce counter: 20 ms at 50 MHz = 1,000,000 cycles ─────────────────
@@ -104,6 +105,7 @@ always @(posedge clk50) begin
         steer_left  <= key_db[1];
         steer_right <= key_db[0];
         start_btn   <= key_db[3] & ~key_prev[3];
+        honk        <= key_db[2];
     end
 end
 
