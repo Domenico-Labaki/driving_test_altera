@@ -25,6 +25,12 @@ module driving_school_display (
 localparam SPRITE_W = 30;
 localparam SPRITE_H = 27;
 localparam SCALE    = 4;
+localparam integer LABEL_N      = 14;
+localparam integer LABEL_CELL_W = 6;
+localparam integer LABEL_CELL_H = 7;
+localparam integer LABEL_X      = (SPRITE_W * SCALE - LABEL_N * LABEL_CELL_W) / 2;
+localparam integer LABEL_Y      = 8;
+localparam [11:0] C_LABEL       = 12'hA44;
 
 // ── Palette ────────────────────────────────────────────────────────────────
 // 0  transparent
@@ -138,6 +144,134 @@ function [3:0] rom_val;
     end
 endfunction
 
+function [7:0] label_char;
+    input integer idx;
+    begin
+        case (idx)
+            0: label_char = "D";
+            1: label_char = "R";
+            2: label_char = "I";
+            3: label_char = "V";
+            4: label_char = "I";
+            5: label_char = "N";
+            6: label_char = "G";
+            7: label_char = " ";
+            8: label_char = "S";
+            9: label_char = "C";
+            10: label_char = "H";
+            11: label_char = "O";
+            12: label_char = "O";
+            13: label_char = "L";
+            default: label_char = " ";
+        endcase
+    end
+endfunction
+
+function [4:0] glyph_row;
+    input [7:0] ch;
+    input [2:0] row;
+    begin
+        case (ch)
+            "C": case (row)
+                0: glyph_row = 5'b01110; 1: glyph_row = 5'b10001;
+                2: glyph_row = 5'b10000; 3: glyph_row = 5'b10000;
+                4: glyph_row = 5'b10000; 5: glyph_row = 5'b10001;
+                6: glyph_row = 5'b01110; default: glyph_row = 5'b00000;
+            endcase
+            "D": case (row)
+                0: glyph_row = 5'b11100; 1: glyph_row = 5'b10010;
+                2: glyph_row = 5'b10001; 3: glyph_row = 5'b10001;
+                4: glyph_row = 5'b10001; 5: glyph_row = 5'b10010;
+                6: glyph_row = 5'b11100; default: glyph_row = 5'b00000;
+            endcase
+            "G": case (row)
+                0: glyph_row = 5'b01110; 1: glyph_row = 5'b10001;
+                2: glyph_row = 5'b10000; 3: glyph_row = 5'b10111;
+                4: glyph_row = 5'b10001; 5: glyph_row = 5'b10001;
+                6: glyph_row = 5'b01110; default: glyph_row = 5'b00000;
+            endcase
+            "H": case (row)
+                0: glyph_row = 5'b10001; 1: glyph_row = 5'b10001;
+                2: glyph_row = 5'b10001; 3: glyph_row = 5'b11111;
+                4: glyph_row = 5'b10001; 5: glyph_row = 5'b10001;
+                6: glyph_row = 5'b10001; default: glyph_row = 5'b00000;
+            endcase
+            "I": case (row)
+                0: glyph_row = 5'b11111; 1: glyph_row = 5'b00100;
+                2: glyph_row = 5'b00100; 3: glyph_row = 5'b00100;
+                4: glyph_row = 5'b00100; 5: glyph_row = 5'b00100;
+                6: glyph_row = 5'b11111; default: glyph_row = 5'b00000;
+            endcase
+            "L": case (row)
+                0: glyph_row = 5'b10000; 1: glyph_row = 5'b10000;
+                2: glyph_row = 5'b10000; 3: glyph_row = 5'b10000;
+                4: glyph_row = 5'b10000; 5: glyph_row = 5'b10000;
+                6: glyph_row = 5'b11111; default: glyph_row = 5'b00000;
+            endcase
+            "N": case (row)
+                0: glyph_row = 5'b10001; 1: glyph_row = 5'b11001;
+                2: glyph_row = 5'b10101; 3: glyph_row = 5'b10011;
+                4: glyph_row = 5'b10001; 5: glyph_row = 5'b10001;
+                6: glyph_row = 5'b10001; default: glyph_row = 5'b00000;
+            endcase
+            "O": case (row)
+                0: glyph_row = 5'b01110; 1: glyph_row = 5'b10001;
+                2: glyph_row = 5'b10001; 3: glyph_row = 5'b10001;
+                4: glyph_row = 5'b10001; 5: glyph_row = 5'b10001;
+                6: glyph_row = 5'b01110; default: glyph_row = 5'b00000;
+            endcase
+            "R": case (row)
+                0: glyph_row = 5'b11110; 1: glyph_row = 5'b10001;
+                2: glyph_row = 5'b10001; 3: glyph_row = 5'b11110;
+                4: glyph_row = 5'b10100; 5: glyph_row = 5'b10010;
+                6: glyph_row = 5'b10001; default: glyph_row = 5'b00000;
+            endcase
+            "S": case (row)
+                0: glyph_row = 5'b01111; 1: glyph_row = 5'b10000;
+                2: glyph_row = 5'b10000; 3: glyph_row = 5'b01110;
+                4: glyph_row = 5'b00001; 5: glyph_row = 5'b00001;
+                6: glyph_row = 5'b11110; default: glyph_row = 5'b00000;
+            endcase
+            "V": case (row)
+                0: glyph_row = 5'b10001; 1: glyph_row = 5'b10001;
+                2: glyph_row = 5'b10001; 3: glyph_row = 5'b10001;
+                4: glyph_row = 5'b10001; 5: glyph_row = 5'b01010;
+                6: glyph_row = 5'b00100; default: glyph_row = 5'b00000;
+            endcase
+            default: glyph_row = 5'b00000;
+        endcase
+    end
+endfunction
+
+function [0:0] label_pixel;
+    input [9:0] fpx;
+    input [9:0] fpy;
+    integer idx;
+    reg [9:0] rel_x;
+    reg [9:0] rel_y;
+    reg [4:0] cell_x;
+    reg [4:0] row_bits;
+    reg [2:0] glyph_x;
+    reg [2:0] glyph_y;
+    reg [7:0] ch;
+    begin
+        label_pixel = 1'b0;
+        if (fpx >= x_offset + LABEL_X && fpx < x_offset + LABEL_X + LABEL_N * LABEL_CELL_W &&
+            fpy >= y_offset + LABEL_Y && fpy < y_offset + LABEL_Y + LABEL_CELL_H) begin
+            rel_x = fpx - (x_offset + LABEL_X);
+            rel_y = fpy - (y_offset + LABEL_Y);
+            idx = rel_x / LABEL_CELL_W;
+            cell_x = rel_x % LABEL_CELL_W;
+            glyph_x = cell_x[2:0];
+            glyph_y = rel_y[2:0];
+            ch = label_char(idx);
+            row_bits = glyph_row(ch, glyph_y);
+            if (row_bits[4 - glyph_x])
+                label_pixel = 1'b1;
+        end
+    end
+endfunction
+
 // ── Coordinate math ───────────────────────────────────────────────────────
 wire signed [10:0] rel_x = $signed({1'b0, h_count}) - $signed({1'b0, x_offset});
 wire signed [10:0] rel_y = $signed({1'b0, v_count}) - $signed({1'b0, y_offset});
@@ -171,6 +305,10 @@ always @(*) begin
             4'd10:   rgb = 12'hF33;
             default: rgb = 12'h000;
         endcase
+    end
+
+    if (label_pixel(h_count, v_count)) begin
+        rgb = C_LABEL;
     end
 end
 

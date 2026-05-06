@@ -158,8 +158,8 @@ always @(posedge clk50) begin
 
                 // Coins — well inside road, clear of all cones and buildings
                 // Left corridor: 3 coins going north
-                coin_bus[ 0*20 +: 20] <= {10'd45,  10'd320};
-                coin_bus[ 1*20 +: 20] <= {10'd45,  10'd215};
+                coin_bus[ 0*20 +: 20] <= {10'd60,  10'd320};
+                coin_bus[ 1*20 +: 20] <= {10'd60,  10'd230};
                 coin_bus[ 2*20 +: 20] <= {10'd45,  10'd250};
                 // Top strip: 3 coins spread across
                 coin_bus[ 3*20 +: 20] <= {10'd200, 10'd155};
@@ -245,20 +245,20 @@ always @(posedge clk50) begin
 
                 // Coins — along each segment of the S
                 // Left corridor going up
-                coin_bus[ 0*20 +: 20] <= {10'd45,  10'd360};
+                coin_bus[ 0*20 +: 20] <= {10'd60,  10'd360};
                 coin_bus[ 1*20 +: 20] <= {10'd45,  10'd280};
                 // Top-left shelf going right
                 coin_bus[ 2*20 +: 20] <= {10'd100, 10'd157};
-                coin_bus[ 3*20 +: 20] <= {10'd220, 10'd157};
+                coin_bus[ 3*20 +: 20] <= {10'd235, 10'd157};
                 // Top-right shelf going right
                 coin_bus[ 4*20 +: 20] <= {10'd420, 10'd157};
-                coin_bus[ 5*20 +: 20] <= {10'd540, 10'd157};
+                coin_bus[ 5*20 +: 20] <= {10'd560, 10'd157};
                 // Centre spine going down
-                coin_bus[ 6*20 +: 20] <= {10'd305, 10'd220};
-                coin_bus[ 7*20 +: 20] <= {10'd305, 10'd270};
+                coin_bus[ 6*20 +: 20] <= {10'd285, 10'd220};
+                coin_bus[ 7*20 +: 20] <= {10'd320, 10'd270};
                 // Centre-lower shelf going right
-                coin_bus[ 8*20 +: 20] <= {10'd380, 10'd315};
-                coin_bus[ 9*20 +: 20] <= {10'd500, 10'd315};
+                coin_bus[ 8*20 +: 20] <= {10'd365, 10'd315};
+                coin_bus[ 9*20 +: 20] <= {10'd485, 10'd315};
                 // Right corridor going down
                 coin_bus[10*20 +: 20] <= {10'd595, 10'd157};
                 // Bottom strip going left
@@ -335,7 +335,7 @@ always @(posedge clk50) begin
                 // Coins — distributed around both loops
                 // Left corridor
                 coin_bus[ 0*20 +: 20] <= {10'd45,  10'd300};
-                coin_bus[ 1*20 +: 20] <= {10'd45,  10'd210};
+                coin_bus[ 1*20 +: 20] <= {10'd60,  10'd210};
                 // Top-left
                 coin_bus[ 2*20 +: 20] <= {10'd150, 10'd155};
                 coin_bus[ 3*20 +: 20] <= {10'd250, 10'd155};
@@ -352,7 +352,7 @@ always @(posedge clk50) begin
                 // Bottom-left
                 coin_bus[10*20 +: 20] <= {10'd200, 10'd375};
                 // Left corridor lower
-                coin_bus[11*20 +: 20] <= {10'd45,  10'd365};
+                coin_bus[11*20 +: 20] <= {10'd60,  10'd365};
             end
 
             // ═══════════════════════════════════════════════════════════════

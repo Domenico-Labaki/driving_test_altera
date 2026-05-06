@@ -355,11 +355,6 @@ always @(*) begin
             rgb = C_ACCENT;
     end
 
-    // Thin gold separator line between title and instructions
-    if (py >= 10'd208 && py <= 10'd210 &&
-        px >= 10'd160 && px <= 10'd480)
-        rgb = C_ACCENT;
-
     // ── Title shadow (offset +2,+2) — drawn first so main is on top ──
     title_on  = 1'b0;
 
