@@ -1,0 +1,7 @@
+# Force all .v and .vh files to be detected as Verilog
+*.v linguist-language=Verilog
+*.vh linguist-language=Verilog
+
+# Explicitly ensure they are not ignored or misclassified
+*.v linguist-detectable=true
+*.vh linguist-detectable=true
