@@ -1,4 +1,0 @@
-*.v linguist-language=Verilog
-*.vh linguist-language=Verilog
-*.sv linguist-language=Verilog
-*.svh linguist-language=Verilog
