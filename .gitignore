@@ -2,4 +2,4 @@ db/
 incremental_db/
 output_files/
 output_files/*
-work/*
+work/
